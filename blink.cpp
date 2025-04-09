@@ -29,6 +29,6 @@ int main()
         write(fd, content, 2);
 
         v = !v;
-  }
-  return 0;
+    }
+    return 0;
 }
