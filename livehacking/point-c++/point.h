@@ -12,6 +12,7 @@ public:
     void print(const char* pfx) const;
     void move(struct point by);
 
+    // inline access methods
     int x() const { return _x; }
     int y() const { return _y; }
 };
