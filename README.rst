@@ -17,12 +17,13 @@ Getting The Source, Setup
 
    $ cd ~/My-Projects                       # <--- or wherever you like
    $ git clone https://github.com/jfasch/FH-STECE2023.git
+   $ cd FH-STECE2023
    $ git submodule init
    $ git submodule update
 
 .. code-block:: console
 
-   $ ls -l FH-STECE2023/
+   $ ls -l
    ...
    drwxr-xr-x. 1 jfasch jfasch  158 May  6 12:15 .
    drwxr-xr-x. 1 jfasch jfasch 1558 Apr 25 14:46 ..
