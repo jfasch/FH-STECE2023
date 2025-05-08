@@ -4,6 +4,7 @@ int main(void)
 {
     struct point p1;
     point_init(&p1, 1, 2);
+
     struct point p2;
     point_init(&p2, 42, 7);
     
