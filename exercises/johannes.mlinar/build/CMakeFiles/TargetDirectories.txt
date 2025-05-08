@@ -1,0 +1,11 @@
+/home/jmlinar/Documents/FH-STECE2023/exercises/johannes.mlinar/build/CMakeFiles/rebuild_cache.dir
+/home/jmlinar/Documents/FH-STECE2023/exercises/johannes.mlinar/build/CMakeFiles/edit_cache.dir
+/home/jmlinar/Documents/FH-STECE2023/exercises/johannes.mlinar/build/bin/CMakeFiles/rebuild_cache.dir
+/home/jmlinar/Documents/FH-STECE2023/exercises/johannes.mlinar/build/bin/CMakeFiles/edit_cache.dir
+/home/jmlinar/Documents/FH-STECE2023/exercises/johannes.mlinar/build/bin/CMakeFiles/run-door-johannes.mlinar.dir
+/home/jmlinar/Documents/FH-STECE2023/exercises/johannes.mlinar/build/lib/CMakeFiles/rebuild_cache.dir
+/home/jmlinar/Documents/FH-STECE2023/exercises/johannes.mlinar/build/lib/CMakeFiles/edit_cache.dir
+/home/jmlinar/Documents/FH-STECE2023/exercises/johannes.mlinar/build/lib/CMakeFiles/door-johannes.mlinar.dir
+/home/jmlinar/Documents/FH-STECE2023/exercises/johannes.mlinar/build/tests/CMakeFiles/edit_cache.dir
+/home/jmlinar/Documents/FH-STECE2023/exercises/johannes.mlinar/build/tests/CMakeFiles/rebuild_cache.dir
+/home/jmlinar/Documents/FH-STECE2023/exercises/johannes.mlinar/build/tests/CMakeFiles/door-tests-johannes.mlinar.dir
