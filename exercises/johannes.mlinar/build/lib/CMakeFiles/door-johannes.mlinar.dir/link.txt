@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-johannes.mlinar.a CMakeFiles/door-johannes.mlinar.dir/door.o CMakeFiles/door-johannes.mlinar.dir/motor.o CMakeFiles/door-johannes.mlinar.dir/light-barrier.o CMakeFiles/door-johannes.mlinar.dir/push-button.o
+/usr/bin/ranlib libdoor-johannes.mlinar.a
