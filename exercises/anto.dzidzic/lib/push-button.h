@@ -7,13 +7,34 @@ enum PushButtonState
     PUSHBUTTON_RELEASED,
 };
 
-struct PushButton
+
+class PushButton
 {
+private:
     PushButtonState state;
+public:
+    PushButton(PushButtonState state = PUSHBUTTON_RELEASED)
+    :state(state) {}
+
+    PushButtonState PushButton_get_state() const
+    {
+        return state;
+    }
+
+    void PushButton_set_state(PushButtonState new_state)
+    {
+        state = new_state;
+    }
 };
 
-void PushButton_init(PushButton* self, PushButtonState state);
-PushButtonState PushButton_get_state(PushButton* self);
 
-// for tests only
-void PushButton_set_state(PushButton* self, PushButtonState state);
+//struct PushButton
+//{
+//    PushButtonState state;
+//};
+//
+//void PushButton_init(PushButton* self, PushButtonState state);
+//PushButtonState PushButton_get_state(PushButton* self);
+//
+//// for tests only
+//void PushButton_set_state(PushButton* self, PushButtonState state);
