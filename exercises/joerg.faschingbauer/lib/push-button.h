@@ -1,10 +1,10 @@
 #pragma once
 
 
-enum PushButtonState
+enum class PushButtonState
 {
-    PUSHBUTTON_PRESSED,
-    PUSHBUTTON_RELEASED,
+    PRESSED,
+    RELEASED,
 };
 
 class PushButton

@@ -9,8 +9,8 @@ int main()
     Motor motor;
     Motor_init(&motor, MOTOR_IDLE);
 
-    PushButton do_close(PUSHBUTTON_RELEASED);
-    PushButton do_open(PUSHBUTTON_RELEASED);
+    PushButton do_close(PushButtonState::RELEASED);
+    PushButton do_open(PushButtonState::RELEASED);
 
     LightBarrier closed_position;
     LightBarrier_init(&closed_position, LIGHTBARRIER_BEAM_BROKEN);  // <-- door in "closed" position

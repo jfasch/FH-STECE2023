@@ -9,8 +9,8 @@ TEST(door_suite, straightforward_open)
     Motor motor;
     Motor_init(&motor, MOTOR_IDLE);
 
-    PushButton do_close(PUSHBUTTON_RELEASED);
-    PushButton do_open(PUSHBUTTON_RELEASED);
+    PushButton do_close(PushButtonState::RELEASED);
+    PushButton do_open(PushButtonState::RELEASED);
 
     LightBarrier closed_position;
     LightBarrier_init(&closed_position, LIGHTBARRIER_BEAM_BROKEN);  // <-- door in "closed" position
@@ -31,7 +31,7 @@ TEST(door_suite, straightforward_open)
 
     // "open" button pressed -> motor direction must be set to
     // "opening"
-    do_open.set_state(PUSHBUTTON_PRESSED);
+    do_open.set_state(PushButtonState::PRESSED);
     Door_check(&door);    
     ASSERT_EQ(Motor_get_direction(&motor), MOTOR_FORWARD);
 
