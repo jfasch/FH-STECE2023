@@ -7,13 +7,15 @@ enum LightBarrierState
     LIGHTBARRIER_BEAM_BROKEN,
 };
 
-struct LightBarrier
+class LightBarrier
 {
-    LightBarrierState state;
+    private: 
+    LightBarrierState _state;
+
+    public:
+    LightBarrier(LightBarrierState state) {_state = state;};
+    LightBarrierState LightBarrier_get_state() const {return _state;};
+    void LightBarrier_set_state(LightBarrierState state) {_state = state;};
+
 };
 
-void LightBarrier_init(LightBarrier* self, LightBarrierState state);
-LightBarrierState LightBarrier_get_state(LightBarrier* self);
-
-// for tests only
-void LightBarrier_set_state(LightBarrier* self, LightBarrierState state);

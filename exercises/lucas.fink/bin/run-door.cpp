@@ -6,23 +6,23 @@
 int main()
 {
     // --- build a door and its parts
-    Motor motor;
-    Motor_init(&motor, MOTOR_IDLE);
 
-    PushButton do_close;
-    PushButton_init(&do_close, PUSHBUTTON_RELEASED);
+    Motor Motor(MOTOR_IDLE);
 
-    PushButton do_open;
-    PushButton_init(&do_open, PUSHBUTTON_RELEASED);
 
-    LightBarrier closed_position;
-    LightBarrier_init(&closed_position, LIGHTBARRIER_BEAM_BROKEN);  // <-- door in "closed" position
+    PushButton PushButton(PUSHBUTTON_RELEASED);
+
+
+    PushButton PushButton(PUSHBUTTON_RELEASED);
+
+    
+    LightBarrier(LIGHTBARRIER_BEAM_BROKEN);  // <-- door in "closed" position
 
     LightBarrier opened_position;
-    LightBarrier_init(&opened_position, LIGHTBARRIER_BEAM_SOLID);   // <-- door not in "opened" position
+    LightBarrier(LIGHTBARRIER_BEAM_SOLID);   // <-- door not in "opened" position
 
-    Door door;
-    Door_init(&door, &motor, &do_close, &do_open, &closed_position, &opened_position);
+    
+    Door Door(&motor, &do_close, &do_open, &closed_position, &opened_position);
 
 
     // --- run main SPS loop
