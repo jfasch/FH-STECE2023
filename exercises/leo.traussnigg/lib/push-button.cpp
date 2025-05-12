@@ -1,16 +1,23 @@
 #include "push-button.h"
 
-void PushButton_init(PushButton* self, PushButtonState state)
-{
-    self->state = state;
-}
+enum class PushButtonState {
+    PUSHBUTTON_PRESSED,
+    PUSHBUTTON_RELEASED
+};
 
-PushButtonState PushButton_get_state(PushButton* self)
-{
-    return self->state;
-}
+class PushButton {
+public:
+    PushButton(PushButtonState state) : state(state) {}
 
-void PushButton_set_state(PushButton* self, PushButtonState state)
-{
-    self->state = state;
-}
+    PushButtonState getState() const {
+        return state;
+    }
+
+    //for tests only
+    void setState(PushButtonState newState) {
+        state = newState;
+    }
+
+private:
+    PushButtonState state;
+};
