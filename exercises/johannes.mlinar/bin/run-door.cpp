@@ -3,6 +3,16 @@
 #include <time.h>
 
 
+/*************  ✨ Windsurf Command ⭐  *************/
+/**
+ * @brief The main function of the SPS door example.
+ *
+ * It builds an SPS door object and its parts and then runs the main loop.
+ * The main loop calls Door_check() every millisecond.
+ *
+ * @return 0 when the program finishes successfully.
+ */
+/*******  ece73af0-7538-4f1a-a8cb-29ed96fc4e04  *******/
 int main()
 {
     // --- build a door and its parts
