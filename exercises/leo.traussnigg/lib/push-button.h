@@ -11,7 +11,7 @@ public:
 
     PushButton(State state) : state(state) {}
 
-    State getState() {
+    State getState() const {
         return state;
     }
 
