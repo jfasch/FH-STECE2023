@@ -14,7 +14,7 @@ class PushButton
 
     public:
     PushButton(PushButtonState state) {_state = state;};
-    PushButtonState PushButton_get_state() const {return _state;};
-    void PushButton_set_state(PushButtonState state) {_state = state;};
+    PushButtonState get_state() const {return _state;};
+    void set_state(PushButtonState state) {_state = state;};
 };
 

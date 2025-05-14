@@ -7,22 +7,21 @@ int main()
 {
     // --- build a door and its parts
 
-    Motor Motor(MOTOR_IDLE);
+    Motor motor(MOTOR_IDLE);
 
 
-    PushButton PushButton(PUSHBUTTON_RELEASED);
+    PushButton do_close(PUSHBUTTON_RELEASED);
 
 
-    PushButton PushButton(PUSHBUTTON_RELEASED);
-
-    
-    LightBarrier(LIGHTBARRIER_BEAM_BROKEN);  // <-- door in "closed" position
-
-    LightBarrier opened_position;
-    LightBarrier(LIGHTBARRIER_BEAM_SOLID);   // <-- door not in "opened" position
+    PushButton do_open(PUSHBUTTON_RELEASED);
 
     
-    Door Door(&motor, &do_close, &do_open, &closed_position, &opened_position);
+    LightBarrier closed_position(LIGHTBARRIER_BEAM_BROKEN);  // <-- door in "closed" position
+
+    LightBarrier opened_position(LIGHTBARRIER_BEAM_SOLID);   // <-- door not in "opened" position
+
+    
+    Door door(&motor, &do_close, &do_open, &closed_position, &opened_position);
 
 
     // --- run main SPS loop
@@ -32,7 +31,7 @@ int main()
     };
 
     while (true) {
-        Door_check(&door);
+        door.check();
         nanosleep(&interval, nullptr);
     }
 

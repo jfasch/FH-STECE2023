@@ -8,7 +8,7 @@ Door::Door(Motor* motor, PushButton* do_close, PushButton* do_open,
 {
     // assume that the motor is idle when the software boots. FIXME:
     // is that assumption safe?
-    assert(motor->Motor_get_direction() == MOTOR_IDLE);
+    assert(motor->get_direction() == MOTOR_IDLE);
 
     _motor = motor;
     _do_close = do_close;
@@ -19,13 +19,13 @@ Door::Door(Motor* motor, PushButton* do_close, PushButton* do_open,
     _state = DOOR_INIT;
 }
 
-void Door::Door_check() 
+void Door::check() 
 {
     switch (_state) {
         case DOOR_INIT: {
             // figure out the state we are in: where is the door?
-            LightBarrierState closed_barrier_state = _closed_position->LightBarrier_get_state();
-            LightBarrierState opened_barrier_state = _opened_position->LightBarrier_get_state();
+            LightBarrierState closed_barrier_state = _closed_position->get_state();
+            LightBarrierState opened_barrier_state = _opened_position->get_state();
 
             if (closed_barrier_state == LIGHTBARRIER_BEAM_SOLID && opened_barrier_state == LIGHTBARRIER_BEAM_SOLID)
                 _state = DOOR_ERROR_MIDDLE_POSITION;   // FIXME: recover from that
@@ -42,8 +42,8 @@ void Door::Door_check()
         case DOOR_CLOSED: {
             // "open" requested (button press). drive motor, and
             // switch state to "opening"
-            if (_do_open->PushButton_get_state() == PUSHBUTTON_PRESSED) {
-                _motor->Motor_forward();
+            if (_do_open->get_state() == PUSHBUTTON_PRESSED) {
+                _motor->forward();
                 _state = DOOR_OPENING;
             }
 
@@ -56,9 +56,9 @@ void Door::Door_check()
         case DOOR_OPENING: {
             // see if we already reached the end position. if so, stop
             // motor and adjust door state.
-            LightBarrierState opened_barrier_state = _opened_position->LightBarrier_get_state();
+            LightBarrierState opened_barrier_state = _opened_position->get_state();
             if (opened_barrier_state == LIGHTBARRIER_BEAM_BROKEN) {
-                _motor->Motor_stop();
+                _motor->stop();
                 _state = DOOR_OPENED;
             }
 
