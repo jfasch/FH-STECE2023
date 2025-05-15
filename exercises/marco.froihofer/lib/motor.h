@@ -1,32 +1,26 @@
-// motor.hpp
 #pragma once
 
-// Beibehaltung der ursprünglichen Enum-Definition
-enum MotorDirection {
-    MOTOR_IDLE,
-    MOTOR_FORWARD,
-    MOTOR_BACKWARD,
+enum class MotorDirection
+{
+    IDLE,
+    FORWARD,
+    BACKWARD,
 };
 
-// C++-Klasse
-class Motor {
+class Motor
+{
 public:
-    // Konstruktor ersetzt Motor_init
-    explicit Motor(MotorDirection dir = MOTOR_IDLE)
-        : direction(dir) {}
-
-    // Methoden statt freier Funktionen
-    void forward()   { direction = MOTOR_FORWARD; }
-    void backward()  { direction = MOTOR_BACKWARD; }
-    void stop()      { direction = MOTOR_IDLE; }
-
-    // Getter für Tests oder Statusabfrage
-    MotorDirection getDirection() const { return direction; }
+    Motor();
+    explicit Motor(MotorDirection direction);
+    
+    void init(MotorDirection direction);
+    void forward();
+    void backward();
+    void stop();
+    
+    // For tests only
+    MotorDirection getDirection() const;
 
 private:
     MotorDirection direction;
 };
-
-
-// for tests only
-MotorDirection Motor_get_direction(Motor* self);

@@ -14,7 +14,7 @@ public:
     PushButton(PushButtonState state);
     
      // Rückgabe des aktuellen Zustands (intern)
-     PushButtonState get_State();
+     PushButtonState get_state();
     
     //test only
     void set_state(PushButtonState state);

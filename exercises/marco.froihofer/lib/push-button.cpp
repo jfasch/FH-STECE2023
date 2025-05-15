@@ -7,7 +7,7 @@ PushButton::PushButton(PushButtonState state) {
 }
 
 // Liefert den aktuellen Zustand zurück
-PushButtonState PushButton::get_State()  {
+PushButtonState PushButton::get_state()  {
     return _state;
 }
 
