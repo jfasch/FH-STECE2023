@@ -9,12 +9,12 @@ enum LightBarrierState
 
 class LightBarrier
 {
-    private:
+    private: 
     LightBarrierState _state;
 
     public:
-    LightBarrier(LightBarrierState state);
-    LightBarrierState LightBarrier_get_state() const {return _state;};
+    LightBarrier(LightBarrierState state) {_state = state;}
+    LightBarrierState get_state() const {return _state;}
+    void set_state(LightBarrierState state) {_state = state;}
 
-    void LightBarrier_set_state(LightBarrierState state);
 };

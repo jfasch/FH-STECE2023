@@ -1,20 +1,19 @@
-#include "../lib/door.h"
+#include <door.h>
 
 #include <time.h>
 
 
 int main()
 {
+    // --- build a door and its parts
 
     Motor motor(MOTOR_IDLE);
     PushButton do_close(PUSHBUTTON_RELEASED);
     PushButton do_open(PUSHBUTTON_RELEASED);
-    LightBarrier closed_position(LIGHTBARRIER_BEAM_BROKEN);
-    LightBarrier opened_position(LIGHTBARRIER_BEAM_SOLID);
-
-    //Door door;
+    LightBarrier closed_position(LIGHTBARRIER_BEAM_BROKEN);  // <-- door in "closed" position
+    LightBarrier opened_position(LIGHTBARRIER_BEAM_SOLID);   // <-- door not in "opened" position
+    
     Door door(&motor, &do_close, &do_open, &closed_position, &opened_position);
-
 
     // --- run main SPS loop
     struct timespec interval = {
@@ -23,7 +22,7 @@ int main()
     };
 
     while (true) {
-        door.Door_check();
+        door.check();
         nanosleep(&interval, nullptr);
     }
 

@@ -30,7 +30,7 @@ class Door
     Door(Motor* motor, PushButton* do_close, PushButton* do_open, 
         LightBarrier* closed_position, LightBarrier* opened_position);
 
-    void Door_check();
+    void check();
 
     DoorState get_state() const { return _state;}
 };
