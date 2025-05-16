@@ -25,8 +25,8 @@ void Door::check()
     switch (state) {
         case DOOR_INIT: {
             // figure out the state we are in: where is the door?
-            LightBarrierState closed_barrier_state = LightBarrier_get_state(closed_position);
-            LightBarrierState opened_barrier_state = LightBarrier_get_state(opened_position);
+            LightBarrierState closed_barrier_state = closed_position->get_state();
+            LightBarrierState opened_barrier_state = opened_position->get_state();
 
             if (closed_barrier_state == LIGHTBARRIER_BEAM_SOLID && opened_barrier_state == LIGHTBARRIER_BEAM_SOLID)
                 state = DOOR_ERROR_MIDDLE_POSITION;   // FIXME: recover from that
@@ -57,7 +57,7 @@ void Door::check()
         case DOOR_OPENING: {
             // see if we already reached the end position. if so, stop
             // motor and adjust door state.
-            LightBarrierState opened_barrier_state = LightBarrier_get_state(opened_position);
+            LightBarrierState opened_barrier_state = opened_position->get_state();
             if (opened_barrier_state == LIGHTBARRIER_BEAM_BROKEN) {
                 motor->stop();
                 state = DOOR_OPENED;

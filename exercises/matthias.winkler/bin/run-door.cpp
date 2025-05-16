@@ -16,11 +16,9 @@ int main()
     PushButton do_open;
     PushButton_init(&do_open, PUSHBUTTON_RELEASED);
 
-    LightBarrier closed_position;
-    LightBarrier_init(&closed_position, LIGHTBARRIER_BEAM_BROKEN);  // <-- door in "closed" position
+    LightBarrier closed_position(LIGHTBARRIER_BEAM_BROKEN); // <-- door in "closed" position
 
-    LightBarrier opened_position;
-    LightBarrier_init(&opened_position, LIGHTBARRIER_BEAM_SOLID);   // <-- door not in "opened" position
+    LightBarrier opened_position(LIGHTBARRIER_BEAM_SOLID); // <-- door not in "opened" position
 
     Door door(&motor, &do_close, &do_open, &closed_position, &opened_position);
 
