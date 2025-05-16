@@ -8,6 +8,8 @@ Door::Door(Motor* motor, PushButton* do_close, PushButton* do_open,
 {
     // assume that the motor is idle when the software boots. FIXME:
     // is that assumption safe?
+    // FIX: stop the motor on initialization
+    motor->stop();
     assert(motor->get_direction() == MotorDirection::IDLE);
 
     _motor = motor;
@@ -36,7 +38,7 @@ void Door::check()
             else if (closed_barrier_state == LightBarrierState::BEAM_SOLID && opened_barrier_state == LightBarrierState::BEAM_BROKEN)
                 _state = DoorState::OPENED;
             else 
-                assert(!"well, two bits make four values");
+                assert(!"well, two bits make four values"); // <-- if we are here, we have a problem
             break;
         }
         case DoorState::CLOSED: {
@@ -49,6 +51,7 @@ void Door::check()
 
             // FIXME: what if user pressed "do_close" at the same
             // time?
+            // -> the door is already closed. user problably pressed the wrong button. just ignore him.
 
             // FIXME: invariants
             break;
