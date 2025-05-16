@@ -1,5 +1,5 @@
+/*
 #pragma once
-
 
 enum MotorDirection
 {
@@ -20,3 +20,28 @@ void Motor_stop(Motor* self);
 
 // for tests only
 MotorDirection Motor_get_direction(Motor* self);
+*/
+
+#pragma once
+
+class Motor
+{
+    public:
+        enum class Direction
+        {
+            IDLE,
+            FORWARD,
+            BACKWARD,
+        };
+
+        Motor(Direction initialdirection = Direction::IDLE);
+
+        void forward();
+        void backward();
+        void stop();
+
+        Direction getDirection() const;
+        
+    private:
+        Direction direction;
+};
