@@ -5,8 +5,6 @@
 Door::Door(Motor* motor, PushButton* do_close, PushButton* do_open, 
                LightBarrier* closed_position, LightBarrier* opened_position)
 {
-    // assume that the motor is idle when the software boots. FIXME:
-    // is that assumption safe?
     _motor = motor;
     _do_close = do_close;
     _do_open = do_open;
@@ -15,10 +13,13 @@ Door::Door(Motor* motor, PushButton* do_close, PushButton* do_open,
 
     _state = DOOR_INIT;
 
+    // assume that the motor is idle when the software boots. FIXME: is that assumption safe?
+    _motor->stop(); //stop motor during boot if not yet in IDLE
+
     assert(_motor->get_direction() == MOTOR_IDLE);
 }
 
-DoorState Door::get_state()
+DoorState Door::get_state() 
 {
     return _state;
 }
@@ -32,7 +33,7 @@ void Door::check()
             LightBarrierState opened_barrier_state = _opened_position->get_state();
 
             if (closed_barrier_state == LIGHTBARRIER_BEAM_SOLID && opened_barrier_state == LIGHTBARRIER_BEAM_SOLID)
-                _state = DOOR_ERROR_MIDDLE_POSITION;   // FIXME: recover from that
+                _state = DOOR_ERROR_MIDDLE_POSITION;   
             else if (closed_barrier_state == LIGHTBARRIER_BEAM_BROKEN && opened_barrier_state == LIGHTBARRIER_BEAM_BROKEN)
                 _state = DOOR_ERROR_SOMETHING_BADLY_WRONG;
             else if (closed_barrier_state == LIGHTBARRIER_BEAM_BROKEN && opened_barrier_state == LIGHTBARRIER_BEAM_SOLID)
@@ -50,11 +51,9 @@ void Door::check()
                 _motor->forward();
                 _state = DOOR_OPENING;
             }
-
-            // FIXME: what if user pressed "do_close" at the same
-            // time?
-
-            // FIXME: invariants
+            else if(_do_close->get_state() == PUSHBUTTON_PRESSED) {
+                //ignore input
+            }
             break;
         }
         case DOOR_OPENING: {
@@ -65,8 +64,14 @@ void Door::check()
                 _motor->stop();
                 _state = DOOR_OPENED;
             }
-
-            // FIXME: invariants
+            else if(_do_open->get_state() == PUSHBUTTON_PRESSED) {
+                //do nothing
+            }
+            else if(_do_close->get_state() == PUSHBUTTON_PRESSED) {
+                _motor->backward();
+                _state = DOOR_CLOSING;
+            }
+            
             break;
         }
         case DOOR_OPENED: {
@@ -75,14 +80,43 @@ void Door::check()
                 _motor->backward();
                 _state = DOOR_CLOSING;
             }
+            else if(_do_open->get_state() == PUSHBUTTON_PRESSED) {
+                //ignore input
+            }
+            break;
+        }
+        case DOOR_CLOSING: {
+            LightBarrierState closed_barrier_state = _closed_position->get_state();
+            if (closed_barrier_state == LIGHTBARRIER_BEAM_BROKEN) {
+                _motor->stop();
+                _state = DOOR_CLOSED;
+            }
+            else if(_do_close->get_state() == PUSHBUTTON_PRESSED) {
+                //do nothing
+            }
+            else if(_do_open->get_state() == PUSHBUTTON_PRESSED){
+                _motor->forward();
+                _state = DOOR_OPENING;
+            }
+
             break;
         }
         case DOOR_ERROR_MIDDLE_POSITION: {
-            assert(false);
+            if(_do_open->get_state() == PUSHBUTTON_PRESSED && _do_close->get_state() == PUSHBUTTON_RELEASED){
+                _motor->forward();
+                _state = DOOR_OPENING;
+            }
+            else if(_do_open->get_state() == PUSHBUTTON_RELEASED && _do_close->get_state() == PUSHBUTTON_PRESSED){
+                _motor->backward();
+                _state = DOOR_CLOSING;
+            }
+            else if(_do_open->get_state() == PUSHBUTTON_PRESSED && _do_close->get_state() == PUSHBUTTON_PRESSED) {
+                //both buttons pressed => stay in this case
+            }
             break;
         }
         case DOOR_ERROR_SOMETHING_BADLY_WRONG: {
-            assert(false);
+            assert(!"well, really bad");
             break;
         }
     }
