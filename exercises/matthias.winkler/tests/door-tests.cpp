@@ -6,8 +6,7 @@
 TEST(door_suite, straightforward_open)
 {
     // build a door and its parts
-    Motor motor;
-    Motor_init(&motor, MOTOR_IDLE);
+    Motor motor(MOTOR_IDLE);
 
     PushButton do_close;
     PushButton_init(&do_close, PUSHBUTTON_RELEASED);
@@ -30,13 +29,13 @@ TEST(door_suite, straightforward_open)
     // all idle: no button pressed -> motor must remain idle at
     // check()
     Door_check(&door);
-    ASSERT_EQ(Motor_get_direction(&motor), MOTOR_IDLE);
+    ASSERT_EQ(motor.get_direction(), MOTOR_IDLE);
 
     // "open" button pressed -> motor direction must be set to
     // "opening"
     PushButton_set_state(&do_open, PUSHBUTTON_PRESSED);
     Door_check(&door);    
-    ASSERT_EQ(Motor_get_direction(&motor), MOTOR_FORWARD);
+    ASSERT_EQ(motor.get_direction(), MOTOR_FORWARD);
 
     // "opened" position reached (light barrier's beam broken) ->
     // motor stopped
@@ -45,5 +44,5 @@ TEST(door_suite, straightforward_open)
                                                                           //     if one beam is broken, the other must be solid, 
                                                                           //     and vice versa
     Door_check(&door);
-    ASSERT_EQ(Motor_get_direction(&motor), MOTOR_IDLE);
+    ASSERT_EQ(motor.get_direction(), MOTOR_IDLE);
 }

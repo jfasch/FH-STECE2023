@@ -10,7 +10,7 @@ void Door_init(Door* self,
 {
     // assume that the motor is idle when the software boots. FIXME:
     // is that assumption safe?
-    assert(Motor_get_direction(motor) == MOTOR_IDLE);
+    assert(motor->get_direction() == MOTOR_IDLE);
 
     self->motor = motor;
     self->do_close = do_close;
@@ -45,7 +45,7 @@ void Door_check(Door* self)
             // "open" requested (button press). drive motor, and
             // switch state to "opening"
             if (PushButton_get_state(self->do_open) == PUSHBUTTON_PRESSED) {
-                Motor_forward(self->motor);
+                self->motor->forward();
                 self->state = DOOR_OPENING;
             }
 
@@ -60,7 +60,7 @@ void Door_check(Door* self)
             // motor and adjust door state.
             LightBarrierState opened_barrier_state = LightBarrier_get_state(self->opened_position);
             if (opened_barrier_state == LIGHTBARRIER_BEAM_BROKEN) {
-                Motor_stop(self->motor);
+                self->motor->stop();
                 self->state = DOOR_OPENED;
             }
 

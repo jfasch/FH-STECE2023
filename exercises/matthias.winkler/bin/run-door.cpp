@@ -6,8 +6,9 @@
 int main()
 {
     // --- build a door and its parts
-    Motor motor;
-    Motor_init(&motor, MOTOR_IDLE);
+    Motor motor(MOTOR_IDLE);  //Konstruktor wird aufgerufen, Idle status übergeben
+    //Motor motor2(MOTOR_BACKWARD);  Beispiel für mehrere motoren
+    //Motor motor3(MOTOR_IDLE);
 
     PushButton do_close;
     PushButton_init(&do_close, PUSHBUTTON_RELEASED);
