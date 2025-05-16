@@ -1,19 +1,17 @@
 #pragma once
 
-
 enum PushButtonState
 {
     PUSHBUTTON_PRESSED,
     PUSHBUTTON_RELEASED,
 };
 
-struct PushButton
+class PushButton
 {
-    PushButtonState state;
+    public:
+        PushButton(PushButtonState state) {_state =state;};
+        PushButtonState get_state() const { return _state; };
+        void set_state(PushButtonState state) { _state = state; };
+    private:
+        PushButtonState _state;
 };
-
-void PushButton_init(PushButton* self, PushButtonState state);
-PushButtonState PushButton_get_state(PushButton* self);
-
-// for tests only
-void PushButton_set_state(PushButton* self, PushButtonState state);
