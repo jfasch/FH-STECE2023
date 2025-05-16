@@ -6,24 +6,17 @@
 int main()
 {
     // --- build a door and its parts
-    Motor motor;
-    Motor_init(&motor, MOTOR_IDLE);
+    Motor motor(MotorDirection::MOTOR_IDLE);
 
-    PushButton do_close;
-    PushButton_init(&do_close, PUSHBUTTON_RELEASED);
+    PushButton do_close(PushButtonState::PUSHBUTTON_PRESSED);
 
-    PushButton do_open;
-    PushButton_init(&do_open, PUSHBUTTON_RELEASED);
+    PushButton do_open(PushButtonState::PUSHBUTTON_RELEASED);
 
-    LightBarrier closed_position;
-    LightBarrier_init(&closed_position, LIGHTBARRIER_BEAM_BROKEN);  // <-- door in "closed" position
+    LightBarrier closed_position(LightBarrierState::LIGHTBARRIER_BEAM_BROKEN);
 
-    LightBarrier opened_position;
-    LightBarrier_init(&opened_position, LIGHTBARRIER_BEAM_SOLID);   // <-- door not in "opened" position
+    LightBarrier opened_position(LightBarrierState::LIGHTBARRIER_BEAM_SOLID);
 
-    Door door;
-    Door_init(&door, &motor, &do_close, &do_open, &closed_position, &opened_position);
-
+    Door door(&motor, &do_close, &do_open, &closed_position, &opened_position);
 
     // --- run main SPS loop
     struct timespec interval = {
@@ -32,7 +25,7 @@ int main()
     };
 
     while (true) {
-        Door_check(&door);
+        door.Door_check();
         nanosleep(&interval, nullptr);
     }
 
