@@ -9,7 +9,7 @@ Door::Door(Motor* motor,
 {
     // assume that the motor is idle when the software boots. FIXME:
     // is that assumption safe?
-    assert(Motor->get_direction() == MOTOR_IDLE);
+    assert(motor->get_direction() == MOTOR_IDLE);
 
     _motor = motor;
     _do_close = do_close;
@@ -25,8 +25,8 @@ void Door::check()
     switch (_state) {
         case DOOR_INIT: {
             // figure out the state we are in: where is the door?
-            LightBarrierState closed_barrier_state = _closed_position = LightBarrier.get_state();
-            LightBarrierState opened_barrier_state = _opened_position = LightBarrier.get_state();
+            LightBarrierState closed_barrier_state = _closed_position->get_state();
+            LightBarrierState opened_barrier_state = _opened_position->get_state();
 
             if (closed_barrier_state == LIGHTBARRIER_BEAM_SOLID && opened_barrier_state == LIGHTBARRIER_BEAM_SOLID)
                 _state = DOOR_ERROR_MIDDLE_POSITION;   // FIXME: recover from that
@@ -57,7 +57,7 @@ void Door::check()
         case DOOR_OPENING: {
             // see if we already reached the end position. if so, stop
             // motor and adjust door state.
-            LightBarrierState opened_barrier_state = _opened_position = LightBarrier.get_state();
+            LightBarrierState opened_barrier_state = _opened_position->get_state();
             if (opened_barrier_state == LIGHTBARRIER_BEAM_BROKEN) {
                 _motor->stop();
                 _state = DOOR_OPENED;

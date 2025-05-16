@@ -10,8 +10,8 @@ class PushButton
 {
     public:
         PushButton(PushButtonState state) {_state =state;};
-        PushButtonState get_state() const { return state_; };
-        void set_state(PushButtonState state) { state_ = state; };
+        PushButtonState get_state() const { return _state; };
+        void set_state(PushButtonState state) { _state = state; };
     private:
-        PushButtonState state_;
+        PushButtonState _state;
 };

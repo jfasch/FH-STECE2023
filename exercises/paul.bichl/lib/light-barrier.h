@@ -11,8 +11,8 @@ class LightBarrier
 {
     public:
         LightBarrier(LightBarrierState state) {_state =state;};
-        LightBarrierState get_state() const { return state_; };
-        void set_state(LightBarrierState state) { state_ = state; };
+        LightBarrierState get_state() const { return _state; };
+        void set_state(LightBarrierState state) { _state = state; };
     private:
-        LightBarrierState state_;
+        LightBarrierState _state;
 };
