@@ -38,7 +38,6 @@ TEST(door_suite, straightforward_open)
     closed_position.set_state(LIGHTBARRIER_BEAM_SOLID);    // <-- should probably be verified by door logic: 
                                                                           //     if one beam is broken, the other must be solid, 
                                                                           //     and vice versa
-    Door.check();
+    door.check();
     ASSERT_EQ(door.get_state(), MOTOR_IDLE);              // <-- inferred from the light barrier situation
-
 }
