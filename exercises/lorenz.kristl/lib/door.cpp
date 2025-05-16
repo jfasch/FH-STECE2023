@@ -136,8 +136,16 @@ void Door::check()
             }
 
             // FIXME: Handle simultaneous "do_close" button press.
+            if (do_open->getState() == PushButton::State::PRESSED &&
+                do_close->getState() == PushButton::State::PRESSED) {
+                // Do nothing for "do_close".
+            } else if (do_close->getState() == PushButton::State::PRESSED) {
+                // For now, do nothing.
+            }
 
             // FIXME: Add invariants.
+            // Check if the door is in the closed position.
+
             break;
         }
         case State::OPENING: {
@@ -149,18 +157,21 @@ void Door::check()
             }
 
             // FIXME: Add invariants.
+
+            // Handle "do_close" button press while opening.
+
             break;
         }
         case State::OPENED: {
-            assert(false); // Not implemented yet.
+            assert(false);
             break;
         }
         case State::ERROR_MIDDLE_POSITION: {
-            assert(false); // Not implemented yet.
+            assert(false);
             break;
         }
         case State::ERROR_SOMETHING_BADLY_WRONG: {
-            assert(false); // Not implemented yet.
+            assert(false); 
             break;
         }
     }
