@@ -8,9 +8,9 @@ TEST(door_suite, straightforward_open)
     // build a door and its parts
     Motor motor(MOTOR_IDLE);
 
-    PushButton do_close(PUSHBUTTON_RELEASED)
+    PushButton do_close(PUSHBUTTON_RELEASED);
 
-    PushButton do_open(PUSHBUTTON_RELEASED)
+    PushButton do_open(PUSHBUTTON_RELEASED);
 
     LightBarrier closed_position(LIGHTBARRIER_BEAM_BROKEN); // <-- door in "closed" position
 
@@ -35,7 +35,7 @@ TEST(door_suite, straightforward_open)
     // "opened" position reached (light barrier's beam broken) ->
     // motor stopped
     opened_position.set_state(LIGHTBARRIER_BEAM_BROKEN);
-    closed_position.set_state(LIGHTBARRIER_BEAM_SOLID)    // <-- should probably be verified by door logic: 
+    closed_position.set_state(LIGHTBARRIER_BEAM_SOLID);    // <-- should probably be verified by door logic: 
                                                                           //     if one beam is broken, the other must be solid, 
                                                                           //     and vice versa
     Door.check();
