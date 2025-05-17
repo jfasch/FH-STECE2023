@@ -43,9 +43,9 @@ Create build directory for Intel architecture (``x86_64``)
 
 .. code-block:: console
 
-   $ mkdir ~/My-Builds/FH-STECE2022-x86_64  # <--- or wherever you like
-   $ cd ~/My-Builds/FH-STECE2022-x86_64
-   $ cmake ~/My-Projects/FH-STECE2022
+   $ mkdir ~/My-Builds/FH-STECE2023-x86_64  # <--- or wherever you like
+   $ cd ~/My-Builds/FH-STECE2023-x86_64
+   $ cmake ~/My-Projects/FH-STECE2023
    ... roedel ...
    $ make
    ... roedel ...
@@ -58,7 +58,7 @@ In build directory,
 .. code-block:: console
 
    $ pwd
-   /home/jfasch/My-Builds/FH-STECE2022-x86_64
+   /home/jfasch/My-Builds/FH-STECE2023-x86_64
 
    $ ./blink
    ... ?
