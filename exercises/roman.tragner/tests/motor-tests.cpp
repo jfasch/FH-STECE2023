@@ -10,11 +10,11 @@ TEST(motor_suite, init)
         ASSERT_EQ(motor.getDirection(), MotorDirection::IDLE);
     }
     {
-        Motor motor;
+        Motor motor(MotorDirection::FORWARD);
         ASSERT_EQ(motor.getDirection(), MotorDirection::FORWARD);
     }
     {
-        Motor motor;
+        Motor motor(MotorDirection::BACKWARD);
         ASSERT_EQ(motor.getDirection(), MotorDirection::BACKWARD);
     }
 }
