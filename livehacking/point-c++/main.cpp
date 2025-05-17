@@ -3,17 +3,8 @@
 
 int main(void)
 {
-    point p1(1, 2);
-    point p2(42, 7);
-
-    p1.print("point p1");
-    p2.print("point p2");
-
-    p1.move(p2);
-
-    p1.print("moved p1");
-
-    std::cout << p1.x() << ',' << p1.y() << '\n';
-
+    const point p(1, 2);
+    p.print("point p");
+    std::cout << p.x() << ',' << p.y() << '\n';
     return 0;
 }
