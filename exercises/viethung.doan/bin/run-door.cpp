@@ -6,8 +6,7 @@
 int main()
 {
     // --- build a door and its parts
-    Motor motor;
-    Motor_init(&motor, MOTOR_IDLE);
+    Motor motor(MOTOR_IDLE);
 
     PushButton do_close;
     PushButton_init(&do_close, PUSHBUTTON_RELEASED);
