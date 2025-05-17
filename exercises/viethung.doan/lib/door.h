@@ -15,20 +15,24 @@ enum DoorState
     DOOR_ERROR_SOMETHING_BADLY_WRONG,
 };
 
-struct Door
+class Door
 {
-    Motor* motor;
-    PushButton* do_close;
-    PushButton* do_open;
-    LightBarrier* closed_position;
-    LightBarrier* opened_position;
+private:
+    Motor* _motor;
+    PushButton* _do_close;
+    PushButton* _do_open;
+    LightBarrier* _closed_position;
+    LightBarrier* _opened_position;
+    DoorState _state;
 
-    DoorState state;
+public:
+    // Konstruktor
+    Door(Motor* motor, PushButton* do_close, PushButton* do_open,
+         LightBarrier* closed_position, LightBarrier* opened_position);
+
+    // Hauptlogik
+    void check();
+
+    // Getter
+    DoorState state() const;
 };
-
-void Door_init(Door* self, 
-               Motor* motor, 
-               PushButton* do_close, PushButton* do_open, 
-               LightBarrier* closed_position, LightBarrier* opened_position);
-
-void Door_check(Door* door);
