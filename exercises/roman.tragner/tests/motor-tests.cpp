@@ -7,17 +7,14 @@ TEST(motor_suite, init)
 {
     {
         Motor motor(MotorDirection::IDLE);
-        Motor_init(&motor, MOTOR_IDLE);
-        ASSERT_EQ(Motor_get_direction(&motor), MOTOR_IDLE);
+        ASSERT_EQ(motor.getDirection(), MotorDirection::IDLE);
     }
     {
         Motor motor;
-        Motor_init(&motor, MOTOR_FORWARD);
-        ASSERT_EQ(Motor_get_direction(&motor), MOTOR_FORWARD);
+        ASSERT_EQ(motor.getDirection(), MotorDirection::FORWARD);
     }
     {
         Motor motor;
-        Motor_init(&motor, MOTOR_BACKWARD);
-        ASSERT_EQ(Motor_get_direction(&motor), MOTOR_BACKWARD);
+        ASSERT_EQ(motor.getDirection(), MotorDirection::BACKWARD);
     }
 }
