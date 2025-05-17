@@ -1,19 +1,31 @@
 #pragma once
 
 
-enum LightBarrierState
-{
+class LightBarrier{
+
+public:
+enum class LightBarrierState{
     LIGHTBARRIER_BEAM_SOLID,
     LIGHTBARRIER_BEAM_BROKEN,
 };
 
-struct LightBarrier
-{
+private:
     LightBarrierState state;
-};
 
-void LightBarrier_init(LightBarrier* self, LightBarrierState state);
-LightBarrierState LightBarrier_get_state(LightBarrier* self);
+public:
+
+LightBarrier(LightBarrierState initState = LightBarrierState::LIGHTBARRIER_BEAM_SOLID)
+    :state(initState) {}
+
+LightBarrierState get_state() const{
+    return state;
+}
+
 
 // for tests only
-void LightBarrier_set_state(LightBarrier* self, LightBarrierState state);
+void set_state(LightBarrierState newstate){
+    state = newstate;
+}
+
+};
+
