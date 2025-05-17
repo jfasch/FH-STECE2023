@@ -6,7 +6,7 @@
 TEST(motor_suite, init)
 {
     {
-        Motor motor;
+        Motor motor(MotorDirection::IDLE);
         Motor_init(&motor, MOTOR_IDLE);
         ASSERT_EQ(Motor_get_direction(&motor), MOTOR_IDLE);
     }
