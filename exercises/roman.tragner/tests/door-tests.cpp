@@ -18,17 +18,17 @@ TEST(door_suite, straightforward_open)
 
     LightBarrier opened_position(LightBarrierState::BEAM_SOLID);
    
-    Door door(&door, &motor, &do_close, &do_open, &closed_position, &opened_position);
+    Door door(&motor, &do_close, &do_open, &closed_position, &opened_position);
 
 
-    Door.check();
+    door.check();
     ASSERT_EQ(door.getState(), DoorState::CLOSED); 
 
     // all idle: no button pressed -> motor must remain idle at
     // check()
 
     door.check();
-    ASSERT_EQ(door.getDirection(), DoorState::IDLE); 
+    ASSERT_EQ(motor.getDirection(), MotorDirection::IDLE); 
 
     // "open" button pressed -> motor direction must be set to
     // "opening"
@@ -46,5 +46,5 @@ TEST(door_suite, straightforward_open)
                                                                           //     if one beam is broken, the other must be solid, 
                                                                           //     and vice versa
     door.check();
-    ASSERT_EQ(motor.getDirection(), MotorDirection:IDLE);
+    ASSERT_EQ(motor.getDirection(), MotorDirection::IDLE);
 }
