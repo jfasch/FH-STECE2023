@@ -3,50 +3,49 @@
 #include <assert.h>
 
 
-void Door_init(Door* self, 
-               Motor* motor, 
-               PushButton* do_close, PushButton* do_open, 
-               LightBarrier* closed_position, LightBarrier* opened_position)
+Door::Door(Motor* motor, 
+           PushButton* do_close, PushButton* do_open, 
+           LightBarrier* closed_position, LightBarrier* opened_position)
 {
     // assume that the motor is idle when the software boots. FIXME:
     // is that assumption safe?
     assert(motor->get_direction() == Motor::Direction::IDLE);
 
-    self->motor = motor;
-    self->do_close = do_close;
-    self->do_open = do_open;
-    self->closed_position = closed_position;
-    self->opened_position = opened_position;
+    _motor = motor;
+    _do_close = do_close;
+    _do_open = do_open;
+    _closed_position = closed_position;
+    _opened_position = opened_position;
 
-    self->state = DOOR_INIT;
+    _state = State::INIT;
 }
 
-void Door_check(Door* self)
+void Door::check()
 {
-    switch (self->state) {
-        case DOOR_INIT: {
+    switch (_state) {
+        case State::INIT: {
             // figure out the state we are in: where is the door?
-            LightBarrier::State closed_barrier_state = self->closed_position->get_state();
-            LightBarrier::State opened_barrier_state = self->opened_position->get_state();
+            LightBarrier::State closed_barrier_state = _closed_position->get_state();
+            LightBarrier::State opened_barrier_state = _opened_position->get_state();
 
             if (closed_barrier_state == LightBarrier::State::BEAM_SOLID && opened_barrier_state == LightBarrier::State::BEAM_SOLID)
-                self->state = DOOR_ERROR_MIDDLE_POSITION;   // FIXME: recover from that
+                _state = State::ERROR_MIDDLE_POSITION;   // FIXME: recover from that
             else if (closed_barrier_state == LightBarrier::State::BEAM_BROKEN && opened_barrier_state == LightBarrier::State::BEAM_BROKEN)
-                self->state = DOOR_ERROR_SOMETHING_BADLY_WRONG;
+                _state = State::ERROR_SOMETHING_BADLY_WRONG;
             else if (closed_barrier_state == LightBarrier::State::BEAM_BROKEN && opened_barrier_state == LightBarrier::State::BEAM_SOLID)
-                self->state = DOOR_CLOSED;
+                _state = State::CLOSED;
             else if (closed_barrier_state == LightBarrier::State::BEAM_SOLID && opened_barrier_state == LightBarrier::State::BEAM_BROKEN)
-                self->state = DOOR_OPENED;
+                _state = State::OPENED;
             else 
                 assert(!"well, two bits make four values");
             break;
         }
-        case DOOR_CLOSED: {
+        case State::CLOSED: {
             // "open" requested (button press). drive motor, and
             // switch state to "opening"
-            if (self->do_open->get_state() == PushButton::State::PRESSED) {
-                self->motor->forward();
-                self->state = DOOR_OPENING;
+            if (_do_open->get_state() == PushButton::State::PRESSED) {
+                _motor->forward();
+                _state = State::OPENING;
             }
 
             // FIXME: what if user pressed "do_close" at the same
@@ -55,27 +54,27 @@ void Door_check(Door* self)
             // FIXME: invariants
             break;
         }
-        case DOOR_OPENING: {
+        case State::OPENING: {
             // see if we already reached the end position. if so, stop
             // motor and adjust door state.
-            LightBarrier::State opened_barrier_state = self->opened_position->get_state();
+            LightBarrier::State opened_barrier_state = _opened_position->get_state();
             if (opened_barrier_state == LightBarrier::State::BEAM_BROKEN) {
-                self->motor->stop();
-                self->state = DOOR_OPENED;
+                _motor->stop();
+                _state = State::OPENED;
             }
 
             // FIXME: invariants
             break;
         }
-        case DOOR_OPENED: {
+        case State::OPENED: {
             assert(false);
             break;
         }
-        case DOOR_ERROR_MIDDLE_POSITION: {
+        case State::ERROR_MIDDLE_POSITION: {
             assert(false);
             break;
         }
-        case DOOR_ERROR_SOMETHING_BADLY_WRONG: {
+        case State::ERROR_SOMETHING_BADLY_WRONG: {
             assert(false);
             break;
         }
