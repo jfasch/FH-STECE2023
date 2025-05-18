@@ -10,7 +10,7 @@ void Door_init(Door* self,
 {
     // assume that the motor is idle when the software boots. FIXME:
     // is that assumption safe?
-    assert(Motor_get_direction(motor) == MOTOR_IDLE);
+    assert(motor->get_direction() == Motor::Direction::IDLE);
 
     self->motor = motor;
     self->do_close = do_close;
@@ -26,16 +26,16 @@ void Door_check(Door* self)
     switch (self->state) {
         case DOOR_INIT: {
             // figure out the state we are in: where is the door?
-            LightBarrierState closed_barrier_state = LightBarrier_get_state(self->closed_position);
-            LightBarrierState opened_barrier_state = LightBarrier_get_state(self->opened_position);
+            LightBarrier::State closed_barrier_state = self->closed_position->get_state();
+            LightBarrier::State opened_barrier_state = self->opened_position->get_state();
 
-            if (closed_barrier_state == LIGHTBARRIER_BEAM_SOLID && opened_barrier_state == LIGHTBARRIER_BEAM_SOLID)
+            if (closed_barrier_state == LightBarrier::State::BEAM_SOLID && opened_barrier_state == LightBarrier::State::BEAM_SOLID)
                 self->state = DOOR_ERROR_MIDDLE_POSITION;   // FIXME: recover from that
-            else if (closed_barrier_state == LIGHTBARRIER_BEAM_BROKEN && opened_barrier_state == LIGHTBARRIER_BEAM_BROKEN)
+            else if (closed_barrier_state == LightBarrier::State::BEAM_BROKEN && opened_barrier_state == LightBarrier::State::BEAM_BROKEN)
                 self->state = DOOR_ERROR_SOMETHING_BADLY_WRONG;
-            else if (closed_barrier_state == LIGHTBARRIER_BEAM_BROKEN && opened_barrier_state == LIGHTBARRIER_BEAM_SOLID)
+            else if (closed_barrier_state == LightBarrier::State::BEAM_BROKEN && opened_barrier_state == LightBarrier::State::BEAM_SOLID)
                 self->state = DOOR_CLOSED;
-            else if (closed_barrier_state == LIGHTBARRIER_BEAM_SOLID && opened_barrier_state == LIGHTBARRIER_BEAM_BROKEN)
+            else if (closed_barrier_state == LightBarrier::State::BEAM_SOLID && opened_barrier_state == LightBarrier::State::BEAM_BROKEN)
                 self->state = DOOR_OPENED;
             else 
                 assert(!"well, two bits make four values");
@@ -45,7 +45,7 @@ void Door_check(Door* self)
             // "open" requested (button press). drive motor, and
             // switch state to "opening"
             if (self->do_open->get_state() == PushButton::State::PRESSED) {
-                Motor_forward(self->motor);
+                self->motor->forward();
                 self->state = DOOR_OPENING;
             }
 
@@ -58,9 +58,9 @@ void Door_check(Door* self)
         case DOOR_OPENING: {
             // see if we already reached the end position. if so, stop
             // motor and adjust door state.
-            LightBarrierState opened_barrier_state = LightBarrier_get_state(self->opened_position);
-            if (opened_barrier_state == LIGHTBARRIER_BEAM_BROKEN) {
-                Motor_stop(self->motor);
+            LightBarrier::State opened_barrier_state = self->opened_position->get_state();
+            if (opened_barrier_state == LightBarrier::State::BEAM_BROKEN) {
+                self->motor->stop();
                 self->state = DOOR_OPENED;
             }
 
