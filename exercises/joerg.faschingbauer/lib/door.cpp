@@ -44,7 +44,7 @@ void Door_check(Door* self)
         case DOOR_CLOSED: {
             // "open" requested (button press). drive motor, and
             // switch state to "opening"
-            if (self->do_open->get_state() == PushButtonState::PRESSED) {
+            if (self->do_open->get_state() == PushButton::State::PRESSED) {
                 Motor_forward(self->motor);
                 self->state = DOOR_OPENING;
             }
