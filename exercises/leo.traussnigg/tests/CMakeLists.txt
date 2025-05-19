@@ -11,8 +11,7 @@ target_link_libraries(
   door-tests-leo.traussnigg
 
   door-leo.traussnigg
-  gtest_main 
-  gtest
+  gtest_main
 )
 
 add_test(
