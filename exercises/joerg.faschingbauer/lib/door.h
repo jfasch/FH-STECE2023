@@ -20,7 +20,7 @@ public:
 
 
     Door(Motor* motor, 
-         PushButton* do_close, PushButton* do_open, 
+         PushButton* do_close, PushButton* do_open,
          LightBarrier* closed_position, LightBarrier* opened_position);
     void check();
 
