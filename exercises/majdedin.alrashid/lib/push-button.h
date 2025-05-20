@@ -9,12 +9,12 @@ enum PushButtonState
 class PushButton
 {
 public:
-    // Constructor replaces PushButton_init()
+    
     PushButton(PushButtonState state);
 
-    // Public methods replacing get/set functions
+    
     PushButtonState getState() const;
-    void setState(PushButtonState state);  // used in tests
+    void setState(PushButtonState state);  
 
 private:
     PushButtonState state_;

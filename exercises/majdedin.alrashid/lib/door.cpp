@@ -3,7 +3,7 @@
 #include <new>  
 
 
-// Constructor replaces Door_init
+
 Door::Door(Motor* motor,
            PushButton* do_close, PushButton* do_open,
            LightBarrier* closed_position, LightBarrier* opened_position)
@@ -15,7 +15,7 @@ Door::Door(Motor* motor,
     assert(motor_->getDirection() == MOTOR_IDLE);
 }
 
-// check() replaces Door_check
+
 void Door::check()
 {
     switch (state_) {
@@ -60,15 +60,13 @@ void Door::check()
     }
 }
 
-// Optional for tests
+
 DoorState Door::getState() const
 {
     return state_;
 }
 
-//
-// C-style wrappers (optional — only needed if tests still use them)
-//
+
 extern "C" 
 {
 

@@ -17,7 +17,7 @@ enum DoorState
 class Door
 {
 public:
-    // Constructor replaces Door_init
+  
     Door(Motor* motor,
          PushButton* do_close, PushButton* do_open,
          LightBarrier* closed_position, LightBarrier* opened_position);
