@@ -4,7 +4,13 @@ add_executable(
   motor-tests.cpp
   lightbarrier-tests.cpp
   pushbutton-tests.cpp
+
   door-tests.cpp
+
+  # --- this is for you :* ---
+  # motor-polymorphic-tests.cpp
+  # lightbarrier-polymorphic-tests.cpp
+  # pushbutton-polymorphic-tests.cpp
 )
 
 target_link_libraries(
