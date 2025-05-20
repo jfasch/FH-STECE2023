@@ -1,7 +1,7 @@
 #pragma once
 
 
-class Motor
+class MotorMock
 {
 public:
     enum class Direction

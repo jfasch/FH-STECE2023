@@ -1,7 +1,7 @@
 #pragma once
 
 
-class LightBarrier
+class LightBarrierMock
 {
 public:
     enum class State

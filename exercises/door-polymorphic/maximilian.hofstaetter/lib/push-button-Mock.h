@@ -1,6 +1,6 @@
 #pragma once
 
-class PushButton
+class PushButtonMock
 {
 public:
     enum State
