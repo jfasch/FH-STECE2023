@@ -1,6 +1,6 @@
 #pragma once
 
-
+/*
 class Motor
 {
 public:
@@ -22,4 +22,26 @@ public:
 private:
     Direction _direction;
 };
+*/
 
+
+class Motor
+{
+public:
+    virtual ~Motor() = default;
+    virtual void forward() = 0;
+    virtual void backward() = 0;
+    virtual void stop() = 0;
+
+    Direction get_direction() const;
+
+    enum class Direction
+    {
+        IDLE,
+        FORWARD,
+        BACKWARD,
+    };
+
+private:
+    Direction _direction;
+};
