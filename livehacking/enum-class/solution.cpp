@@ -14,8 +14,8 @@ enum class StateMachine2
 
 int main()
 {
-    StateMachine1 state1 = StateMachine1::INIT;
-    StateMachine2 state2 = StateMachine2::INIT;
+    [[maybe_unused]] StateMachine1 state1 = StateMachine1::INIT;
+    [[maybe_unused]] StateMachine2 state2 = StateMachine2::INIT;
 
     return 0;
 }
