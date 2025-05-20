@@ -1,6 +1,5 @@
 #pragma once
 
-
 enum LightBarrierState
 {
     LIGHTBARRIER_BEAM_SOLID,
@@ -9,12 +8,7 @@ enum LightBarrierState
 
 class LightBarrier
 {
-    private: 
-    LightBarrierState _state;
-
     public:
-    LightBarrier(LightBarrierState state) {_state = state;}
-    LightBarrierState get_state() const {return _state;}
-    void set_state(LightBarrierState state) {_state = state;}
-
+    virtual LightBarrierState get_state() const = 0;
+    virtual void set_state(LightBarrierState state) = 0;
 };

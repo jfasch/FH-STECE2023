@@ -9,14 +9,8 @@ enum MotorDirection
 
 class Motor
 {
-    private:
-    MotorDirection _direction;
-
     public:
-    Motor(MotorDirection direction) {_direction = direction;}
-    void forward() {_direction = MOTOR_FORWARD;}
-    void backward() {_direction = MOTOR_BACKWARD;}
-    void stop() {_direction = MOTOR_IDLE;}
-
-    MotorDirection get_direction() const {return _direction;}
+    virtual void forward() = 0;
+    virtual void backward() = 0;
+    virtual void stop() = 0;
 };
