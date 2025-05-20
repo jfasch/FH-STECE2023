@@ -4,7 +4,6 @@
 #include "push-button.h"
 #include "light-barrier.h"
 
-
 enum DoorState
 {
     DOOR_INIT,
@@ -15,20 +14,23 @@ enum DoorState
     DOOR_ERROR_SOMETHING_BADLY_WRONG,
 };
 
-struct Door
+class Door
 {
-    Motor* motor;
-    PushButton* do_close;
-    PushButton* do_open;
-    LightBarrier* closed_position;
-    LightBarrier* opened_position;
+public:
+    // Constructor replaces Door_init
+    Door(Motor* motor,
+         PushButton* do_close, PushButton* do_open,
+         LightBarrier* closed_position, LightBarrier* opened_position);
 
-    DoorState state;
+    void check();                    // Replaces Door_check
+    DoorState getState() const;      // Optional: For inspection/testing
+
+private:
+    Motor* motor_;
+    PushButton* do_close_;
+    PushButton* do_open_;
+    LightBarrier* closed_position_;
+    LightBarrier* opened_position_;
+
+    DoorState state_;
 };
-
-void Door_init(Door* self, 
-               Motor* motor, 
-               PushButton* do_close, PushButton* do_open, 
-               LightBarrier* closed_position, LightBarrier* opened_position);
-
-void Door_check(Door* door);
