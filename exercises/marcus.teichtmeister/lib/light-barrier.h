@@ -1,19 +1,14 @@
 #pragma once
 
-
 enum LightBarrierState
 {
     LIGHTBARRIER_BEAM_SOLID,
     LIGHTBARRIER_BEAM_BROKEN,
 };
 
-struct LightBarrier
+class LightBarrier
 {
-    LightBarrierState state;
+    public:
+    virtual LightBarrierState get_state() const = 0;
+    virtual void set_state(LightBarrierState state) = 0;
 };
-
-void LightBarrier_init(LightBarrier* self, LightBarrierState state);
-LightBarrierState LightBarrier_get_state(LightBarrier* self);
-
-// for tests only
-void LightBarrier_set_state(LightBarrier* self, LightBarrierState state);
