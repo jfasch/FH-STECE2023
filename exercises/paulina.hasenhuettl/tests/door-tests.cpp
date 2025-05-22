@@ -1,4 +1,46 @@
 #include <gtest/gtest.h>
+#include "door.h"
+#include "motor.h"
+#include "push-button.h"
+#include "light-barrier.h"
+
+TEST(door_suite, straightforward_open)
+{
+    // build a door and its parts
+    Motor motor(MotorDirection::IDLE);
+
+    PushButton do_close(PushButtonState::RELEASED);
+    PushButton do_open(PushButtonState::RELEASED);
+
+    LightBarrier closed_position(LightBarrierState::BEAM_BROKEN);  // door closed
+    LightBarrier opened_position(LightBarrierState::BEAM_SOLID);   // door not opened
+
+    Door door(&motor, &do_close, &do_open, &closed_position, &opened_position);
+
+    door.check();
+
+    // Door state prüfen → wir brauchen einen Getter für _state in Door
+    ASSERT_EQ(door.get_state(), DoorState::CLOSED);
+
+    // all idle: no button pressed -> motor must remain idle at check()
+    door.check();
+    ASSERT_EQ(motor.get_direction(), MotorDirection::IDLE);
+
+    // "open" button pressed -> motor direction must be forward/opening
+    do_open.set_state(PushButtonState::PRESSED);
+    door.check();
+    ASSERT_EQ(motor.get_direction(), MotorDirection::FORWARD);
+
+    // "opened" position reached (light barrier beam broken) -> motor stopped
+    opened_position.set_state(LightBarrierState::BEAM_BROKEN);
+    closed_position.set_state(LightBarrierState::BEAM_SOLID);
+    door.check();
+    ASSERT_EQ(motor.get_direction(), MotorDirection::IDLE);
+}
+
+
+/*
+#include <gtest/gtest.h>
 
 #include <door.h>
 
@@ -47,3 +89,4 @@ TEST(door_suite, straightforward_open)
     Door_check(&door);
     ASSERT_EQ(Motor_get_direction(&motor), MOTOR_IDLE);
 }
+*/
