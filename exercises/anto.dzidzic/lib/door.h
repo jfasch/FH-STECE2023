@@ -4,31 +4,33 @@
 #include "push-button.h"
 #include "light-barrier.h"
 
+class Door {
+public:
+    enum class State {
+        INIT,
+        CLOSED,
+        OPENING,
+        OPENED,
+        ERROR_MIDDLE_POSITION,
+        ERROR_SOMETHING_BADLY_WRONG
+    };
 
-enum DoorState
-{
-    DOOR_INIT,
-    DOOR_CLOSED,
-    DOOR_OPENING,
-    DOOR_OPENED,
-    DOOR_ERROR_MIDDLE_POSITION,
-    DOOR_ERROR_SOMETHING_BADLY_WRONG,
-};
+    Door(Motor* motor,
+         PushButton* doClose,
+         PushButton* doOpen,
+         LightBarrier* closedPosition,
+         LightBarrier* openedPosition);
 
-struct Door
-{
+    void check();
+    State getState() const;
+
+private:
     Motor* motor;
-    PushButton* do_close;
-    PushButton* do_open;
-    LightBarrier* closed_position;
-    LightBarrier* opened_position;
+    PushButton* doClose;
+    PushButton* doOpen;
+    LightBarrier* closedPosition;
+    LightBarrier* openedPosition;
 
-    DoorState state;
+    State state;
 };
 
-void Door_init(Door* self, 
-               Motor* motor, 
-               PushButton* do_close, PushButton* do_open, 
-               LightBarrier* closed_position, LightBarrier* opened_position);
-
-void Door_check(Door* door);
