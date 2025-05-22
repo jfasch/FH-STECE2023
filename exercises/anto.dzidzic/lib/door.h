@@ -32,5 +32,6 @@ private:
     LightBarrier* openedPosition;
 
     State state;
+    //dasda
 };
 
