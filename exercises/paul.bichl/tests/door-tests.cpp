@@ -39,5 +39,5 @@ TEST(door_suite, straightforward_open)
                                                                           //     if one beam is broken, the other must be solid, 
                                                                           //     and vice versa
     door.check();
-    ASSERT_EQ(door.get_state(), MOTOR_IDLE);              // <-- inferred from the light barrier situation
+    ASSERT_EQ(motor.get_direction(), MOTOR_IDLE);              // <-- inferred from the light barrier situation
 }
