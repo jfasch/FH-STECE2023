@@ -1,6 +1,6 @@
 #include "motor.h"
 
-
+/*
 Motor::Motor(Direction direction)
 {
     _direction = direction;
@@ -20,6 +20,7 @@ void Motor::stop()
 {
     _direction = Direction::IDLE;
 }
+*/
 
 Motor::Direction Motor::get_direction() const
 {
