@@ -1,3 +1,24 @@
+#include <motor.h>  
+#include <gtest/gtest.h>
+
+TEST(motor_suite, init)
+{
+    {
+        Motor motor;  
+        ASSERT_EQ(motor.get_direction(), MotorDirection::IDLE);
+    }
+    {
+        Motor motor(MotorDirection::FORWARD);
+        ASSERT_EQ(motor.get_direction(), MotorDirection::FORWARD);
+    }
+    {
+        Motor motor(MotorDirection::BACKWARD);
+        ASSERT_EQ(motor.get_direction(), MotorDirection::BACKWARD);
+    }
+}
+
+
+/*
 #include <motor.h>
 
 #include <gtest/gtest.h>
@@ -21,3 +42,4 @@ TEST(motor_suite, init)
         ASSERT_EQ(Motor_get_direction(&motor), MOTOR_BACKWARD);
     }
 }
+*/

@@ -1,5 +1,5 @@
+/*
 #include "motor.h"
-
 
 void Motor_init(Motor* self, MotorDirection direction)
 {
@@ -25,3 +25,31 @@ MotorDirection Motor_get_direction(Motor* self)
 {
     return self->direction;
 }
+*/
+#include "motor.h"
+
+Motor::Motor(Direction initialdirection)
+    : direction(initialdirection)
+{
+}
+
+Motor::Direction Motor::getDirection() const
+{
+    return direction;
+}
+
+void Motor::forward()
+{
+    direction = Direction::FORWARD;
+}
+
+void Motor::backward()
+{
+    direction = Direction::BACKWARD;
+}
+
+void Motor::stop()
+{
+    direction = Direction::IDLE;
+}
+
