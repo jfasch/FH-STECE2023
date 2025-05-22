@@ -16,8 +16,8 @@ int main()
     //LightBarrier openedPosition;
 
     // Set initial states
-    buttonClose.PushButton_set_state(PUSHBUTTON_RELEASED);
-    buttonOpen.PushButton_set_state(PUSHBUTTON_RELEASED);
+    buttonClose.PushButton_set_state(PushButton::PUSHBUTTON_RELEASED);
+    buttonOpen.PushButton_set_state(PushButton::PUSHBUTTON_RELEASED);
     LightBarrier closedPosition(LightBarrier::LIGHTBARRIER_BEAM_BROKEN); // e.g. door is closed
     LightBarrier openedPosition(LightBarrier::LIGHTBARRIER_BEAM_SOLID);  // e.g. door is not fully open
 

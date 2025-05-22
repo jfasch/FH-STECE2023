@@ -1,18 +1,16 @@
 #pragma once
 
 
-enum PushButtonState
-{
-    PUSHBUTTON_PRESSED,
-    PUSHBUTTON_RELEASED,
-};
-
 
 class PushButton
 {
-private:
-    PushButtonState state;
-public:
+    public:
+        enum PushButtonState
+    {
+        PUSHBUTTON_PRESSED,
+        PUSHBUTTON_RELEASED,
+    };
+
     PushButton(PushButtonState state = PUSHBUTTON_RELEASED)
     :state(state) {}
 
@@ -25,5 +23,7 @@ public:
     {
         state = new_state;
     }
+    private:
+        PushButtonState state;
 };
 

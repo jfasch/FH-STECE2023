@@ -43,7 +43,7 @@ void Door::check() {
         }
 
         case State::CLOSED: {
-            if (doOpen->PushButton_get_state() == PUSHBUTTON_PRESSED) {
+            if (doOpen->PushButton_get_state() == PushButton::PUSHBUTTON_PRESSED) {
                 motor->forward();
                 state = State::OPENING;
             }

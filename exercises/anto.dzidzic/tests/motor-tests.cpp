@@ -9,7 +9,7 @@ TEST(MotorTestSuite, DirectionChanges) {
     ASSERT_EQ(motor.getDirection(), Motor::MOTOR_FORWARD);
 
     motor.backward();
-    ASSERT_EQ(motor.getDirection(), Motor::MOTOR_FORWARD);
+    ASSERT_EQ(motor.getDirection(), Motor::MOTOR_BACKWARD);
 
     motor.stop();
     ASSERT_EQ(motor.getDirection(), Motor::MOTOR_IDLE);
