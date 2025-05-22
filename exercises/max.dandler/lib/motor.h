@@ -8,15 +8,17 @@ enum MotorDirection
     MOTOR_BACKWARD,
 };
 
-struct Motor
+class Motor
 {
-    MotorDirection direction;
+private:
+    MotorDirection _direction;
+
+public:
+    Motor(MotorDirection _direction);
+    void forward();
+    void backward();
+    void stop();
+
+    // for test only
+    MotorDirection get_direction();
 };
-
-void Motor_init(Motor* self, MotorDirection direction);
-void Motor_forward(Motor* self);
-void Motor_backward(Motor* self);
-void Motor_stop(Motor* self);
-
-// for tests only
-MotorDirection Motor_get_direction(Motor* self);

@@ -1,39 +1,21 @@
-#include <door.h>
-
-#include <time.h>
 
 
-int main()
-{
-    // --- build a door and its parts
-    Motor motor;
-    Motor_init(&motor, MOTOR_IDLE);
+#include "door.h"
+#include <thread>
+#include <chrono>
 
-    PushButton do_close;
-    PushButton_init(&do_close, PUSHBUTTON_RELEASED);
+int main() {
+    Motor motor(MotorDirection::BACKWARD);
+    PushButton doClose(PushButtonState::RELEASED);
+    PushButton doOpen(PushButtonState::RELEASED);
+    LightBarrier closed(LightBarrierState::BEAM_BROKEN);
+    LightBarrier opened(LightBarrierState::BEAM_SOLID);
 
-    PushButton do_open;
-    PushButton_init(&do_open, PUSHBUTTON_RELEASED);
-
-    LightBarrier closed_position;
-    LightBarrier_init(&closed_position, LIGHTBARRIER_BEAM_BROKEN);  // <-- door in "closed" position
-
-    LightBarrier opened_position;
-    LightBarrier_init(&opened_position, LIGHTBARRIER_BEAM_SOLID);   // <-- door not in "opened" position
-
-    Door door;
-    Door_init(&door, &motor, &do_close, &do_open, &closed_position, &opened_position);
-
-
-    // --- run main SPS loop
-    struct timespec interval = {
-        .tv_sec = 0,
-        .tv_nsec = 1000*1000,      // <-- 1 millisecond
-    };
+    Door door(&motor, &doClose, &doOpen, &closed, &opened);
 
     while (true) {
-        Door_check(&door);
-        nanosleep(&interval, nullptr);
+        door.check();
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
 
     return 0;
