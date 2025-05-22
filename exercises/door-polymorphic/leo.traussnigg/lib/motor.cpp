@@ -1,27 +1,16 @@
-#include "motor.h"
+class Motor {
+public:
+    virtual ~Motor() = default;
 
+    // Start the motor
+    virtual void start() = 0;
 
-Motor::Motor(Direction direction)
-{
-    _direction = direction;
-}
+    // Stop the motor
+    virtual void stop() = 0;
 
-void Motor::forward()
-{
-    _direction = Direction::FORWARD;
-}
+    // Set the speed of the motor (e.g., 0-100%)
+    virtual void setSpeed(int percent) = 0;
 
-void Motor::backward()
-{
-    _direction = Direction::BACKWARD;
-}
-
-void Motor::stop()
-{
-    _direction = Direction::IDLE;
-}
-
-Motor::Direction Motor::get_direction() const
-{
-    return _direction;
-}
+    // Get the current speed of the motor
+    virtual int getSpeed() const = 0;
+};
