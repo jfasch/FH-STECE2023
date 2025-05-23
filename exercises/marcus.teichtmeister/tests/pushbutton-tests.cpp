@@ -16,4 +16,3 @@ TEST(pushbutton_suite, init)
         ASSERT_EQ(PushButton_get_state(&b), PUSHBUTTON_RELEASED);
     }
 }
-
