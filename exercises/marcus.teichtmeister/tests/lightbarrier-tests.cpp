@@ -16,4 +16,3 @@ TEST(lightbarrier_suite, init)
         ASSERT_EQ(LightBarrier_get_state(&b), LIGHTBARRIER_BEAM_BROKEN);
     }
 }
-
