@@ -2,6 +2,7 @@
 
 #include <door.h>
 #include <motor-mock.h>
+#include <light-barrier-mock.h>
 
 TEST(door_suite, straightforward_open)
 {
@@ -9,8 +10,8 @@ TEST(door_suite, straightforward_open)
     MockMotor motor(Motor::Direction::IDLE);
     PushButton do_close(PushButton::State::RELEASED);
     PushButton do_open(PushButton::State::RELEASED);
-    LightBarrier closed_position(LightBarrier::State::BEAM_BROKEN);  // <-- door in "closed" position
-    LightBarrier opened_position(LightBarrier::State::BEAM_SOLID);   // <-- door not in "opened" position
+    MockLightBarrier closed_position(LightBarrier::State::BEAM_BROKEN);  // <-- door in "closed" position
+    MockLightBarrier opened_position(LightBarrier::State::BEAM_SOLID);   // <-- door not in "opened" position
 
     Door door(&motor, &do_close, &do_open, &closed_position, &opened_position);
 
