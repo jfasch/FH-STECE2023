@@ -3,6 +3,13 @@
 #include <time.h>
 
 
+
+#include <motor-mock.h>
+#include <push-button-mock.h>
+#include <light-barrier-mock.h>
+
+
+
 int main()
 {
     // --- build a door and its parts
