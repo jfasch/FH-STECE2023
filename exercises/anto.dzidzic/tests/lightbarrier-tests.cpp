@@ -1,5 +1,6 @@
 #include "light-barrier.h"
 #include <gtest/gtest.h>
+//asdasd
 
 TEST(lightbarrier_suite, init)
 {
