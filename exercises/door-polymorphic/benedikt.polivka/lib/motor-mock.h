@@ -1,16 +1,17 @@
 #pragma once
 
-#include <motor.h>
+#include "motor.h"
 
-class MockMotor: public Motor
+class MotorMock: public Motor
 {
 public:
-    MockMotor(Motor::Direction direction = Motor::Direction::IDLE);
+    MotorMock(Direction direction);
 
     void forward() override;
     void backward() override;
     void stop() override;
+    Direction get_direction() const override;
 
 private:
-    Motor::Direction _direction;
-}
+    Direction _direction;
+};
