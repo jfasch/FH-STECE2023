@@ -1,22 +1,33 @@
 #pragma once
 
+class Motor {
+public:
+    enum class Direction {
+        IDLE,
+        FORWARD,
+        BACKWARD,
+    };
 
-enum MotorDirection
-{
-    MOTOR_IDLE,
-    MOTOR_FORWARD,
-    MOTOR_BACKWARD,
+    Motor(Direction direction = Direction::IDLE)
+        : direction_(direction) {}
+
+    void forward() {
+        direction_ = Direction::FORWARD;
+    }
+
+    void backward() {
+        direction_ = Direction::BACKWARD;
+    }
+
+    void stop() {
+        direction_ = Direction::IDLE;
+    }
+
+    // For tests only
+    Direction getDirection() const {
+        return direction_;
+    }
+
+private:
+    Direction direction_;
 };
-
-struct Motor
-{
-    MotorDirection direction;
-};
-
-void Motor_init(Motor* self, MotorDirection direction);
-void Motor_forward(Motor* self);
-void Motor_backward(Motor* self);
-void Motor_stop(Motor* self);
-
-// for tests only
-MotorDirection Motor_get_direction(Motor* self);

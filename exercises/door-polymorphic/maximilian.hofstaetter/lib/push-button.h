@@ -9,13 +9,9 @@ public:
         RELEASED,
     };
 
-public:
-    PushButton(State state);
-    State get_state() const;
+    virtual ~PushButton() = default;
+    virtual State get_state() const = 0;
 
     // for tests only
-    void set_state(State state);
-
-private:
-    State _state;
+    virtual void set_state(State state) = 0;
 };
