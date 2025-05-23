@@ -1,0 +1,117 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "exercises/door-polymorphic/felix.feistritzer/bin/run-door-polymorphic-felix.feistritzer"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"exercises/door-polymorphic/felix.feistritzer/bin/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 2,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -std=c++17 -O0 -g3 -Wall -Werror -g"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 2,
+					"path" : "/home/student/My-Projects/FH-STECE2023/exercises/door-polymorphic/felix.feistritzer/lib/."
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "door-polymorphic-felix.feistritzer::@40a77e5ac6217079e1d9"
+		}
+	],
+	"id" : "run-door-polymorphic-felix.feistritzer::@5cd7b87e19cc2017a765",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-std=c++17 -O0 -g3 -Wall -Werror -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../lib/libdoor-polymorphic-felix.feistritzer.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "run-door-polymorphic-felix.feistritzer",
+	"nameOnDisk" : "run-door-polymorphic-felix.feistritzer",
+	"paths" : 
+	{
+		"build" : "exercises/door-polymorphic/felix.feistritzer/bin",
+		"source" : "exercises/door-polymorphic/felix.feistritzer/bin"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "exercises/door-polymorphic/felix.feistritzer/bin/run-door.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

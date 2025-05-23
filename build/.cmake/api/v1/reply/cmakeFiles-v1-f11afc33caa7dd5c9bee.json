@@ -1,0 +1,871 @@
+{
+	"inputs" : 
+	[
+		{
+			"path" : "CMakeLists.txt"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/3.25.1/CMakeSystem.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/3.25.1/CMakeCCompiler.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/3.25.1/CMakeCXXCompiler.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CMakeGenericSystem.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/Platform/Linux.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/Platform/UnixPaths.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CMakeCInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/Compiler/GNU-C.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/Compiler/GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CMakeCXXInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/Compiler/GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake"
+		},
+		{
+			"path" : "livehacking/CMakeLists.txt"
+		},
+		{
+			"path" : "livehacking/point-c/CMakeLists.txt"
+		},
+		{
+			"path" : "livehacking/point-c++/CMakeLists.txt"
+		},
+		{
+			"path" : "livehacking/enum-class/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/joerg.faschingbauer/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/joerg.faschingbauer/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/joerg.faschingbauer/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/joerg.faschingbauer/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/majdedin.alrashid/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/majdedin.alrashid/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/majdedin.alrashid/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/majdedin.alrashid/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/kerstin.amrhein/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/kerstin.amrhein/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/kerstin.amrhein/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/kerstin.amrhein/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/paul.bichl/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/paul.bichl/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/paul.bichl/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/paul.bichl/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/max.dandler/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/max.dandler/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/max.dandler/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/max.dandler/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/viethung.doan/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/viethung.doan/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/viethung.doan/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/viethung.doan/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/anto.dzidzic/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/anto.dzidzic/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/anto.dzidzic/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/anto.dzidzic/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/felix.feistritzer/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/felix.feistritzer/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/felix.feistritzer/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/felix.feistritzer/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/lucas.fink/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/lucas.fink/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/lucas.fink/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/lucas.fink/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/marco.froihofer/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/marco.froihofer/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/marco.froihofer/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/marco.froihofer/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/paulina.hasenhuettl/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/paulina.hasenhuettl/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/paulina.hasenhuettl/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/paulina.hasenhuettl/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/maximilian.hofstaetter/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/maximilian.hofstaetter/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/maximilian.hofstaetter/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/maximilian.hofstaetter/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/lorenz.kristl/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/lorenz.kristl/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/lorenz.kristl/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/lorenz.kristl/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/johannes.mlinar/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/johannes.mlinar/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/johannes.mlinar/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/johannes.mlinar/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/benedikt.polivka/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/benedikt.polivka/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/benedikt.polivka/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/benedikt.polivka/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/kristian.seiner/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/kristian.seiner/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/kristian.seiner/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/kristian.seiner/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/melanie.sinnhofer/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/melanie.sinnhofer/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/melanie.sinnhofer/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/melanie.sinnhofer/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/lukas.supper/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/lukas.supper/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/lukas.supper/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/lukas.supper/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/marcus.teichtmeister/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/marcus.teichtmeister/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/marcus.teichtmeister/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/marcus.teichtmeister/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/roman.tragner/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/roman.tragner/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/roman.tragner/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/roman.tragner/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/leo.traussnigg/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/leo.traussnigg/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/leo.traussnigg/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/leo.traussnigg/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/michael.wettl/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/michael.wettl/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/michael.wettl/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/michael.wettl/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/matthias.winkler/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/matthias.winkler/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/matthias.winkler/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/matthias.winkler/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/christopher.winter/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/christopher.winter/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/christopher.winter/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/christopher.winter/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/anael.wirtl-moelbach/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/anael.wirtl-moelbach/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/anael.wirtl-moelbach/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/door-polymorphic/anael.wirtl-moelbach/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/joerg.faschingbauer/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/joerg.faschingbauer/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/joerg.faschingbauer/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/joerg.faschingbauer/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/majdedin.alrashid/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/majdedin.alrashid/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/majdedin.alrashid/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/majdedin.alrashid/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/kerstin.amrhein/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/kerstin.amrhein/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/kerstin.amrhein/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/kerstin.amrhein/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/paul.bichl/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/paul.bichl/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/paul.bichl/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/paul.bichl/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/max.dandler/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/max.dandler/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/max.dandler/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/max.dandler/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/viethung.doan/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/viethung.doan/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/viethung.doan/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/viethung.doan/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/anto.dzidzic/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/anto.dzidzic/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/anto.dzidzic/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/anto.dzidzic/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/felix.feistritzer/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/felix.feistritzer/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/felix.feistritzer/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/felix.feistritzer/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/lucas.fink/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/lucas.fink/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/lucas.fink/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/lucas.fink/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/marco.froihofer/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/marco.froihofer/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/marco.froihofer/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/marco.froihofer/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/paulina.hasenhuettl/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/paulina.hasenhuettl/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/paulina.hasenhuettl/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/paulina.hasenhuettl/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/maximilian.hofstaetter/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/maximilian.hofstaetter/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/maximilian.hofstaetter/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/maximilian.hofstaetter/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/lorenz.kristl/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/lorenz.kristl/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/lorenz.kristl/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/lorenz.kristl/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/johannes.mlinar/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/johannes.mlinar/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/johannes.mlinar/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/johannes.mlinar/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/benedikt.polivka/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/benedikt.polivka/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/benedikt.polivka/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/benedikt.polivka/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/kristian.seiner/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/kristian.seiner/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/kristian.seiner/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/kristian.seiner/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/melanie.sinnhofer/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/melanie.sinnhofer/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/melanie.sinnhofer/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/melanie.sinnhofer/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/lukas.supper/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/lukas.supper/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/lukas.supper/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/lukas.supper/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/marcus.teichtmeister/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/marcus.teichtmeister/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/marcus.teichtmeister/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/marcus.teichtmeister/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/roman.tragner/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/roman.tragner/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/roman.tragner/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/roman.tragner/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/leo.traussnigg/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/leo.traussnigg/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/leo.traussnigg/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/leo.traussnigg/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/michael.wettl/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/michael.wettl/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/michael.wettl/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/michael.wettl/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/matthias.winkler/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/matthias.winkler/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/matthias.winkler/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/matthias.winkler/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/christopher.winter/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/christopher.winter/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/christopher.winter/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/christopher.winter/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/anael.wirtl-moelbach/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/anael.wirtl-moelbach/bin/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/anael.wirtl-moelbach/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "exercises/anael.wirtl-moelbach/tests/CMakeLists.txt"
+		},
+		{
+			"path" : "googletest/CMakeLists.txt"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CMakeDependentOption.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/GNUInstallDirs.cmake"
+		},
+		{
+			"path" : "googletest/googlemock/CMakeLists.txt"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/FindThreads.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CheckLibraryExists.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CheckIncludeFile.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CheckCSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"path" : "googletest/googlemock/cmake/gmock.pc.in"
+		},
+		{
+			"path" : "googletest/googlemock/cmake/gmock_main.pc.in"
+		},
+		{
+			"path" : "googletest/googletest/CMakeLists.txt"
+		},
+		{
+			"path" : "googletest/googletest/cmake/internal_utils.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/FindThreads.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CheckLibraryExists.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CheckIncludeFile.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CheckCSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/Internal/CheckSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/CMakePackageConfigHelpers.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/WriteBasicConfigVersionFile.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/usr/share/cmake-3.25/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in"
+		},
+		{
+			"path" : "googletest/googletest/cmake/Config.cmake.in"
+		},
+		{
+			"path" : "googletest/googletest/cmake/gtest.pc.in"
+		},
+		{
+			"path" : "googletest/googletest/cmake/gtest_main.pc.in"
+		}
+	],
+	"kind" : "cmakeFiles",
+	"paths" : 
+	{
+		"build" : "/home/student/My-Projects/FH-STECE2023/build",
+		"source" : "/home/student/My-Projects/FH-STECE2023"
+	},
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}

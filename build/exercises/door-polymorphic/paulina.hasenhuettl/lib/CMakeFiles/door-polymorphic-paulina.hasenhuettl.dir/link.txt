@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-paulina.hasenhuettl.a "CMakeFiles/door-polymorphic-paulina.hasenhuettl.dir/door.cpp.o" "CMakeFiles/door-polymorphic-paulina.hasenhuettl.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-paulina.hasenhuettl.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-paulina.hasenhuettl.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-paulina.hasenhuettl.a

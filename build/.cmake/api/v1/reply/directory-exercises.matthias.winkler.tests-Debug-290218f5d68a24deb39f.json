@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/matthias.winkler/tests",
+		"source" : "exercises/matthias.winkler/tests"
+	}
+}

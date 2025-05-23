@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/melanie.sinnhofer/tests",
+		"source" : "exercises/melanie.sinnhofer/tests"
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/felix.feistritzer/lib",
+		"source" : "exercises/felix.feistritzer/lib"
+	}
+}

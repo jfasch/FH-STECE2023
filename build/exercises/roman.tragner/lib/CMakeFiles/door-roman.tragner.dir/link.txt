@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-roman.tragner.a "CMakeFiles/door-roman.tragner.dir/door.cpp.o" "CMakeFiles/door-roman.tragner.dir/motor.cpp.o" "CMakeFiles/door-roman.tragner.dir/light-barrier.cpp.o" "CMakeFiles/door-roman.tragner.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-roman.tragner.a
