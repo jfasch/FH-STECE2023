@@ -9,7 +9,7 @@ TEST(lightbarrier_suite, init)
         ASSERT_EQ(b.getState(), LightBarrier::State::BEAM_SOLID);
     }
     {
-        
+       
         LightBarrier b(LightBarrier::State::BEAM_BROKEN);
         ASSERT_EQ(b.getState(), LightBarrier::State::BEAM_BROKEN);
     }
