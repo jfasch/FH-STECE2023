@@ -1,17 +1,17 @@
-#include "light-barrier.h"
+#include "light-barrierMock.h"
 
 
-LightBarrier::LightBarrier(State state)
+LightBarrierMock::LightBarrierMock(LightBarrier::State state)
 {
     _state = state;
 }
 
-LightBarrier::State LightBarrier::get_state() const
+LightBarrierMock::State LightBarrierMock::get_state() const
 {
     return _state;
 }
 
-void LightBarrier::set_state(State state)
+void LightBarrierMock::set_state(State state)
 {
     _state = state;
 }

@@ -1,22 +1,18 @@
 #pragma once
+#include "light-barrier.h"
 
-
-class LightBarrier
+class LightBarrierMock : public LightBarrier
 {
 public:
-    enum class State
-        {
-            BEAM_SOLID,
-            BEAM_BROKEN,
-        };
 
-    LightBarrier(State state);
-    State get_state() const;
+
+    LightBarrierMock(LightBarrier::State state);
+    LightBarrier::State get_state() const override;
 
     // for tests only
-    void set_state(State state);
+     void set_state(LightBarrier::State state) override;
 
 private:
-    State _state;
+    LightBarrier::State _state;
 };
 

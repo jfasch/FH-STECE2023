@@ -4,7 +4,7 @@
 class MotorMock :public Motor
 {
 public:
-    MotorMock(Direction direction);
+    MotorMock(Motor::Direction direction);
     void forward() override;
     void backward() override;
     void stop() override;
@@ -14,6 +14,6 @@ public:
     Motor::Direction get_direction() const override;
 
 private:
-    Direction _direction;
+    Motor::Direction _direction;
 };
 

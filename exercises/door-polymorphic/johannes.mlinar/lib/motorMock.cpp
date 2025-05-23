@@ -1,5 +1,5 @@
 #include "motorMock.h"
-#include "motorMock.h"
+
 
 MotorMock::MotorMock(Motor::Direction direction)
 {
