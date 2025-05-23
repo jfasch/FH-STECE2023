@@ -5,7 +5,7 @@ ADD_LIBRARY(
   door.cpp
 
   motor.h
-  motor.cpp
+  motorMock.cpp
 
   light-barrier.h
   light-barrier.cpp

@@ -10,7 +10,7 @@ public:
             BEAM_BROKEN,
         };
 
-    virtual LightBarrier(State state)= 0;
+    LightBarrier(State state);
     State get_state() const;
 
     // for tests only
