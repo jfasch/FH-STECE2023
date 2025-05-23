@@ -1,6 +1,5 @@
 add_executable(
   door-tests-anto.dzidzic
-
   motor-tests.cpp
   lightbarrier-tests.cpp
   pushbutton-tests.cpp
@@ -9,7 +8,6 @@ add_executable(
 
 target_link_libraries(
   door-tests-anto.dzidzic
-
   door-anto.dzidzic
   gtest_main 
 )
