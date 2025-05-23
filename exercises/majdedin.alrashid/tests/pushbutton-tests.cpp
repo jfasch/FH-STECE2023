@@ -1,16 +1,16 @@
 #include <gtest/gtest.h>
-#include <light-barrier.h>
+#include <push-button.h>
 
-TEST(lightbarrier_suite, init)
+TEST(pushbutton_suite, init)
 {
     {
-        // Initialize light barrier with BEAM_SOLID state
-        LightBarrier b(LightBarrier::State::BEAM_SOLID);
-        ASSERT_EQ(b.getState(), LightBarrier::State::BEAM_SOLID);
+        
+        PushButton b(PushButton::State::PRESSED);
+        ASSERT_EQ(b.getState(), PushButton::State::PRESSED);
     }
     {
-        // Initialize light barrier with BEAM_BROKEN state
-        LightBarrier b(LightBarrier::State::BEAM_BROKEN);
-        ASSERT_EQ(b.getState(), LightBarrier::State::BEAM_BROKEN);
+       
+        PushButton b(PushButton::State::RELEASED);
+        ASSERT_EQ(b.getState(), PushButton::State::RELEASED);
     }
 }
