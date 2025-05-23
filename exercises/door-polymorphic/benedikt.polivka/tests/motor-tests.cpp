@@ -1,6 +1,5 @@
 #include <motor-mock.h>
 
-
 #include <gtest/gtest.h>
 
 
