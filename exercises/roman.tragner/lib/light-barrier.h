@@ -14,12 +14,12 @@ class LightBarrier
 
 
     public:
-    LightBarrier(LightBarrierState state); 
+    LightBarrier(LightBarrierState stateInit); 
          
-    LightBarrierState LightBarrier_get_state() const;
+    LightBarrierState get_state() const;
    
-
-    void set_state(LightBarrierState state); 
+//test 
+    void set_state(LightBarrierState stateSet); 
 
 
 };
