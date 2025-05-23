@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-
+/*
 TEST(motor_suite, init)
 {
     {
@@ -21,3 +21,21 @@ TEST(motor_suite, init)
         ASSERT_EQ(Motor_get_direction(&motor), MOTOR_BACKWARD);
     }
 }
+*/
+
+TEST(motor_suite, init)
+{
+    {
+        Motor motor(MOTOR_IDLE);
+        ASSERT_EQ(motor.Motor_get_direction(), MOTOR_IDLE);
+    }
+    {
+        Motor motor(MOTOR_FORWARD);
+        ASSERT_EQ(motor.Motor_get_direction(), MOTOR_FORWARD);
+    }
+    {
+        Motor motor(MOTOR_BACKWARD);
+        ASSERT_EQ(motor.Motor_get_direction(), MOTOR_BACKWARD);
+    }
+}
+
