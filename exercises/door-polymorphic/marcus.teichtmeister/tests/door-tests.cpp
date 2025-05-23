@@ -2,6 +2,9 @@
 
 #include <door.h>
 
+#include "motor-mock.h"
+#include "push-button-mock.h"
+#include "light-barrier-mock.h"
 
 TEST(door_suite, straightforward_open)
 {

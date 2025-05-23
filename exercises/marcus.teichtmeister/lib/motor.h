@@ -1,4 +1,6 @@
+
 #pragma once
+
 
 enum MotorDirection
 {
@@ -7,10 +9,15 @@ enum MotorDirection
     MOTOR_BACKWARD,
 };
 
-class Motor
+struct Motor
 {
-    public:
-    virtual void forward() = 0;
-    virtual void backward() = 0;
-    virtual void stop() = 0;
+    MotorDirection direction;
 };
+
+void Motor_init(Motor* self, MotorDirection direction);
+void Motor_forward(Motor* self);
+void Motor_backward(Motor* self);
+void Motor_stop(Motor* self);
+
+// for tests only
+MotorDirection Motor_get_direction(Motor* self);
