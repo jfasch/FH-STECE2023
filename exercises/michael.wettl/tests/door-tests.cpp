@@ -10,7 +10,7 @@ TEST(door_suite, straightforward_open)
 
     PushButton do_close(PushButtonState::PUSHBUTTON_RELEASED);
 
-    PushButton do_open(PushButtonState::PUSHBUTTON_PRESSED);
+    PushButton do_open(PushButtonState::PUSHBUTTON_RELEASED);
 
     LightBarrier closed_position(LightBarrierState::LIGHTBARRIER_BEAM_BROKEN);  // <-- door in "closed" position
 
