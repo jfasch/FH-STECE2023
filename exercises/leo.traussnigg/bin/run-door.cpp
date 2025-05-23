@@ -2,7 +2,6 @@
 
 #include <time.h>
 
-
 int main()
 {
     // --- build a door and its parts
@@ -26,7 +25,7 @@ int main()
     };
 
     while (true) {
-        Door::State state = door.getState();
+        door.check();
         nanosleep(&interval, nullptr);
     }
 

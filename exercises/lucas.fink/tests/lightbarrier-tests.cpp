@@ -1,19 +1,17 @@
 #include <gtest/gtest.h>
 
-#include <light-barrier.h>
+#include "../lib/light-barrier.h"
 
 
 TEST(lightbarrier_suite, init)
 {
     {
-        LightBarrier b;
-        LightBarrier_init(&b, LIGHTBARRIER_BEAM_SOLID);
-        ASSERT_EQ(LightBarrier_get_state(&b), LIGHTBARRIER_BEAM_SOLID);
+        LightBarrier b(LIGHTBARRIER_BEAM_SOLID);
+        ASSERT_EQ(b.get_state(), LIGHTBARRIER_BEAM_SOLID);
     }
     {
-        LightBarrier b;
-        LightBarrier_init(&b, LIGHTBARRIER_BEAM_BROKEN);
-        ASSERT_EQ(LightBarrier_get_state(&b), LIGHTBARRIER_BEAM_BROKEN);
+        LightBarrier b(LIGHTBARRIER_BEAM_BROKEN);
+        ASSERT_EQ(b.get_state(), LIGHTBARRIER_BEAM_BROKEN);
     }
 }
 
