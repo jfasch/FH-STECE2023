@@ -1,5 +1,5 @@
 #include "push-button.h"
-
+/*
 PushButton::PushButton(State state)
 {
     _state = state;
@@ -14,3 +14,4 @@ void PushButton::set_state(State state)
 {
     _state = state;
 }
+*/

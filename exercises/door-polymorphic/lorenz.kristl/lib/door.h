@@ -1,5 +1,5 @@
 #pragma once
-
+#include <motor-mock.h>
 #include "motor.h"
 #include "push-button.h"
 #include "light-barrier.h"
