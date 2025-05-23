@@ -8,9 +8,9 @@ add_executable(
   door-tests.cpp
 
   # --- this is for you :* ---
-  # motor-polymorphic-tests.cpp
-  # lightbarrier-polymorphic-tests.cpp
-  # pushbutton-polymorphic-tests.cpp
+   motor-polymorphic-tests.cpp
+   lightbarrier-polymorphic-tests.cpp
+   pushbutton-polymorphic-tests.cpp
 )
 
 target_link_libraries(

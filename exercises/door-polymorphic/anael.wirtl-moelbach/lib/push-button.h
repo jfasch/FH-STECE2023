@@ -1,21 +1,15 @@
 #pragma once
 
-class PushButton
+class IPushButton
 {
 public:
-    enum State
+    enum class State
     {
         PRESSED,
         RELEASED,
     };
 
-public:
-    PushButton(State state);
-    State get_state() const;
+    virtual ~IPushButton() = default;
 
-    // for tests only
-    void set_state(State state);
-
-private:
-    State _state;
+    virtual State get_state() const = 0;
 };
