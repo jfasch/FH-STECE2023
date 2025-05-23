@@ -12,7 +12,6 @@ Door::Door(Motor* motor,
 {
     // assume that the motor is idle when the software boots. FIXME:
     // is that assumption safe?
-    assert(_motor->Motor_get_direction() == MOTOR_IDLE);
 
     _motor = motor;
     _do_close = do_close;
@@ -20,6 +19,8 @@ Door::Door(Motor* motor,
     _closed_position = closed_position;
     _opened_position = opened_position;
     _state = DOOR_INIT;
+
+    assert(_motor->Motor_get_direction() == MOTOR_IDLE);
 }
 
 void Door::Door_check()
