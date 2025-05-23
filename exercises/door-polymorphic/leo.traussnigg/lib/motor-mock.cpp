@@ -1,27 +1,26 @@
-#include "motor.h"
+#include "motor-mock.h"
 
-
-Motor::Motor(Direction direction)
+MotorMock::MotorMock(Motor::Direction direction)
 {
     _direction = direction;
 }
 
-void Motor::forward()
+void MotorMock::forward()
 {
-    _direction = Direction::FORWARD;
+    _direction = Motor::Direction::FORWARD;
 }
 
-void Motor::backward()
+void MotorMock::backward()
 {
-    _direction = Direction::BACKWARD;
+    _direction = Motor::Direction::BACKWARD;
 }
 
-void Motor::stop()
+void MotorMock::stop()
 {
-    _direction = Direction::IDLE;
+    _direction = Motor::Direction::IDLE;
 }
 
-Motor::Direction Motor::get_direction() const
+Motor::Direction MotorMock::get_direction() const
 {
     return _direction;
 }
