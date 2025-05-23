@@ -1,11 +1,11 @@
 add_executable(
   door-tests-polymorphic-kristian.seiner
 
-  #motor-tests.cpp
-  #lightbarrier-tests.cpp
-  #pushbutton-tests.cpp
+  motor-tests.cpp
+  lightbarrier-tests.cpp
+  pushbutton-tests.cpp
 
-  #door-tests.cpp
+  door-tests.cpp
 
   # --- this is for you :* ---
   motor-polymorphic-tests.cpp
