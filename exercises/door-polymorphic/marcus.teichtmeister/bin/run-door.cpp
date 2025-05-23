@@ -1,5 +1,9 @@
 #include <door.h>
 
+#include "motor-mock.h"
+#include "push-button-mock.h"
+#include "light-barrier-mock.h"
+
 #include <time.h>
 
 
