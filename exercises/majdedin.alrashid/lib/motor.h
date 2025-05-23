@@ -1,25 +1,23 @@
 #pragma once
 
-enum MotorDirection
-{
-    MOTOR_IDLE,
-    MOTOR_FORWARD,
-    MOTOR_BACKWARD,
-};
-
 class Motor
 {
-public:
-    
-    Motor(MotorDirection direction = MOTOR_IDLE);
+    public:
+        enum class Direction
+        {
+            IDLE,
+            FORWARD,
+            BACKWARD,
+        };
 
-    void forward();     
-    void backward();    
-    void stop();        
+        Motor(Direction initialdirection = Direction::IDLE);
 
-    
-    MotorDirection getDirection() const;
+        void forward();
+        void backward();
+        void stop();
 
-private:
-    MotorDirection direction_;
+        Direction getDirection() const;
+        
+    private:
+        Direction direction;
 };
