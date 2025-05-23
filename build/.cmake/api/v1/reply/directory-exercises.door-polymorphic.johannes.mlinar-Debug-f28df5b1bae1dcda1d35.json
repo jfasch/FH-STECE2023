@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/door-polymorphic/johannes.mlinar",
+		"source" : "exercises/door-polymorphic/johannes.mlinar"
+	}
+}

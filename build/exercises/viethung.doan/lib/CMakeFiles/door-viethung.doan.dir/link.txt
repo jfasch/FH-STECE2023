@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-viethung.doan.a "CMakeFiles/door-viethung.doan.dir/door.cpp.o" "CMakeFiles/door-viethung.doan.dir/motor.cpp.o" "CMakeFiles/door-viethung.doan.dir/light-barrier.cpp.o" "CMakeFiles/door-viethung.doan.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-viethung.doan.a

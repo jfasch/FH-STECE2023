@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-michael.wettl.a "CMakeFiles/door-michael.wettl.dir/door.cpp.o" "CMakeFiles/door-michael.wettl.dir/motor.cpp.o" "CMakeFiles/door-michael.wettl.dir/light-barrier.cpp.o" "CMakeFiles/door-michael.wettl.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-michael.wettl.a

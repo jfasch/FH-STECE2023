@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/majdedin.alrashid/tests",
+		"source" : "exercises/majdedin.alrashid/tests"
+	}
+}

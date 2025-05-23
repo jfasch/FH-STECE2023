@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-lorenz.kristl.a "CMakeFiles/door-polymorphic-lorenz.kristl.dir/door.cpp.o" "CMakeFiles/door-polymorphic-lorenz.kristl.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-lorenz.kristl.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-lorenz.kristl.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-lorenz.kristl.a

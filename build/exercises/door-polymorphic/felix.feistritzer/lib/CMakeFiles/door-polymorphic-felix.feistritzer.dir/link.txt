@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-felix.feistritzer.a "CMakeFiles/door-polymorphic-felix.feistritzer.dir/door.cpp.o" "CMakeFiles/door-polymorphic-felix.feistritzer.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-felix.feistritzer.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-felix.feistritzer.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-felix.feistritzer.a

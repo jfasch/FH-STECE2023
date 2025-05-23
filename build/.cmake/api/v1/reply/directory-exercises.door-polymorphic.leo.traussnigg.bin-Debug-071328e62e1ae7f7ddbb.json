@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/door-polymorphic/leo.traussnigg/bin",
+		"source" : "exercises/door-polymorphic/leo.traussnigg/bin"
+	}
+}

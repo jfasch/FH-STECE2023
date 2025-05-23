@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-christopher.winter.a "CMakeFiles/door-polymorphic-christopher.winter.dir/door.cpp.o" "CMakeFiles/door-polymorphic-christopher.winter.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-christopher.winter.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-christopher.winter.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-christopher.winter.a

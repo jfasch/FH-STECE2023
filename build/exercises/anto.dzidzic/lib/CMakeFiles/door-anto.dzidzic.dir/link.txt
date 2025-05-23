@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-anto.dzidzic.a "CMakeFiles/door-anto.dzidzic.dir/door.cpp.o" "CMakeFiles/door-anto.dzidzic.dir/motor.cpp.o" "CMakeFiles/door-anto.dzidzic.dir/light-barrier.cpp.o" "CMakeFiles/door-anto.dzidzic.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-anto.dzidzic.a

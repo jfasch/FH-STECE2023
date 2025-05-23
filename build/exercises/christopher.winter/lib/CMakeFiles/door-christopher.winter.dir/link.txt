@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-christopher.winter.a "CMakeFiles/door-christopher.winter.dir/door.cpp.o" "CMakeFiles/door-christopher.winter.dir/motor.cpp.o" "CMakeFiles/door-christopher.winter.dir/light-barrier.cpp.o" "CMakeFiles/door-christopher.winter.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-christopher.winter.a

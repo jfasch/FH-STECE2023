@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-marco.froihofer.a "CMakeFiles/door-marco.froihofer.dir/door.cpp.o" "CMakeFiles/door-marco.froihofer.dir/motor.cpp.o" "CMakeFiles/door-marco.froihofer.dir/light-barrier.cpp.o" "CMakeFiles/door-marco.froihofer.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-marco.froihofer.a

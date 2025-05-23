@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/paulina.hasenhuettl/tests",
+		"source" : "exercises/paulina.hasenhuettl/tests"
+	}
+}
