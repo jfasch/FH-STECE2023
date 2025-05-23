@@ -1,6 +1,6 @@
 #pragma once
 
-
+ //asdasda
 
 class LightBarrier
 {   
@@ -25,5 +25,4 @@ public:
 
     private:
         State state;
-    //asdasda
 };

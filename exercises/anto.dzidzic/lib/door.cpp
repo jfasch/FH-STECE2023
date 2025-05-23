@@ -1,6 +1,7 @@
 #include "door.h"
 
 #include <assert.h>
+//asdads
 
 Door::Door(Motor* motor,
            PushButton* doClose,

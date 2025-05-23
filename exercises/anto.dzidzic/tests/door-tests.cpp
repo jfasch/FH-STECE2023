@@ -4,6 +4,7 @@
 #include "light-barrier.h"
 
 #include <gtest/gtest.h>
+//asdasd
 
 TEST(door_suite, straightforward_open)
 {
