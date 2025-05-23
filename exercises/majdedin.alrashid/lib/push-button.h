@@ -1,21 +1,19 @@
 #pragma once
 
-enum PushButtonState
-{
-    PUSHBUTTON_PRESSED,
-    PUSHBUTTON_RELEASED,
-};
-
 class PushButton
 {
 public:
-    
-    PushButton(PushButtonState state);
+    enum class State
+    {
+        PRESSED,
+        RELEASED
+    };
 
-    
-    PushButtonState getState() const;
-    void setState(PushButtonState state);  
+    PushButton(State initialState = State::RELEASED);
+
+    State getState() const;
+    void setState(State state);
 
 private:
-    PushButtonState state_;
+    State state;
 };
