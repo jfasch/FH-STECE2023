@@ -1,6 +1,7 @@
 #include <door.h>
 #include "motor-mock.h"
 #include "light-barrier-mock.h"
+#include "push-button-mock.h"
 #include <time.h>
 
 
@@ -8,8 +9,8 @@ int main()
 {
     // --- build a door and its parts
     MockMotor motor(Motor::Direction::IDLE);
-    PushButton do_close(PushButton::State::RELEASED);
-    PushButton do_open(PushButton::State::RELEASED);
+    MockPushButton do_close(PushButton::State::RELEASED);
+    MockPushButton do_open(PushButton::State::RELEASED);
     MockLightBarrier closed_position(LightBarrier::State::BEAM_BROKEN);  // <-- door in "closed" position
     MockLightBarrier opened_position(LightBarrier::State::BEAM_SOLID);   // <-- door not in "opened" position
 
