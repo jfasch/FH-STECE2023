@@ -1,16 +1,11 @@
 #pragma once
+#include "push-button.h"
 
-class PushButtonMock
+class PushButtonMock: public PushButton
 {
-public:
-    enum State
-    {
-        PRESSED,
-        RELEASED,
-    };
 
 public:
-    PushButton(State state);
+    PushButtonMock(State state);
     State get_state() const;
 
     // for tests only

@@ -1,16 +1,16 @@
-#include "push-button.h"
+#include "push-button-Mock.h"
 
-PushButton::PushButton(State state)
+PushButtonMock::PushButtonMock(State state)
 {
     _state = state;
 }
 
-PushButton::State PushButton::get_state() const
+PushButtonMock::State PushButtonMock::get_state() const
 {
     return _state;
 }
 
-void PushButton::set_state(State state)
+void PushButtonMock::set_state(State state)
 {
     _state = state;
 }

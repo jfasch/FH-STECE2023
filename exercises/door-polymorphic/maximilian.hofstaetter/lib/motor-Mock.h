@@ -1,17 +1,11 @@
 #pragma once
+#include "motor.h"
 
-
-class MotorMock
+class MotorMock: public Motor
 {
 public:
-    enum class Direction
-    {
-        IDLE,
-        FORWARD,
-        BACKWARD,
-    };
 
-    Motor(Direction direction);
+    MotorMock(Direction direction);
     void forward();
     void backward();
     void stop();
