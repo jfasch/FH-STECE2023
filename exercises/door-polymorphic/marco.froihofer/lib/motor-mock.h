@@ -1,25 +1,16 @@
 #pragma once
 
+#include "motor.h"
 
-class Motor
-{
+class MotorMock : public Motor {
 public:
-    enum class Direction
-    {
-        IDLE,
-        FORWARD,
-        BACKWARD,
-    };
+    MotorMock(Direction direction);  // ✅ Nur Deklaration
 
-    Motor(Direction direction);
-    void forward();
-    void backward();
-    void stop();
-
-    // for tests only? (Door uses for a sanity check)
-    Direction get_direction() const;
+    void forward() override;
+    void backward() override;
+    void stop() override;
+    Direction get_direction() const override;
 
 private:
     Direction _direction;
 };
-
