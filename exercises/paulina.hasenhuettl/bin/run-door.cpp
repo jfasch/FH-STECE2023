@@ -1,3 +1,29 @@
+#include "door.h"
+#include <chrono>
+#include <thread>
+
+int main()
+{
+    Motor motor(MotorDirection::IDLE);
+
+    PushButton do_close(PushButtonState::RELEASED);
+    PushButton do_open(PushButtonState::RELEASED);
+
+    LightBarrier closed_position(LightBarrierState::BEAM_BROKEN);  
+    LightBarrier opened_position(LightBarrierState::BEAM_SOLID);   
+
+    Door door(&motor, &do_close, &do_open, &closed_position, &opened_position);
+
+    const std::chrono::milliseconds interval(1);  
+    while (true) {
+        door.check();  
+        std::this_thread::sleep_for(interval);
+    }
+
+    return 0;
+}
+
+/*
 #include <door.h>
 
 #include <time.h>
@@ -38,3 +64,4 @@ int main()
 
     return 0;
 }
+*/

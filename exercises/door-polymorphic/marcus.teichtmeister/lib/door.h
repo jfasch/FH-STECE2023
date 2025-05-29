@@ -5,6 +5,8 @@
 #include "light-barrier.h"
 
 
+
+
 class Door
 {
 public:
