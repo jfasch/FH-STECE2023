@@ -1,6 +1,5 @@
 #pragma once
 
-
 class LightBarrier
 {
 public:
@@ -10,13 +9,28 @@ public:
             BEAM_BROKEN,
         };
 
-    LightBarrier(State state);
-    State get_state() const;
-
+     explicit LightBarrier(State state) : _state(state) {}
+    
+    virtual ~LightBarrier() = default;
+    virtual State get_state() const { return _state; } 
     // for tests only
-    void set_state(State state);
+    virtual void set_state(State state) { _state = state; }
 
 private:
     State _state;
 };
+
+
+
+
+
+    
+   
+
+    
+
+   
+
+    
+
 

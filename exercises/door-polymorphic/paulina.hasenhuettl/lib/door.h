@@ -1,6 +1,7 @@
 #pragma once
 
 #include "motor.h"
+#include <motor-mock.h>
 #include "push-button.h"
 #include "light-barrier.h"
 
