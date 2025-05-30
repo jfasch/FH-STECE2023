@@ -1,28 +1,19 @@
 #pragma once
 
- //asdasda
 
-class LightBarrier
-{   
-public:
-    enum State
-    {
-        LIGHTBARRIER_BEAM_SOLID,
-        LIGHTBARRIER_BEAM_BROKEN,
-    };
-
-    LightBarrier(State initialState = LIGHTBARRIER_BEAM_BROKEN)
-    : state(initialState) {}
-
-
-    State getState() const {
-        return state;
-    }
-
-    void setState(State newState) {
-        state = newState;
-    }
-
-    private:
-        State state;
+enum LightBarrierState
+{
+    LIGHTBARRIER_BEAM_SOLID,
+    LIGHTBARRIER_BEAM_BROKEN,
 };
+
+struct LightBarrier
+{
+    LightBarrierState state;
+};
+
+void LightBarrier_init(LightBarrier* self, LightBarrierState state);
+LightBarrierState LightBarrier_get_state(LightBarrier* self);
+
+// for tests only
+void LightBarrier_set_state(LightBarrier* self, LightBarrierState state);

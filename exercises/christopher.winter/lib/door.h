@@ -3,7 +3,7 @@
 #include "motor.h"
 #include "push-button.h"
 #include "light-barrier.h"
-#include <assert.h>
+
 
 enum DoorState
 {
@@ -15,22 +15,20 @@ enum DoorState
     DOOR_ERROR_SOMETHING_BADLY_WRONG,
 };
 
-
-class Door
+struct Door
 {
-private:
-    DoorState state;
     Motor* motor;
     PushButton* do_close;
     PushButton* do_open;
     LightBarrier* closed_position;
     LightBarrier* opened_position;
 
-    public:
-    // Constructor
-    Door(Motor* motor_set, PushButton* do_close_set, PushButton* do_open_set, LightBarrier* closed_position_set, LightBarrier* opened_position_set);
-
-    void Door_check();
-
-    DoorState State_Get() const;
+    DoorState state;
 };
+
+void Door_init(Door* self, 
+               Motor* motor, 
+               PushButton* do_close, PushButton* do_open, 
+               LightBarrier* closed_position, LightBarrier* opened_position);
+
+void Door_check(Door* door);

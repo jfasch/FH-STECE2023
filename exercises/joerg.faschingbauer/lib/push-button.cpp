@@ -1,16 +1,16 @@
 #include "push-button.h"
 
-PushButton::PushButton(State state)
+PushButton::PushButton(PushButtonState state)
 {
     _state = state;
 }
 
-PushButton::State PushButton::get_state()
+PushButtonState PushButton::get_state()
 {
     return _state;
 }
 
-void PushButton::set_state(State state)
+void PushButton::set_state(PushButtonState state)
 {
     _state = state;
 }

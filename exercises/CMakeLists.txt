@@ -1,5 +1,3 @@
-add_subdirectory(door-polymorphic)
-
 add_subdirectory(joerg.faschingbauer)
 
 add_subdirectory(majdedin.alrashid)

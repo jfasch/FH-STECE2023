@@ -6,12 +6,12 @@
 TEST(pushbutton_suite, init)
 {
     {
-        PushButton b(PushButton::State::PRESSED);
-        ASSERT_EQ(b.get_state(), PushButton::State::PRESSED);
+        PushButton b(PUSHBUTTON_PRESSED);
+        ASSERT_EQ(b.get_state(), PUSHBUTTON_PRESSED);
     }
     {
-        PushButton b(PushButton::State::RELEASED);
-        ASSERT_EQ(b.get_state(), PushButton::State::RELEASED);
+        PushButton b(PUSHBUTTON_RELEASED);
+        ASSERT_EQ(b.get_state(), PUSHBUTTON_RELEASED);
     }
 }
 
