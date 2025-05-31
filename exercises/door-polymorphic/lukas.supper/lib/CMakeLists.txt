@@ -5,16 +5,13 @@ ADD_LIBRARY(
   door.cpp
 
   motor.h
-  motor-mock.h
-  motor-mock.cpp
+  motor.cpp
 
   light-barrier.h
-  light-barrier-mock.h
-  light-barrier-mock.cpp
+  light-barrier.cpp
 
   push-button.h
-  push-button-mock.h
-  push-button-mock.cpp
+  push-button.cpp
 )
 
 TARGET_INCLUDE_DIRECTORIES(
