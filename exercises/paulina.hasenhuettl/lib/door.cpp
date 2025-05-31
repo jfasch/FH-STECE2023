@@ -1,4 +1,88 @@
 #include "door.h"
+#include <cassert>
+
+Door::Door(Motor* motor,
+           PushButton* do_close, PushButton* do_open,
+           LightBarrier* closed_position, LightBarrier* opened_position)
+    : _motor(motor),
+      _do_close(do_close),
+      _do_open(do_open),
+      _closed_position(closed_position),
+      _opened_position(opened_position),
+      _state(DoorState::INIT)
+{
+    assert(_motor->get_direction() == MotorDirection::IDLE);
+}
+
+void Door::check()
+{
+    switch (_state)
+    {
+        case DoorState::INIT:
+        {
+            auto closed_barrier_state = _closed_position->get_state();
+            auto opened_barrier_state = _opened_position->get_state();
+
+            if (closed_barrier_state == LightBarrierState::BEAM_SOLID &&
+                opened_barrier_state == LightBarrierState::BEAM_SOLID)
+            {
+                _state = DoorState::ERROR_MIDDLE_POSITION;
+            }
+            else if (closed_barrier_state == LightBarrierState::BEAM_BROKEN &&
+                     opened_barrier_state == LightBarrierState::BEAM_BROKEN)
+            {
+                _state = DoorState::ERROR_SOMETHING_BADLY_WRONG;
+            }
+            else if (closed_barrier_state == LightBarrierState::BEAM_BROKEN &&
+                     opened_barrier_state == LightBarrierState::BEAM_SOLID)
+            {
+                _state = DoorState::CLOSED;
+            }
+            else if (closed_barrier_state == LightBarrierState::BEAM_SOLID &&
+                     opened_barrier_state == LightBarrierState::BEAM_BROKEN)
+            {
+                _state = DoorState::OPENED;
+            }
+            else
+            {
+                assert(!"unexpected state combination");
+            }
+            break;
+        }
+
+        case DoorState::CLOSED:
+        {
+            if (_do_open->get_state() == PushButtonState::PRESSED)
+            {
+                _motor->forward();
+                _state = DoorState::OPENING;
+            }
+            break;
+        }
+
+        case DoorState::OPENING:
+        {
+            if (_opened_position->get_state() == LightBarrierState::BEAM_BROKEN)
+            {
+                _motor->stop();
+                _state = DoorState::OPENED;
+            }
+            break;
+        }
+
+        case DoorState::OPENED:
+        case DoorState::ERROR_MIDDLE_POSITION:
+        case DoorState::ERROR_SOMETHING_BADLY_WRONG:
+        {
+            assert(false);
+            break;
+        }
+    }
+}
+
+
+/*
+#include "door.h"
 
 #include <assert.h>
 
@@ -81,3 +165,4 @@ void Door_check(Door* self)
         }
     }
 }
+*/

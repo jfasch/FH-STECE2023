@@ -4,6 +4,11 @@
 #include "push-button.h"
 #include "light-barrier.h"
 
+#include "motor-mock.h"
+#include "push-button-mock.h"
+#include "light-barrier-mock.h"	
+
+
 
 class Door
 {
