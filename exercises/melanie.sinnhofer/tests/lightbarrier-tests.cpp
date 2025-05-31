@@ -6,14 +6,11 @@
 TEST(lightbarrier_suite, init)
 {
     {
-        LightBarrier b;
-        LightBarrier_init(&b, LIGHTBARRIER_BEAM_SOLID);
-        ASSERT_EQ(LightBarrier_get_state(&b), LIGHTBARRIER_BEAM_SOLID);
+        LightBarrier lb(LightBarrier::State::BEAM_SOLID);
+        ASSERT_EQ(lb.get_state(), LightBarrier::State::BEAM_SOLID);
     }
     {
-        LightBarrier b;
-        LightBarrier_init(&b, LIGHTBARRIER_BEAM_BROKEN);
-        ASSERT_EQ(LightBarrier_get_state(&b), LIGHTBARRIER_BEAM_BROKEN);
-    }
+        LightBarrier lb(LightBarrier::State::BEAM_BROKEN);
+        ASSERT_EQ(lb.get_state(), LightBarrier::State::BEAM_BROKEN);    }
 }
 

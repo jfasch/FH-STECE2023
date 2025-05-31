@@ -5,30 +5,33 @@
 #include "light-barrier.h"
 
 
-enum DoorState
+class Door
 {
-    DOOR_INIT,
-    DOOR_CLOSED,
-    DOOR_OPENING,
-    DOOR_OPENED,
-    DOOR_ERROR_MIDDLE_POSITION,
-    DOOR_ERROR_SOMETHING_BADLY_WRONG,
+public:
+    enum class State
+    {
+        INIT,
+        CLOSED,
+        OPENING,
+        OPENED,
+        ERROR_MIDDLE_POSITION,
+        ERROR_SOMETHING_BADLY_WRONG,
+    };
+
+    explicit Door(Motor* motor, 
+                  PushButton* do_close, PushButton* do_open, 
+                  LightBarrier* closed_position, LightBarrier* opened_position);
+
+    void check();
+    // for tests only
+    State get_state() const;
+
+private:
+    Motor* motor_;
+    PushButton* do_close_;
+    PushButton* do_open_;
+    LightBarrier* closed_position_;
+    LightBarrier* opened_position_;
+
+    State state_;
 };
-
-struct Door
-{
-    Motor* motor;
-    PushButton* do_close;
-    PushButton* do_open;
-    LightBarrier* closed_position;
-    LightBarrier* opened_position;
-
-    DoorState state;
-};
-
-void Door_init(Door* self, 
-               Motor* motor, 
-               PushButton* do_close, PushButton* do_open, 
-               LightBarrier* closed_position, LightBarrier* opened_position);
-
-void Door_check(Door* door);
