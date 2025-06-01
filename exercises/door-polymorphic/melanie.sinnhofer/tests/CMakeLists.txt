@@ -10,7 +10,7 @@ add_executable(
   # --- this is for you :* ---
   motor-polymorphic-tests.cpp
   lightbarrier-polymorphic-tests.cpp
-  # pushbutton-polymorphic-tests.cpp
+  pushbutton-polymorphic-tests.cpp
 )
 
 target_link_libraries(
