@@ -8,7 +8,7 @@ ADD_LIBRARY(
   motor-mock.cpp
 
   light-barrier.h
-  light-barrier.cpp
+  light-barrier-mock.cpp
 
   push-button.h
   push-button.cpp
