@@ -52,7 +52,7 @@ void Door::Door_check()
                 _do_close->get_state() == PushButtonState::PUSHBUTTON_PRESSED)  // if both buttons are pressed at the same time
             {
                 _motor->Motor_stop();                                       // stop the motor
-                _state == DoorState::DOOR_ERROR_SOMETHING_BADLY_WRONG;      // set the state to badly mode is a bit dramatic you can set it to do nothing
+                _state = DoorState::DOOR_ERROR_SOMETHING_BADLY_WRONG;      // set the state to badly mode is a bit dramatic you can set it to do nothing
             }
             // FIXME: invariants
             break;
