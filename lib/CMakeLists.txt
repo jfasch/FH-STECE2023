@@ -1,5 +1,5 @@
 ADD_LIBRARY(
-  door-polymorphic-joerg.faschingbauer
+  door
 
   door.h
   door.cpp
@@ -18,7 +18,7 @@ ADD_LIBRARY(
 )
 
 TARGET_INCLUDE_DIRECTORIES(
-  door-polymorphic-joerg.faschingbauer
+  door
 
   PUBLIC
   .
