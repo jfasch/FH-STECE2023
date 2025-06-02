@@ -2,8 +2,22 @@
 
 #include <assert.h>
 
+//door normal
 
-
+Door::Door(Motor* motor,
+    PushButton* do_close,
+    PushButton* do_open,
+    LightBarrier* closed_position,
+    LightBarrier* opened_position)
+: motor(motor),
+do_close(do_close),
+do_open(do_open),
+closed_position(closed_position),
+opened_position(opened_position),
+state(DoorState::INIT)
+{
+assert(motor->getDirection() == MotorDirection::IDLE);
+}
 
 void Door::check()
 {
