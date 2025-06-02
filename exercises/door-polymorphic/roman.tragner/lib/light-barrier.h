@@ -1,22 +1,14 @@
 #pragma once
 
-
-class LightBarrier
-{
+class LightBarrier {
 public:
-    enum class State
-        {
-            BEAM_SOLID,
-            BEAM_BROKEN,
-        };
+    enum class State {
+        BEAM_SOLID,
+        BEAM_BROKEN,
+    };
 
-    LightBarrier(State state);
-    State get_state() const;
+    virtual ~LightBarrier() = default;
 
-    // for tests only
-    void set_state(State state);
 
-private:
-    State _state;
+    virtual State get_state() const = 0;
 };
-
