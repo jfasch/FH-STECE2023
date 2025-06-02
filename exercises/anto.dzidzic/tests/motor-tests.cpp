@@ -1,16 +1,23 @@
-#include "motor.h"
+#include <motor.h>
+
 #include <gtest/gtest.h>
-//asdasd
 
-TEST(MotorTestSuite, DirectionChanges) {
-    Motor motor;
 
-    motor.forward();
-    ASSERT_EQ(motor.getDirection(), Motor::MOTOR_FORWARD);
-
-    motor.backward();
-    ASSERT_EQ(motor.getDirection(), Motor::MOTOR_BACKWARD);
-
-    motor.stop();
-    ASSERT_EQ(motor.getDirection(), Motor::MOTOR_IDLE);
+TEST(motor_suite, init)
+{
+    {
+        Motor motor;
+        Motor_init(&motor, MOTOR_IDLE);
+        ASSERT_EQ(Motor_get_direction(&motor), MOTOR_IDLE);
+    }
+    {
+        Motor motor;
+        Motor_init(&motor, MOTOR_FORWARD);
+        ASSERT_EQ(Motor_get_direction(&motor), MOTOR_FORWARD);
+    }
+    {
+        Motor motor;
+        Motor_init(&motor, MOTOR_BACKWARD);
+        ASSERT_EQ(Motor_get_direction(&motor), MOTOR_BACKWARD);
+    }
 }
