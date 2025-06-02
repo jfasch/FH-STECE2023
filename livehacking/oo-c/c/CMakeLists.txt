@@ -1,11 +1,10 @@
-add_executable(logger-c 
-
+add_executable(main-c
   main.c 
 
-  sensor.h 
-  sensor.c
-  sensor1.h 
-  sensor1.c 
-  sensor2.h 
-  sensor2.c
+  interface.h 
+  interface.c
+  implementation1.h 
+  implementation1.c
+  implementation2.h 
+  implementation2.c
 )

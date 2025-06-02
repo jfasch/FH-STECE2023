@@ -1,19 +1,22 @@
-#include "sensor1.h"
-#include "sensor2.h"
-#include <stdio.h>
-#include <unistd.h>
+#include "interface.h"
+#include "implementation1.h"
+#include "implementation2.h"
 
 int main()
 {
-    struct Sensor1 s1;
-    Sensor1_init(&s1);
-    struct Sensor2 s2;
-    Sensor2_init(&s2);
-    struct Sensor* sensors[] = { (struct Sensor*)&s1, (struct Sensor*)&s2 };
-    while (1) {
-        for (int i=0; i<2; i++)
-            printf("%lf\n", Sensor_get_value(sensors[i]));
-        sleep(1);
-    }
+    struct Implementation1 impl1; // jjj ctor
+    Implementation1_constructor(&impl1, 42);
+
+    struct Implementation2 impl2; // jjj ctor
+    Implementation2_constructor(&impl2, "hello");
+
+    struct Interface* objects[] = { (struct Interface*)&impl1, (struct Interface*)&impl2 };
+    for (int i=0; i<2; i++)
+        objects[i]->method(objects[i]);
+
+    for (int i=0; i<2; i++) // jjj dtor: **used only polymorphically,
+                            // on interface**
+        Interface_destructor(objects[i]);
+
     return 0;
 }

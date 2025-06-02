@@ -1,17 +1,15 @@
-#include "sensor1.h"
-#include "sensor2.h"
-#include <iostream>
-#include <unistd.h>
+#include "interface.h"
+#include "implementation1.h"
+#include "implementation2.h"
 
 int main()
 {
-    Sensor1 s1;
-    Sensor2 s2;
-    Sensor* sensors[] = { &s1, &s2 };
-    while (true) {
-        for (int i=0; i<2; i++)
-            std::cout << sensors[i]->get_value() << std::endl;
-        sleep(1);
-    }
+    Implementation1 impl1{42};
+    Implementation2 impl2{"hello"};
+
+    Interface* objects[] = { &impl1, &impl2 };
+    for (int i=0; i<2; i++)
+        objects[i]->method();
+
     return 0;
 }

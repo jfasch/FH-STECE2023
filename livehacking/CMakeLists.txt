@@ -8,3 +8,4 @@ add_executable(auto auto.cpp)
 add_executable(dtor dtor.cpp)
 
 add_subdirectory(oo-c)
+add_subdirectory(interfaces)
