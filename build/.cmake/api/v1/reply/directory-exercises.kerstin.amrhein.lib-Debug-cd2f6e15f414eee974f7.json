@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/kerstin.amrhein/lib",
+		"source" : "exercises/kerstin.amrhein/lib"
+	}
+}

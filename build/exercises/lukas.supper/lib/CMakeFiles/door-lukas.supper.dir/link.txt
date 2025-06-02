@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-lukas.supper.a "CMakeFiles/door-lukas.supper.dir/door.cpp.o" "CMakeFiles/door-lukas.supper.dir/motor.cpp.o" "CMakeFiles/door-lukas.supper.dir/light-barrier.cpp.o" "CMakeFiles/door-lukas.supper.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-lukas.supper.a

@@ -1,0 +1,1 @@
+/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g "CMakeFiles/enum-solution.dir/solution.cpp.o" -o enum-solution 

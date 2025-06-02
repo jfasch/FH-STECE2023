@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-felix.feistritzer.a "CMakeFiles/door-felix.feistritzer.dir/door.cpp.o" "CMakeFiles/door-felix.feistritzer.dir/motor.cpp.o" "CMakeFiles/door-felix.feistritzer.dir/light-barrier.cpp.o" "CMakeFiles/door-felix.feistritzer.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-felix.feistritzer.a
