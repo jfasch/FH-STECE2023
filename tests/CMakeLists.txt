@@ -1,11 +1,15 @@
 add_executable(
   door-tests
 
+  door-tests.cpp
+  
+#  timespec-tests.cpp
+
+
+  # these will become obsolete as we gain speed
   motor-tests.cpp
   lightbarrier-tests.cpp
   pushbutton-tests.cpp
-
-  door-tests.cpp
 
   motor-polymorphic-tests.cpp
   lightbarrier-polymorphic-tests.cpp

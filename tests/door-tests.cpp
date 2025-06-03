@@ -6,6 +6,7 @@
 #include <light-barrier-mock.h>
 
 
+
 TEST(door_suite, straightforward_open)
 {
     // build a door and its parts
@@ -18,7 +19,7 @@ TEST(door_suite, straightforward_open)
     Door door(&motor, &do_close, &do_open, &closed_position, &opened_position);
 
     door.check();
-    ASSERT_EQ(door.get_state(), Door::State::CLOSED);                // <-- inferred from the light barrier situation
+    ASSERT_EQ(door.get_state(), Door::State::CLOSED);              // <-- inferred from the light barrier situation
 
     // all idle: no button pressed -> motor must remain idle at
     // check()
