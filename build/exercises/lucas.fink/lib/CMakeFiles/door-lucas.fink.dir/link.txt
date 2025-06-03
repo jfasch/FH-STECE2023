@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-lucas.fink.a "CMakeFiles/door-lucas.fink.dir/door.cpp.o" "CMakeFiles/door-lucas.fink.dir/motor.cpp.o" "CMakeFiles/door-lucas.fink.dir/light-barrier.cpp.o" "CMakeFiles/door-lucas.fink.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-lucas.fink.a

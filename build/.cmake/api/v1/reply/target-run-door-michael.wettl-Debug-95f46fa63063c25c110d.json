@@ -1,0 +1,117 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "exercises/michael.wettl/bin/run-door-michael.wettl"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"exercises/michael.wettl/bin/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 2,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -std=c++17 -O0 -g3 -Wall -Werror -g"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 2,
+					"path" : "/home/student/My-Projects/FH-STECE2023/exercises/michael.wettl/lib/."
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "door-michael.wettl::@a2cfb6d87ea46d612067"
+		}
+	],
+	"id" : "run-door-michael.wettl::@da2989f8e357f1c00ea2",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-std=c++17 -O0 -g3 -Wall -Werror -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../lib/libdoor-michael.wettl.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "run-door-michael.wettl",
+	"nameOnDisk" : "run-door-michael.wettl",
+	"paths" : 
+	{
+		"build" : "exercises/michael.wettl/bin",
+		"source" : "exercises/michael.wettl/bin"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "exercises/michael.wettl/bin/run-door.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

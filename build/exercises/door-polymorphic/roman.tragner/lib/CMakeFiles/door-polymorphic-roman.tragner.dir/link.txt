@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-roman.tragner.a "CMakeFiles/door-polymorphic-roman.tragner.dir/door.cpp.o" "CMakeFiles/door-polymorphic-roman.tragner.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-roman.tragner.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-roman.tragner.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-roman.tragner.a

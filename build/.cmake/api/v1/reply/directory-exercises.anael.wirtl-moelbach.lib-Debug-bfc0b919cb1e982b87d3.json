@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/anael.wirtl-moelbach/lib",
+		"source" : "exercises/anael.wirtl-moelbach/lib"
+	}
+}

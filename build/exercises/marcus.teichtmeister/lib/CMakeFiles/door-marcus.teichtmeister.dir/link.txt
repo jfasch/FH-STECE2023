@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-marcus.teichtmeister.a "CMakeFiles/door-marcus.teichtmeister.dir/door.cpp.o" "CMakeFiles/door-marcus.teichtmeister.dir/motor.cpp.o" "CMakeFiles/door-marcus.teichtmeister.dir/light-barrier.cpp.o" "CMakeFiles/door-marcus.teichtmeister.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-marcus.teichtmeister.a

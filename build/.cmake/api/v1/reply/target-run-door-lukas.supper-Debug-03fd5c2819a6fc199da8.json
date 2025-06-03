@@ -1,0 +1,117 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "exercises/lukas.supper/bin/run-door-lukas.supper"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"exercises/lukas.supper/bin/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 2,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -std=c++17 -O0 -g3 -Wall -Werror -g"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 2,
+					"path" : "/home/student/My-Projects/FH-STECE2023/exercises/lukas.supper/lib/."
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "door-lukas.supper::@2ec797f0cf1d3d7eb498"
+		}
+	],
+	"id" : "run-door-lukas.supper::@7455d0ae9d830c22ee50",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-std=c++17 -O0 -g3 -Wall -Werror -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../lib/libdoor-lukas.supper.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "run-door-lukas.supper",
+	"nameOnDisk" : "run-door-lukas.supper",
+	"paths" : 
+	{
+		"build" : "exercises/lukas.supper/bin",
+		"source" : "exercises/lukas.supper/bin"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "exercises/lukas.supper/bin/run-door.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}
