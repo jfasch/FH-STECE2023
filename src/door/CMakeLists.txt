@@ -4,6 +4,9 @@ ADD_LIBRARY(
   door.h
   door.cpp
 
+  timespec.h
+  timespec.cpp
+
   motor.h
   motor-mock.h
   motor-mock.cpp

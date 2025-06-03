@@ -3,7 +3,7 @@ add_executable(
 
   door-tests.cpp
   
-#  timespec-tests.cpp
+  timespec-tests.cpp
 
 
   # these will become obsolete as we gain speed
