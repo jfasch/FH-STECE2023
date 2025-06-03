@@ -14,7 +14,7 @@ ADD_LIBRARY(
   light-barrier-mock.cpp
 
   push-button.h
-  push-button.cpp
+  
   push-button-mock.h
   push-button-mock.cpp
 )

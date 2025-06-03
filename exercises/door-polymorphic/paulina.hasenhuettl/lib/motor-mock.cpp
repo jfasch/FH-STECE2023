@@ -1,8 +1,10 @@
 #include "motor-mock.h"
 #include "motor.h"
 
-MotorMock::MotorMock(Motor::Direction direction): Motor(direction),_direction(direction)
+MotorMock::MotorMock(Motor::Direction direction)
+    : _direction(direction)
 {}
+
 
 void MotorMock::forward() {
     _direction = Motor::Direction::FORWARD;
