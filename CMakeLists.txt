@@ -8,7 +8,7 @@ if (${CMAKE_COMPILER_IS_GNUCC})
 endif()
 
 add_subdirectory(bin)
-add_subdirectory(lib)
+add_subdirectory(src)
 add_subdirectory(tests)
 
 add_subdirectory(livehacking)

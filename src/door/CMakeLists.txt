@@ -21,5 +21,6 @@ TARGET_INCLUDE_DIRECTORIES(
   door
 
   PUBLIC
-  .
+
+  ..
 )

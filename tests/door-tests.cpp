@@ -1,10 +1,9 @@
+#include <door/door.h>
+#include <door/motor-mock.h>
+#include <door/push-button-mock.h>
+#include <door/light-barrier-mock.h>
+
 #include <gtest/gtest.h>
-
-#include <door.h>
-#include <motor-mock.h>
-#include <push-button-mock.h>
-#include <light-barrier-mock.h>
-
 
 
 TEST(door_suite, straightforward_open)

@@ -1,4 +1,4 @@
-#include <light-barrier-mock.h>
+#include <door/light-barrier-mock.h>
 
 #include <gtest/gtest.h>
 
