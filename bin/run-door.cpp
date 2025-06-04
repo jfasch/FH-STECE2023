@@ -2,8 +2,9 @@
 #include <door/motor-mock.h>
 #include <door/push-button-mock.h>
 #include <door/light-barrier-mock.h>
+#include <door/timespec.h>
 
-#include <time.h>
+#include <iostream>
 
 
 int main()
@@ -19,14 +20,21 @@ int main()
 
 
     // --- run main SPS loop
-    struct timespec interval = {
-        .tv_sec = 0,
-        .tv_nsec = 1000*1000,      // <-- 1 millisecond
-    };
+    auto interval = TimeSpec::from_milliseconds(1);
 
     while (true) {
+        // call door logic, and complain about cycle-time violation
+        auto before = TimeSpec::now_monotonic();
         door.check();
-        nanosleep(&interval, nullptr);
+        auto after = TimeSpec::now_monotonic();
+
+        auto spent = after - before;
+        if (spent > interval)
+            std::cerr << "WARNING: door logic exceeds interval" << std::endl;
+
+        // suspend for the rest of the interval
+        auto suspend = interval - spent;
+        nanosleep(&suspend, nullptr);
     }
 
     return 0;
