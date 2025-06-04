@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-majdedin.alrashid.a "CMakeFiles/door-polymorphic-majdedin.alrashid.dir/door.cpp.o" "CMakeFiles/door-polymorphic-majdedin.alrashid.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-majdedin.alrashid.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-majdedin.alrashid.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-majdedin.alrashid.a

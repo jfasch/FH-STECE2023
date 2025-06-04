@@ -2,6 +2,7 @@
 
 #include <assert.h>
 
+//door-polymorphic
 
 Door::Door(Motor* motor, 
            PushButton* do_close, PushButton* do_open, 

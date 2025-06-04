@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-melanie.sinnhofer.a "CMakeFiles/door-melanie.sinnhofer.dir/door.cpp.o" "CMakeFiles/door-melanie.sinnhofer.dir/motor.cpp.o" "CMakeFiles/door-melanie.sinnhofer.dir/light-barrier.cpp.o" "CMakeFiles/door-melanie.sinnhofer.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-melanie.sinnhofer.a

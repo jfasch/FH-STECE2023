@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/door-polymorphic/felix.feistritzer/lib",
+		"source" : "exercises/door-polymorphic/felix.feistritzer/lib"
+	}
+}

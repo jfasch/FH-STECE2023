@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-lukas.supper.a "CMakeFiles/door-polymorphic-lukas.supper.dir/door.cpp.o" "CMakeFiles/door-polymorphic-lukas.supper.dir/motor-mock.cpp.o" "CMakeFiles/door-polymorphic-lukas.supper.dir/light-barrier-mock.cpp.o" "CMakeFiles/door-polymorphic-lukas.supper.dir/push-button-mock.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-lukas.supper.a

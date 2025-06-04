@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-anto.dzidzic.a "CMakeFiles/door-polymorphic-anto.dzidzic.dir/door.cpp.o" "CMakeFiles/door-polymorphic-anto.dzidzic.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-anto.dzidzic.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-anto.dzidzic.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-anto.dzidzic.a
