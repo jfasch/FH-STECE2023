@@ -10,3 +10,8 @@ TimeSpec TimeSpec::now_monotonic()
     assert(!error);
     return now;
 }
+
+TimeSpec TimeSpec::from_milliseconds(unsigned long ms)
+{
+    return TimeSpec(0, ms*1000*1000);
+}

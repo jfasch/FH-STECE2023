@@ -128,6 +128,12 @@ TEST(timespec_suite, now_monotonic)
     // hard to test which time it returned :-)
 }
 
+TEST(timespec_suite, from_milliseconds)
+{
+    TimeSpec t = TimeSpec::from_milliseconds(1);
+    ASSERT_EQ(t, TimeSpec(0, 1000*1000));
+}
+
 TEST(timespec_suite, add)
 {
     // within nanoseconds range

@@ -10,6 +10,7 @@
 struct TimeSpec : public timespec
 {
     static TimeSpec now_monotonic();
+    static TimeSpec from_milliseconds(unsigned long ms);
 
     TimeSpec()
     {
