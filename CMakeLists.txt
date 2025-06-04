@@ -12,5 +12,5 @@ add_subdirectory(src)
 add_subdirectory(tests)
 
 add_subdirectory(livehacking)
-add_subdirectory(exercises)
+# add_subdirectory(exercises)
 add_subdirectory(googletest)

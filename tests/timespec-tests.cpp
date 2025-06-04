@@ -127,3 +127,11 @@ TEST(timespec_suite, now_monotonic)
     [[maybe_unused]] TimeSpec now = TimeSpec::now_monotonic();
     // hard to test which time it returned :-)
 }
+
+TEST(timespec_suite, add)
+{
+    ASSERT_EQ(TimeSpec(100, 550) + TimeSpec(0, 1), TimeSpec(100, 551));
+    auto ts = TimeSpec(100, 1000*1000*1000) + TimeSpec(0, 1);
+    ASSERT_EQ(ts.tv_sec, 101);
+    ASSERT_EQ(TimeSpec(100, 1000*1000*1000) + TimeSpec(0, 1), TimeSpec(101, 1));
+}

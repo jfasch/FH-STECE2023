@@ -42,4 +42,15 @@ struct TimeSpec : public timespec
     bool operator> (const TimeSpec& rhs) const { return !(*this < rhs || *this == rhs); }
     bool operator>=(const TimeSpec& rhs) const { return !(*this < rhs); }
     bool operator<=(const TimeSpec& rhs) const { return *this == rhs || *this < rhs; }
+
+    TimeSpec operator+(const TimeSpec& rhs) const
+    {
+        time_t sec = tv_sec + rhs.tv_sec;
+        time_t nsec = tv_nsec + rhs.tv_nsec;
+        if (nsec > 1000*1000*1000) {
+            sec += nsec / 1000*1000*1000;
+            nsec = nsec % 1000*1000*1000;
+        }
+        return TimeSpec(sec, nsec);
+    }
 };
