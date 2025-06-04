@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/marcus.teichtmeister/bin",
+		"source" : "exercises/marcus.teichtmeister/bin"
+	}
+}

@@ -1,0 +1,1 @@
+/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g "CMakeFiles/run-door-marcus.teichtmeister.dir/run-door.cpp.o" -o run-door-marcus.teichtmeister  ../lib/libdoor-marcus.teichtmeister.a 

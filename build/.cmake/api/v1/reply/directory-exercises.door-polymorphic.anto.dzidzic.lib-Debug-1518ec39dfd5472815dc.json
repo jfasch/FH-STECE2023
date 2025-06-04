@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/door-polymorphic/anto.dzidzic/lib",
+		"source" : "exercises/door-polymorphic/anto.dzidzic/lib"
+	}
+}

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-maximilian.hofstaetter.a "CMakeFiles/door-polymorphic-maximilian.hofstaetter.dir/door.cpp.o" "CMakeFiles/door-polymorphic-maximilian.hofstaetter.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-maximilian.hofstaetter.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-maximilian.hofstaetter.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-maximilian.hofstaetter.a

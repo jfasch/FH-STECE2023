@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "exercises/door-polymorphic/majdedin.alrashid/bin",
+		"source" : "exercises/door-polymorphic/majdedin.alrashid/bin"
+	}
+}

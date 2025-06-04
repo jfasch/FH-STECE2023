@@ -1,6 +1,5 @@
 #pragma once
 
-
 class Motor
 {
 public:
@@ -11,15 +10,15 @@ public:
         BACKWARD,
     };
 
-    Motor(Direction direction);
-    void forward();
-    void backward();
-    void stop();
+    virtual ~Motor() = default;
+    virtual void forward() = 0;
+    virtual void backward() = 0;
+    virtual void stop() = 0;
 
-    // for tests only? (Door uses for a sanity check)
-    Direction get_direction() const;
+    virtual Direction get_direction() const = 0;
 
 private:
     Direction _direction;
 };
+
 

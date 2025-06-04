@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-kerstin.amrhein.a "CMakeFiles/door-polymorphic-kerstin.amrhein.dir/door.cpp.o" "CMakeFiles/door-polymorphic-kerstin.amrhein.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-kerstin.amrhein.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-kerstin.amrhein.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-kerstin.amrhein.a
