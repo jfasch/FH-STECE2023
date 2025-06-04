@@ -130,8 +130,22 @@ TEST(timespec_suite, now_monotonic)
 
 TEST(timespec_suite, add)
 {
-    ASSERT_EQ(TimeSpec(100, 550) + TimeSpec(0, 1), TimeSpec(100, 551));
-    auto ts = TimeSpec(100, 1000*1000*1000) + TimeSpec(0, 1);
-    ASSERT_EQ(ts.tv_sec, 101);
-    ASSERT_EQ(TimeSpec(100, 1000*1000*1000) + TimeSpec(0, 1), TimeSpec(101, 1));
+    // within nanoseconds range
+    ASSERT_EQ(TimeSpec(100, 550) + TimeSpec(0, 1),
+              TimeSpec(100, 551));
+
+    // nanoseconds overflow into seconds
+    ASSERT_EQ(TimeSpec(100, 1000*1000*1000 - 1) + TimeSpec(0, 1),
+              TimeSpec(101, 0));
+}
+
+TEST(timespec_suite, sub)
+{
+    // within nanoseconds range
+    ASSERT_EQ(TimeSpec(100, 550) - TimeSpec(0, 1), 
+              TimeSpec(100, 549));
+    
+    // nanoseconds underflow into seconds
+    ASSERT_EQ(TimeSpec(100, 550) - TimeSpec(0, 551),
+              TimeSpec(99, 1000*1000*1000 - 1));
 }

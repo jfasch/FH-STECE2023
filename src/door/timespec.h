@@ -1,12 +1,12 @@
 #pragma once
 
 #include <time.h>
+#include <cassert>
 
 
 /** 
- * @brief TimeSpec: timespec with strong ordering relationship
+ * @brief TimeSpec: good old struct timespec with strong-ordering relationship and arithmetic
  */
-
 struct TimeSpec : public timespec
 {
     static TimeSpec now_monotonic();
@@ -19,12 +19,15 @@ struct TimeSpec : public timespec
     TimeSpec(const timespec& from)
     {
         timespec::operator=(from);
+        assert(tv_nsec < ONE_BILLION_NANOS);
     }
 
     TimeSpec(time_t sec, time_t nsec)
     {
         tv_sec = sec;
         tv_nsec = nsec;
+
+        assert(tv_nsec < ONE_BILLION_NANOS);
     }
 
     bool operator==(const TimeSpec& rhs) const
@@ -47,10 +50,25 @@ struct TimeSpec : public timespec
     {
         time_t sec = tv_sec + rhs.tv_sec;
         time_t nsec = tv_nsec + rhs.tv_nsec;
-        if (nsec > 1000*1000*1000) {
-            sec += nsec / 1000*1000*1000;
-            nsec = nsec % 1000*1000*1000;
+
+        if (nsec >= ONE_BILLION_NANOS) {
+            sec += nsec / ONE_BILLION_NANOS;
+            nsec = nsec % ONE_BILLION_NANOS;
         }
         return TimeSpec(sec, nsec);
     }
+
+    TimeSpec operator-(const TimeSpec& rhs) const
+    {
+        time_t sec = tv_sec - rhs.tv_sec;
+        time_t nsec = tv_nsec - rhs.tv_nsec;
+
+        if (nsec < 0) {
+            --sec;
+            nsec = ONE_BILLION_NANOS + nsec;
+        }
+        return TimeSpec(sec, nsec);
+    }
+
+    static const time_t ONE_BILLION_NANOS = 1000*1000*1000;
 };
