@@ -1,4 +1,4 @@
-#include <motor-mock.h>
+#include <motorMock.h>
 
 #include <gtest/gtest.h>
 
