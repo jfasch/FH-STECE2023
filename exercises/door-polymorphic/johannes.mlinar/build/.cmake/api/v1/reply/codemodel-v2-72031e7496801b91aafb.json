@@ -1,0 +1,106 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3
+					],
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "bin",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "bin",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "lib",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "lib",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "tests",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					],
+					"name" : "Project",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "door-polymorphic-johannes.mlinar::@306ed2d68c6501e8728f",
+					"jsonFile" : "target-door-polymorphic-johannes.mlinar-Debug-205ef49cab7949083606.json",
+					"name" : "door-polymorphic-johannes.mlinar",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "door-tests-polymorphic-johannes.mlinar::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-door-tests-polymorphic-johannes.mlinar-Debug-7ccba5000801664a9862.json",
+					"name" : "door-tests-polymorphic-johannes.mlinar",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "run-door-polymorphic-johannes.mlinar::@90a2315b7a9c97cd24d2",
+					"jsonFile" : "target-run-door-polymorphic-johannes.mlinar-Debug-da72e1bdeb34d62df7bc.json",
+					"name" : "run-door-polymorphic-johannes.mlinar",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jmlinar/Documents/FH-STECE2023/exercises/door-polymorphic/johannes.mlinar/build",
+		"source" : "/home/jmlinar/Documents/FH-STECE2023/exercises/door-polymorphic/johannes.mlinar"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}
