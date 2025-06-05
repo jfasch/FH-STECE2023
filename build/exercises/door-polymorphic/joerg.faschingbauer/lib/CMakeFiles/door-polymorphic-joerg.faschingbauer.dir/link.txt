@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-polymorphic-joerg.faschingbauer.a "CMakeFiles/door-polymorphic-joerg.faschingbauer.dir/door.cpp.o" "CMakeFiles/door-polymorphic-joerg.faschingbauer.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-joerg.faschingbauer.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-joerg.faschingbauer.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-polymorphic-joerg.faschingbauer.a

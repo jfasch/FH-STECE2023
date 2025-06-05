@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-paul.bichl.a "CMakeFiles/door-paul.bichl.dir/door.cpp.o" "CMakeFiles/door-paul.bichl.dir/motor.cpp.o" "CMakeFiles/door-paul.bichl.dir/light-barrier.cpp.o" "CMakeFiles/door-paul.bichl.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-paul.bichl.a

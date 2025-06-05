@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-polymorphic-matthias.winkler.a "CMakeFiles/door-polymorphic-matthias.winkler.dir/door.cpp.o" "CMakeFiles/door-polymorphic-matthias.winkler.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-matthias.winkler.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-matthias.winkler.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-polymorphic-matthias.winkler.a

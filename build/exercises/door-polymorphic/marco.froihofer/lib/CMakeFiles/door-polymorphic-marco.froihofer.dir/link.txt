@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-polymorphic-marco.froihofer.a "CMakeFiles/door-polymorphic-marco.froihofer.dir/door.cpp.o" "CMakeFiles/door-polymorphic-marco.froihofer.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-marco.froihofer.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-marco.froihofer.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-polymorphic-marco.froihofer.a

@@ -1,1 +1,0 @@
-/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g "CMakeFiles/run-door-polymorphic-paulina.hasenhuettl.dir/run-door.cpp.o" -o run-door-polymorphic-paulina.hasenhuettl  ../lib/libdoor-polymorphic-paulina.hasenhuettl.a 

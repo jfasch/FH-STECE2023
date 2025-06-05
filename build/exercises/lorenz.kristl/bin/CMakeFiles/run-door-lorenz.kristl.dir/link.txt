@@ -1,1 +1,0 @@
-/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g "CMakeFiles/run-door-lorenz.kristl.dir/run-door.cpp.o" -o run-door-lorenz.kristl  ../lib/libdoor-lorenz.kristl.a 

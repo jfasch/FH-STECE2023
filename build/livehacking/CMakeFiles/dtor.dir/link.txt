@@ -1,1 +1,0 @@
-/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g CMakeFiles/dtor.dir/dtor.cpp.o -o dtor 

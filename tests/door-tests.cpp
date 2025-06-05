@@ -1,9 +1,9 @@
-#include <gtest/gtest.h>
+#include <door/door.h>
+#include <door/motor-mock.h>
+#include <door/push-button-mock.h>
+#include <door/light-barrier-mock.h>
 
-#include <door.h>
-#include <motor-mock.h>
-#include <push-button-mock.h>
-#include <light-barrier-mock.h>
+#include <gtest/gtest.h>
 
 
 TEST(door_suite, straightforward_open)
@@ -18,7 +18,7 @@ TEST(door_suite, straightforward_open)
     Door door(&motor, &do_close, &do_open, &closed_position, &opened_position);
 
     door.check();
-    ASSERT_EQ(door.get_state(), Door::State::CLOSED);                // <-- inferred from the light barrier situation
+    ASSERT_EQ(door.get_state(), Door::State::CLOSED);              // <-- inferred from the light barrier situation
 
     // all idle: no button pressed -> motor must remain idle at
     // check()
