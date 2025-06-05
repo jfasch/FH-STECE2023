@@ -1,17 +1,17 @@
-#include "motor-mock.h"
+#include <motor-mock.h>
 
 #include <gtest/gtest.h>
 
 
 TEST(motor_polymorphic_suite, base_conversion)
 {
-    MockMotor motor(Motor::Direction::IDLE);
+    MotorMock motor(Motor::Direction::IDLE);
     [[maybe_unused]] Motor* base = &motor;             // <-- derived converted to base
 }
 
 TEST(motor_polymorphic_suite, access_through_base)
 {
-    MockMotor motor(Motor::Direction::IDLE);
+    MotorMock motor(Motor::Direction::IDLE);
     Motor* base = &motor;
     ASSERT_EQ(base->get_direction(), Motor::Direction::IDLE);
 

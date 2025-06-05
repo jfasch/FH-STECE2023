@@ -1,21 +1,27 @@
 #include "motor.h"
 
-Motor::Motor(MotorDirection direction)
+
+void Motor_init(Motor* self, MotorDirection direction)
 {
-    _direction = direction;
+    self->direction = direction;
 }
 
-void Motor::forward()
+void Motor_forward(Motor* self)
 {
-    _direction = MotorDirection::FORWARD;
+    self->direction = MOTOR_FORWARD;
 }
 
-void Motor::backward()
+void Motor_backward(Motor* self)
 {
-    _direction = MotorDirection::BACKWARD;
+    self->direction = MOTOR_BACKWARD;
 }
 
-void Motor::stop()
+void Motor_stop(Motor* self)
 {
-    _direction = MotorDirection::IDLE;
+    self->direction = MOTOR_IDLE;
+}
+
+MotorDirection Motor_get_direction(Motor* self)
+{
+    return self->direction;
 }

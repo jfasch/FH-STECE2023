@@ -1,20 +1,20 @@
 #include <motor.h>
 
 #include <gtest/gtest.h>
-
+#include <motor-mock.h>
 
 TEST(motor_suite, init)
 {
     {
-        Motor motor(Motor::Direction::IDLE);
+        MotorMock motor(MotorMock::Direction::IDLE);
         ASSERT_EQ(motor.get_direction(), Motor::Direction::IDLE);
     }
     {
-        Motor motor(Motor::Direction::FORWARD);
+        MotorMock motor(MotorMock::Direction::FORWARD);
         ASSERT_EQ(motor.get_direction(), Motor::Direction::FORWARD);
     }
     {
-        Motor motor(Motor::Direction::BACKWARD);
+        MotorMock motor(MotorMock::Direction::BACKWARD);
         ASSERT_EQ(motor.get_direction(), Motor::Direction::BACKWARD);
     }
 }

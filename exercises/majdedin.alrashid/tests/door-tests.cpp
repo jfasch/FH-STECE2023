@@ -1,36 +1,49 @@
 #include <gtest/gtest.h>
+
 #include <door.h>
-#include <motor.h>
-#include <push-button.h>
-#include <light-barrier.h>
+
 
 TEST(door_suite, straightforward_open)
 {
-  
+    // build a door and its parts
     Motor motor;
-    PushButton do_close(PushButton::State::RELEASED);
-    PushButton do_open(PushButton::State::RELEASED);
-    LightBarrier closed_position(LightBarrier::State::BEAM_BROKEN);  
-    LightBarrier opened_position(LightBarrier::State::BEAM_SOLID);   
+    Motor_init(&motor, MOTOR_IDLE);
 
-    Door door(&motor, &do_close, &do_open, &closed_position, &opened_position);
+    PushButton do_close;
+    PushButton_init(&do_close, PUSHBUTTON_RELEASED);
 
-    
-    door.check();
-    ASSERT_EQ(door.getState(), Door::State::CLOSED);
+    PushButton do_open;
+    PushButton_init(&do_open, PUSHBUTTON_RELEASED);
 
-  
-    door.check();
-    ASSERT_EQ(motor.getDirection(), Motor::Direction::IDLE);
+    LightBarrier closed_position;
+    LightBarrier_init(&closed_position, LIGHTBARRIER_BEAM_BROKEN);  // <-- door in "closed" position
 
-    
-    do_open.setState(PushButton::State::PRESSED);
-    door.check();
-    ASSERT_EQ(motor.getDirection(), Motor::Direction::FORWARD);
+    LightBarrier opened_position;
+    LightBarrier_init(&opened_position, LIGHTBARRIER_BEAM_SOLID);   // <-- door not in "opened" position
 
-    
-    opened_position.setState(LightBarrier::State::BEAM_BROKEN);
-    closed_position.setState(LightBarrier::State::BEAM_SOLID);  
-    door.check();
-    ASSERT_EQ(motor.getDirection(), Motor::Direction::IDLE);
+    Door door;
+    Door_init(&door, &motor, &do_close, &do_open, &closed_position, &opened_position);
+
+    Door_check(&door);
+    ASSERT_EQ(door.state, DOOR_CLOSED);                // <-- inferred from the light barrier situation
+
+    // all idle: no button pressed -> motor must remain idle at
+    // check()
+    Door_check(&door);
+    ASSERT_EQ(Motor_get_direction(&motor), MOTOR_IDLE);
+
+    // "open" button pressed -> motor direction must be set to
+    // "opening"
+    PushButton_set_state(&do_open, PUSHBUTTON_PRESSED);
+    Door_check(&door);    
+    ASSERT_EQ(Motor_get_direction(&motor), MOTOR_FORWARD);
+
+    // "opened" position reached (light barrier's beam broken) ->
+    // motor stopped
+    LightBarrier_set_state(&opened_position, LIGHTBARRIER_BEAM_BROKEN);
+    LightBarrier_set_state(&closed_position, LIGHTBARRIER_BEAM_SOLID);    // <-- should probably be verified by door logic: 
+                                                                          //     if one beam is broken, the other must be solid, 
+                                                                          //     and vice versa
+    Door_check(&door);
+    ASSERT_EQ(Motor_get_direction(&motor), MOTOR_IDLE);
 }

@@ -11,14 +11,15 @@ public:
         BACKWARD,
     };
 
-    virtual ~Motor() = default;
-
-    virtual void forward() = 0;
-    virtual void backward() = 0;
-    virtual void stop() = 0;
+    Motor(Direction direction);
+    void forward();
+    void backward();
+    void stop();
 
     // for tests only? (Door uses for a sanity check)
-    virtual Direction get_direction() const = 0;
+    Direction get_direction() const;
 
+private:
+    Direction _direction;
 };
 

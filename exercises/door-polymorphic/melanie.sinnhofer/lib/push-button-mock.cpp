@@ -5,7 +5,7 @@ PushButtonMock::PushButtonMock(State state)
     _state = state;
 }
 
-PushButtonMock::State PushButtonMock::get_state() const
+PushButton::State PushButtonMock::get_state() const
 {
     return _state;
 }
