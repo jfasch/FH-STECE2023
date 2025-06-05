@@ -5,27 +5,27 @@
 
 TEST(pushbutton_polymorphic_suite, base_conversion)
 {
-    PushButtonMock pb(PushButton::State::RELEASED);
-    [[maybe_unused]] PushButton* base = &pb;           // <-- derived converted to base
+    PushButtonMock pb(IPushButton::State::RELEASED);
+    [[maybe_unused]] PushButtonMock* base = &pb;           // <-- derived converted to base
 }
 
 TEST(pushbutton_polymorphic_suite, access_through_base)
 {
-    PushButtonMock pb(PushButton::State::RELEASED);
-    PushButton* base = &pb;
+    PushButtonMock pb(IPushButton::State::RELEASED);
+    PushButtonMock* base = &pb;
 
-    PushButton::State state = base->get_state();      // <-- through base, derived's get_state() is called
+    PushButtonMock::State state = base->get_state();      // <-- through base, derived's get_state() is called
 
-    ASSERT_EQ(state, PushButton::State::RELEASED);
+    ASSERT_EQ(state, IPushButton::State::RELEASED);
 }
 
 TEST(pushbutton_polymorphic_suite, set_state)
 {
-    PushButtonMock pb(PushButton::State::RELEASED);
-    [[maybe_unused]] PushButton* base = &pb;
+    PushButtonMock pb(IPushButton::State::RELEASED);
+    [[maybe_unused]] PushButtonMock* base = &pb;
 
     // ***this must not compile***
     // base->set_state(PushButton::State::RELEASED);
 
-    pb.set_state(PushButton::State::PRESSED);
+    pb.set_state(IPushButton::State::PRESSED);
 }
