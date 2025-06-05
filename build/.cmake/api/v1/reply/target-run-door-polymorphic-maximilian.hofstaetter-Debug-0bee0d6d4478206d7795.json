@@ -1,0 +1,117 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "exercises/door-polymorphic/maximilian.hofstaetter/bin/run-door-polymorphic-maximilian.hofstaetter"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"exercises/door-polymorphic/maximilian.hofstaetter/bin/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 2,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -std=c++17 -O0 -g3 -Wall -Werror -g"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 2,
+					"path" : "/home/student/My-Projects/FH-STECE2023/exercises/door-polymorphic/maximilian.hofstaetter/lib/."
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "door-polymorphic-maximilian.hofstaetter::@463b69b055f5170340f3"
+		}
+	],
+	"id" : "run-door-polymorphic-maximilian.hofstaetter::@dc392552953307906679",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-std=c++17 -O0 -g3 -Wall -Werror -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../lib/libdoor-polymorphic-maximilian.hofstaetter.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "run-door-polymorphic-maximilian.hofstaetter",
+	"nameOnDisk" : "run-door-polymorphic-maximilian.hofstaetter",
+	"paths" : 
+	{
+		"build" : "exercises/door-polymorphic/maximilian.hofstaetter/bin",
+		"source" : "exercises/door-polymorphic/maximilian.hofstaetter/bin"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "exercises/door-polymorphic/maximilian.hofstaetter/bin/run-door.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

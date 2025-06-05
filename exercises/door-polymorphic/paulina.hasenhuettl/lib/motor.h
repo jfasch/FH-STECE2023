@@ -10,16 +10,12 @@ public:
         BACKWARD,
     };
 
-    explicit Motor(Direction dir) : _direction(dir) {}
+    Motor() = default;
+    virtual ~Motor() = default;
 
-    virtual ~Motor() = default;  //virtueller Destruktor (glaub ich?)
+    virtual void forward() = 0;
+    virtual void backward() = 0;
+    virtual void stop() = 0;
 
-    virtual void forward() { _direction = Direction::FORWARD; }
-    virtual void backward() { _direction = Direction::BACKWARD; }
-    virtual void stop() { _direction = Direction::IDLE; }
-
-    virtual Direction get_direction() const { return _direction; }
-
-private:
-    Direction _direction;
+    virtual Direction get_direction() const = 0;
 };

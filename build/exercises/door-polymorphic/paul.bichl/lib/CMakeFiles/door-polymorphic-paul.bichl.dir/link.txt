@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-paul.bichl.a "CMakeFiles/door-polymorphic-paul.bichl.dir/door.cpp.o" "CMakeFiles/door-polymorphic-paul.bichl.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-paul.bichl.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-paul.bichl.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-paul.bichl.a
