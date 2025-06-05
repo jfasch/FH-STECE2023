@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-kristian.seiner.a "CMakeFiles/door-polymorphic-kristian.seiner.dir/door.cpp.o" "CMakeFiles/door-polymorphic-kristian.seiner.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-kristian.seiner.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-kristian.seiner.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-kristian.seiner.a

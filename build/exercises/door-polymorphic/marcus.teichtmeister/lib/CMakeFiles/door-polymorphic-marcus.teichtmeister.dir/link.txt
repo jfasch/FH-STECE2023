@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdoor-polymorphic-marcus.teichtmeister.a "CMakeFiles/door-polymorphic-marcus.teichtmeister.dir/door.cpp.o" "CMakeFiles/door-polymorphic-marcus.teichtmeister.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-marcus.teichtmeister.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-marcus.teichtmeister.dir/push-button.cpp.o"
+/usr/bin/ranlib libdoor-polymorphic-marcus.teichtmeister.a

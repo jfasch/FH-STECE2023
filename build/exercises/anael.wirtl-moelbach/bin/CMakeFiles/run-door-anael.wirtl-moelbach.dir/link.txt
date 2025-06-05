@@ -1,0 +1,1 @@
+/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g "CMakeFiles/run-door-anael.wirtl-moelbach.dir/run-door.cpp.o" -o run-door-anael.wirtl-moelbach  ../lib/libdoor-anael.wirtl-moelbach.a 

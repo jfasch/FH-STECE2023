@@ -1,0 +1,1 @@
+/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g "CMakeFiles/run-door-johannes.mlinar.dir/run-door.cpp.o" -o run-door-johannes.mlinar  ../lib/libdoor-johannes.mlinar.a 

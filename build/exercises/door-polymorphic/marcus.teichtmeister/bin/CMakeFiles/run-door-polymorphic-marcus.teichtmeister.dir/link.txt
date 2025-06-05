@@ -1,0 +1,1 @@
+/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g "CMakeFiles/run-door-polymorphic-marcus.teichtmeister.dir/run-door.cpp.o" -o run-door-polymorphic-marcus.teichtmeister  ../lib/libdoor-polymorphic-marcus.teichtmeister.a 
