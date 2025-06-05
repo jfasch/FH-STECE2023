@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-polymorphic-viethung.doan.a "CMakeFiles/door-polymorphic-viethung.doan.dir/door.cpp.o" "CMakeFiles/door-polymorphic-viethung.doan.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-viethung.doan.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-viethung.doan.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-polymorphic-viethung.doan.a

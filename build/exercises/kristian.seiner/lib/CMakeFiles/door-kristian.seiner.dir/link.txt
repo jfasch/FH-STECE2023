@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-kristian.seiner.a "CMakeFiles/door-kristian.seiner.dir/door.cpp.o" "CMakeFiles/door-kristian.seiner.dir/motor.cpp.o" "CMakeFiles/door-kristian.seiner.dir/light-barrier.cpp.o" "CMakeFiles/door-kristian.seiner.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-kristian.seiner.a
