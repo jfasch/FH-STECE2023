@@ -2,10 +2,6 @@
 #include <chrono>
 #include <thread>
 
-#include "door.h"
-#include <chrono>
-#include <thread>
-
 int main()
 {
     Motor motor(MotorDirection::IDLE);

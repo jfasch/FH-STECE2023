@@ -1,38 +1,33 @@
-#pragma once
-
 #include "motor.h"
 #include "push-button.h"
 #include "light-barrier.h"
 
-
 class Door
 {
 public:
-    enum State
+    enum class State
     {
-        INIT,
+        OPENED,
         CLOSED,
         OPENING,
-        OPENED,
-        ERROR_MIDDLE_POSITION,
-        ERROR_SOMETHING_BADLY_WRONG,
+        CLOSING,
     };
 
+    Door(IMotor* motor,
+         IPushButton* close_button,
+         IPushButton* open_button,
+         ILightBarrier* closed_sensor,
+         ILightBarrier* opened_sensor);
 
-    Door(Motor* motor, 
-         PushButton* do_close, PushButton* do_open,
-         LightBarrier* closed_position, LightBarrier* opened_position);
     void check();
-
-    // for tests only
-    State get_state() const { return _state; }
+    State get_state() const;
 
 private:
-    Motor* _motor;
-    PushButton* _do_close;
-    PushButton* _do_open;
-    LightBarrier* _closed_position;
-    LightBarrier* _opened_position;
+    IMotor* _motor;
+    IPushButton* _close_button;
+    IPushButton* _open_button;
+    ILightBarrier* _closed_sensor;
+    ILightBarrier* _opened_sensor;
 
     State _state;
 };
