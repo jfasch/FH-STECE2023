@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-majdedin.alrashid.a "CMakeFiles/door-majdedin.alrashid.dir/door.cpp.o" "CMakeFiles/door-majdedin.alrashid.dir/motor.cpp.o" "CMakeFiles/door-majdedin.alrashid.dir/light-barrier.cpp.o" "CMakeFiles/door-majdedin.alrashid.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-majdedin.alrashid.a

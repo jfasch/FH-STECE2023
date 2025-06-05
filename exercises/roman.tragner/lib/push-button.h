@@ -7,13 +7,18 @@ enum PushButtonState
     PUSHBUTTON_RELEASED,
 };
 
-struct PushButton
+
+class PushButton
 {
-    PushButtonState state;
+public:
+    //initialisieren
+    PushButton(PushButtonState state);
+    //state auslesen
+    PushButtonState get_state();
+    // state setzen //nur für tests
+    void set_state(PushButtonState state);
+
+private:
+    //state ist privat und kann nur mit get_state() ausgelesen werden
+    PushButtonState _state;
 };
-
-void PushButton_init(PushButton* self, PushButtonState state);
-PushButtonState PushButton_get_state(PushButton* self);
-
-// for tests only
-void PushButton_set_state(PushButton* self, PushButtonState state);

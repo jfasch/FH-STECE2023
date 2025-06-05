@@ -1,1 +1,0 @@
-/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g "CMakeFiles/run-door-polymorphic-marco.froihofer.dir/run-door.cpp.o" -o run-door-polymorphic-marco.froihofer  ../lib/libdoor-polymorphic-marco.froihofer.a 
