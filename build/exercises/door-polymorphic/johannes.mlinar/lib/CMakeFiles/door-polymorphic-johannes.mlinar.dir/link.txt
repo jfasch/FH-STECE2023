@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-polymorphic-johannes.mlinar.a "CMakeFiles/door-polymorphic-johannes.mlinar.dir/door.cpp.o" "CMakeFiles/door-polymorphic-johannes.mlinar.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-johannes.mlinar.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-johannes.mlinar.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-polymorphic-johannes.mlinar.a

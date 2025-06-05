@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-anael.wirtl-moelbach.a "CMakeFiles/door-anael.wirtl-moelbach.dir/door.cpp.o" "CMakeFiles/door-anael.wirtl-moelbach.dir/motor.cpp.o" "CMakeFiles/door-anael.wirtl-moelbach.dir/light-barrier.cpp.o" "CMakeFiles/door-anael.wirtl-moelbach.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-anael.wirtl-moelbach.a

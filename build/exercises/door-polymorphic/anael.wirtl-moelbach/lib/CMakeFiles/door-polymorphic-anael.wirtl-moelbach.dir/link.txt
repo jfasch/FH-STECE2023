@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-polymorphic-anael.wirtl-moelbach.a "CMakeFiles/door-polymorphic-anael.wirtl-moelbach.dir/door.cpp.o" "CMakeFiles/door-polymorphic-anael.wirtl-moelbach.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-anael.wirtl-moelbach.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-anael.wirtl-moelbach.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-polymorphic-anael.wirtl-moelbach.a

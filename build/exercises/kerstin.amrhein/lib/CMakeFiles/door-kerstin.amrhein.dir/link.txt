@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-kerstin.amrhein.a "CMakeFiles/door-kerstin.amrhein.dir/door.cpp.o" "CMakeFiles/door-kerstin.amrhein.dir/motor.cpp.o" "CMakeFiles/door-kerstin.amrhein.dir/light-barrier.cpp.o" "CMakeFiles/door-kerstin.amrhein.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-kerstin.amrhein.a

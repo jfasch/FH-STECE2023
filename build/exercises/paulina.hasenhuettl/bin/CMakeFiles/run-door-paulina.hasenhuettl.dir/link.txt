@@ -1,1 +1,0 @@
-/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g "CMakeFiles/run-door-paulina.hasenhuettl.dir/run-door.cpp.o" -o run-door-paulina.hasenhuettl  ../lib/libdoor-paulina.hasenhuettl.a 

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-maximilian.hofstaetter.a "CMakeFiles/door-maximilian.hofstaetter.dir/door.cpp.o" "CMakeFiles/door-maximilian.hofstaetter.dir/motor.cpp.o" "CMakeFiles/door-maximilian.hofstaetter.dir/light-barrier.cpp.o" "CMakeFiles/door-maximilian.hofstaetter.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-maximilian.hofstaetter.a
