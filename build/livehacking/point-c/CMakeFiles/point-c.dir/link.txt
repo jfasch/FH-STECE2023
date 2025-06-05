@@ -1,1 +1,0 @@
-/usr/bin/gcc  -O0 -g3 -Wall -Werror -g "CMakeFiles/point-c.dir/point.c.o" "CMakeFiles/point-c.dir/main.c.o" -o point-c 

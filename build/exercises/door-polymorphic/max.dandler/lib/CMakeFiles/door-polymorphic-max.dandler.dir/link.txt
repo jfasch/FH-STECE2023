@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-polymorphic-max.dandler.a "CMakeFiles/door-polymorphic-max.dandler.dir/door.cpp.o" "CMakeFiles/door-polymorphic-max.dandler.dir/motor-mock.cpp.o" "CMakeFiles/door-polymorphic-max.dandler.dir/light-barrier-mock.cpp.o" "CMakeFiles/door-polymorphic-max.dandler.dir/push-button-mock.cpp.o"
-/usr/bin/ranlib libdoor-polymorphic-max.dandler.a

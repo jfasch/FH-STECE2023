@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-polymorphic-benedikt.polivka.a "CMakeFiles/door-polymorphic-benedikt.polivka.dir/door.cpp.o" "CMakeFiles/door-polymorphic-benedikt.polivka.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-benedikt.polivka.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-benedikt.polivka.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-polymorphic-benedikt.polivka.a

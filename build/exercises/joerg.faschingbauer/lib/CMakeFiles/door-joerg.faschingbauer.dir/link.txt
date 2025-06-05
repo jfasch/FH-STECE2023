@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-joerg.faschingbauer.a "CMakeFiles/door-joerg.faschingbauer.dir/door.cpp.o" "CMakeFiles/door-joerg.faschingbauer.dir/motor.cpp.o" "CMakeFiles/door-joerg.faschingbauer.dir/light-barrier.cpp.o" "CMakeFiles/door-joerg.faschingbauer.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-joerg.faschingbauer.a
