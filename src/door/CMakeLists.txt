@@ -10,6 +10,8 @@ ADD_LIBRARY(
   motor.h
   motor-mock.h
   motor-mock.cpp
+  motorLED.h 
+  motorLED.cpp
 
   light-barrier.h
   light-barrier-mock.h
@@ -19,6 +21,9 @@ ADD_LIBRARY(
   push-button-mock.h
   push-button-mock.cpp
 )
+
+target_link_libraries(door LIBGPIODCXX::LIBGPIODCXX)
+
 
 TARGET_INCLUDE_DIRECTORIES(
   door
