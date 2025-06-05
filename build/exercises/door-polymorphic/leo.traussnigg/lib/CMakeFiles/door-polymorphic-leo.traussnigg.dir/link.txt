@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-polymorphic-leo.traussnigg.a "CMakeFiles/door-polymorphic-leo.traussnigg.dir/door.cpp.o" "CMakeFiles/door-polymorphic-leo.traussnigg.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-leo.traussnigg.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-leo.traussnigg.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-polymorphic-leo.traussnigg.a

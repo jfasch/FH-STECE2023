@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-matthias.winkler.a "CMakeFiles/door-matthias.winkler.dir/door.cpp.o" "CMakeFiles/door-matthias.winkler.dir/motor.cpp.o" "CMakeFiles/door-matthias.winkler.dir/light-barrier.cpp.o" "CMakeFiles/door-matthias.winkler.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-matthias.winkler.a

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-paulina.hasenhuettl.a "CMakeFiles/door-paulina.hasenhuettl.dir/door.cpp.o" "CMakeFiles/door-paulina.hasenhuettl.dir/motor.cpp.o" "CMakeFiles/door-paulina.hasenhuettl.dir/light-barrier.cpp.o" "CMakeFiles/door-paulina.hasenhuettl.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-paulina.hasenhuettl.a

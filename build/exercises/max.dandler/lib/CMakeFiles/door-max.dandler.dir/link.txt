@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-max.dandler.a "CMakeFiles/door-max.dandler.dir/door.cpp.o" "CMakeFiles/door-max.dandler.dir/motor.cpp.o" "CMakeFiles/door-max.dandler.dir/light-barrier.cpp.o" "CMakeFiles/door-max.dandler.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-max.dandler.a
