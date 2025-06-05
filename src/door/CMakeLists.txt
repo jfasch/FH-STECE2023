@@ -1,4 +1,4 @@
-ADD_LIBRARY(
+add_library(
   door
 
   door.h
@@ -22,13 +22,16 @@ ADD_LIBRARY(
   push-button-mock.cpp
 )
 
-target_link_libraries(door LIBGPIODCXX::LIBGPIODCXX)
-
-
-TARGET_INCLUDE_DIRECTORIES(
+target_include_directories(
   door
 
   PUBLIC
 
   ..
 )
+
+if (LIBGPIOD_FOUND)
+  target_link_libraries(door LIBGPIOD::LIBGPIOD)
+else()
+  message(WARNING "door will not use libgpiod (which has not been found). note that this might lead to errors in the build process")
+endif()
