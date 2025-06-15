@@ -20,15 +20,16 @@ add_library(
   push-button-mock.cpp
 )
 
+# build information (include path) for our users
 target_include_directories(
   door
 
   PUBLIC
 
-  ..
+  ${CMAKE_CURRENT_SOURCE_DIR}/..                       # <-- users have to e.g. say #include <door/motor.h>
 )
 
-if (LIBGPIOD_FOUND)
+if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)
   target_link_libraries(door LIBGPIOD::LIBGPIOD)
 else()
   message(WARNING "door will not use libgpiod (which has not been found). note that this might lead to errors in the build process")
