@@ -1,1 +1,0 @@
-/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g "CMakeFiles/point-c++.dir/point.cpp.o" "CMakeFiles/point-c++.dir/main.cpp.o" -o point-c++ 

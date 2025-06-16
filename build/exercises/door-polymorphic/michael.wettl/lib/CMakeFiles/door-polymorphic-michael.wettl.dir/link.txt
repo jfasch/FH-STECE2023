@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-polymorphic-michael.wettl.a "CMakeFiles/door-polymorphic-michael.wettl.dir/door.cpp.o" "CMakeFiles/door-polymorphic-michael.wettl.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-michael.wettl.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-michael.wettl.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-polymorphic-michael.wettl.a

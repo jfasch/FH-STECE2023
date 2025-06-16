@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-polymorphic-melanie.sinnhofer.a "CMakeFiles/door-polymorphic-melanie.sinnhofer.dir/door.cpp.o" "CMakeFiles/door-polymorphic-melanie.sinnhofer.dir/motor.cpp.o" "CMakeFiles/door-polymorphic-melanie.sinnhofer.dir/light-barrier.cpp.o" "CMakeFiles/door-polymorphic-melanie.sinnhofer.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-polymorphic-melanie.sinnhofer.a

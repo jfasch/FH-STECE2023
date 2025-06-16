@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdoor-leo.traussnigg.a "CMakeFiles/door-leo.traussnigg.dir/door.cpp.o" "CMakeFiles/door-leo.traussnigg.dir/motor.cpp.o" "CMakeFiles/door-leo.traussnigg.dir/light-barrier.cpp.o" "CMakeFiles/door-leo.traussnigg.dir/push-button.cpp.o"
-/usr/bin/ranlib libdoor-leo.traussnigg.a

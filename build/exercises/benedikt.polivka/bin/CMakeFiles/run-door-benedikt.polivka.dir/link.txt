@@ -1,1 +1,0 @@
-/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g "CMakeFiles/run-door-benedikt.polivka.dir/run-door.cpp.o" -o run-door-benedikt.polivka  ../lib/libdoor-benedikt.polivka.a 

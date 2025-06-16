@@ -1,1 +1,0 @@
-/usr/bin/g++  -std=c++17 -O0 -g3 -Wall -Werror -g "CMakeFiles/run-door-polymorphic-majdedin.alrashid.dir/run-door.cpp.o" -o run-door-polymorphic-majdedin.alrashid  ../lib/libdoor-polymorphic-majdedin.alrashid.a 
