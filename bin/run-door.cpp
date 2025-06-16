@@ -9,6 +9,8 @@
 
 int main()
 {
+    std::cout << "howdy" << std::endl;
+
     // --- build a door and its parts
     MotorMock motor(Motor::Direction::IDLE);
     PushButtonMock do_close(PushButton::State::RELEASED);
