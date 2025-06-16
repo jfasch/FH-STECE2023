@@ -5,7 +5,6 @@
 
 int main()
 {
-/*
     // --- build a door and its parts
     Motor motor;
     Motor_init(&motor, MOTOR_IDLE);
@@ -36,6 +35,6 @@ int main()
         Door_check(&door);
         nanosleep(&interval, nullptr);
     }
-*/
+
     return 0;
 }

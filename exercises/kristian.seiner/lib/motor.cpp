@@ -1,6 +1,6 @@
 #include "motor.h"
 
-/*
+
 void Motor_init(Motor* self, MotorDirection direction)
 {
     self->direction = direction;
@@ -24,13 +24,4 @@ void Motor_stop(Motor* self)
 MotorDirection Motor_get_direction(Motor* self)
 {
     return self->direction;
-}
-*/
-
-Motor::~Motor(){
-    
-}
-
-Motor::Motor(MotorDirection direction){
-    this->direction = direction;
 }

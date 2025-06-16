@@ -1,42 +1,52 @@
 #include "door.h"
-#include <cassert>
 
-Door::Door(Motor* motor_set, PushButton* do_close_set, PushButton* do_open_set, LightBarrier* closed_position_set, LightBarrier* opened_position_set)
-    : motor(motor_set), do_close(do_close_set), do_open(do_open_set),
-      closed_position(closed_position_set), opened_position(opened_position_set)
+#include <assert.h>
+
+
+void Door_init(Door* self, 
+               Motor* motor, 
+               PushButton* do_close, PushButton* do_open, 
+               LightBarrier* closed_position, LightBarrier* opened_position)
 {
-    assert(motor_set->Motor_get_direction() == MOTOR_IDLE);
-    state = DOOR_INIT;
+    // assume that the motor is idle when the software boots. FIXME:
+    // is that assumption safe?
+    assert(Motor_get_direction(motor) == MOTOR_IDLE);
+
+    self->motor = motor;
+    self->do_close = do_close;
+    self->do_open = do_open;
+    self->closed_position = closed_position;
+    self->opened_position = opened_position;
+
+    self->state = DOOR_INIT;
 }
 
-void Door::Door_check()
+void Door_check(Door* self)
 {
-    switch (state) {
+    switch (self->state) {
         case DOOR_INIT: {
             // figure out the state we are in: where is the door?
-            LightBarrierState closed_barrier_state = closed_position->LightBarrier_get_state();
-            LightBarrierState opened_barrier_state = opened_position->LightBarrier_get_state();
+            LightBarrierState closed_barrier_state = LightBarrier_get_state(self->closed_position);
+            LightBarrierState opened_barrier_state = LightBarrier_get_state(self->opened_position);
 
             if (closed_barrier_state == LIGHTBARRIER_BEAM_SOLID && opened_barrier_state == LIGHTBARRIER_BEAM_SOLID)
-                state = DOOR_ERROR_MIDDLE_POSITION;   // FIXME: recover from that
+                self->state = DOOR_ERROR_MIDDLE_POSITION;   // FIXME: recover from that
             else if (closed_barrier_state == LIGHTBARRIER_BEAM_BROKEN && opened_barrier_state == LIGHTBARRIER_BEAM_BROKEN)
-                state = DOOR_ERROR_SOMETHING_BADLY_WRONG;
+                self->state = DOOR_ERROR_SOMETHING_BADLY_WRONG;
             else if (closed_barrier_state == LIGHTBARRIER_BEAM_BROKEN && opened_barrier_state == LIGHTBARRIER_BEAM_SOLID)
-                state = DOOR_CLOSED;
+                self->state = DOOR_CLOSED;
             else if (closed_barrier_state == LIGHTBARRIER_BEAM_SOLID && opened_barrier_state == LIGHTBARRIER_BEAM_BROKEN)
-                state = DOOR_OPENED;
-            else
+                self->state = DOOR_OPENED;
+            else 
                 assert(!"well, two bits make four values");
             break;
         }
         case DOOR_CLOSED: {
             // "open" requested (button press). drive motor, and
             // switch state to "opening"
-            
-            if (do_open->getState() == PUSHBUTTON_PRESSED) {
-                assert(do_open->getState() == PUSHBUTTON_PRESSED);
-                motor->Motor_forward();
-                state = DOOR_OPENING;
+            if (PushButton_get_state(self->do_open) == PUSHBUTTON_PRESSED) {
+                Motor_forward(self->motor);
+                self->state = DOOR_OPENING;
             }
 
             // FIXME: what if user pressed "do_close" at the same
@@ -48,10 +58,10 @@ void Door::Door_check()
         case DOOR_OPENING: {
             // see if we already reached the end position. if so, stop
             // motor and adjust door state.
-            LightBarrierState opened_barrier_state = opened_position->LightBarrier_get_state();
+            LightBarrierState opened_barrier_state = LightBarrier_get_state(self->opened_position);
             if (opened_barrier_state == LIGHTBARRIER_BEAM_BROKEN) {
-                motor->Motor_stop();
-                state = DOOR_OPENED;
+                Motor_stop(self->motor);
+                self->state = DOOR_OPENED;
             }
 
             // FIXME: invariants
@@ -70,9 +80,4 @@ void Door::Door_check()
             break;
         }
     }
-}
-
-DoorState Door::State_Get() const
-{
-    return state;
 }
