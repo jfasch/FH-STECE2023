@@ -37,5 +37,7 @@ int main()
         nanosleep(&suspend, nullptr);
     }
 
+    std::cerr << "bye" << std::endl;
+
     return 0;
 }
