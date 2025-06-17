@@ -1,13 +1,128 @@
 #include <door/door.h>
-#include <door/motor-mock.h>
-#include <door/push-button-mock.h>
-#include <door/light-barrier-mock.h>
-
 #include <gtest/gtest.h>
+#include <stdbool.h>
 
+TEST(door_suite, door_init)
+{
+    // create Door object
+    Door door;
 
+    // create Input struct
+    input_t input;
+    input.sensor_closed = true;
+
+    // create Output struct
+    output_t output;
+
+    // run door.init
+    output = door.init(input);
+
+    // check state and output
+    ASSERT_EQ(door.get_state(), Door::State::CLOSED);
+    ASSERT_EQ(output.motor_left, false);
+    ASSERT_EQ(output.motor_right, false);
+    ASSERT_EQ(output.display, false);
+}
+
+TEST(door_suite, door_init_error)
+{
+    // create Door object
+    Door door;
+
+    // create Input struct
+    input_t input;
+
+    // create Output struct
+    output_t output;
+
+    // run door.init
+    output = door.init(input);
+
+    // check state
+    ASSERT_EQ(door.get_state(), Door::State::ERROR_MIDDLE_POSITION);
+    ASSERT_EQ(output.motor_left, false);
+    ASSERT_EQ(output.motor_right, false);
+    ASSERT_EQ(output.display, false);
+}
+
+TEST(door_suite, door_cyclic)
+{
+    // create Door object
+    Door door;
+    door.set_state(Door::State::CLOSED);
+
+    // create events struct
+    events_t events;
+
+    // create output struct
+    output_t output;
+
+    // run door.cyclic
+    output = door.cyclic(events);
+
+    // check state and output
+    ASSERT_EQ(door.get_state(), Door::State::CLOSED);
+    ASSERT_EQ(output.motor_left, false);
+    ASSERT_EQ(output.motor_right, false);
+    ASSERT_EQ(output.display, false);
+}
+
+TEST(door_suite, door_cyclic_open_button_pressed)
+{
+    // create Door object
+    Door door;
+    door.set_state(Door::State::CLOSED);
+
+    // create events struct
+    events_t events;
+    events.open_button_pressed = true;
+
+    // create output struct
+    output_t output;
+
+    // run door.cyclic
+    output = door.cyclic(events);
+
+    // check state and output
+    ASSERT_EQ(door.get_state(), Door::State::OPENING);
+    ASSERT_EQ(output.motor_left, false);
+    ASSERT_EQ(output.motor_right, false);
+    ASSERT_EQ(output.display, false);
+}
+
+TEST(door_suite, door_cyclic_error)
+{
+    // create Door object
+    Door door;
+    door.set_state(Door::State::INIT);
+
+    // create events struct
+    events_t events;
+
+    // create output struct
+    output_t output;
+
+    // run door.cyclic
+    output = door.cyclic(events);
+
+    // check state and output
+    ASSERT_EQ(door.get_state(), Door::State::ERROR_SOMETHING_BADLY_WRONG);
+    ASSERT_EQ(output.motor_left, false);
+    ASSERT_EQ(output.motor_right, false);
+    ASSERT_EQ(output.display, false);
+}
+
+/*
 TEST(door_suite, straightforward_open)
 {
+    Door door();
+    Events events();
+
+    door.check(const Events& events);
+
+    ASSERT_EQ(door.get_state(), Door::State::CLOSED);
+
+    
     // build a door and its parts
     MotorMock motor(Motor::Direction::IDLE);
     PushButtonMock do_close(PushButton::State::RELEASED);
@@ -39,4 +154,6 @@ TEST(door_suite, straightforward_open)
                                                                    //     and vice versa
     door.check();
     ASSERT_EQ(motor.get_direction(), Motor::Direction::IDLE);
+    
 }
+*/

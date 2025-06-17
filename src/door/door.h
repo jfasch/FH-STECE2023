@@ -1,9 +1,27 @@
 #pragma once
 
-#include "motor.h"
-#include "push-button.h"
-#include "light-barrier.h"
+typedef struct input
+{
+    bool sensor_closed = false;
+    bool sensor_opened = false;
+    bool button_outside = false;
+    bool button_inside = false;
+}input_t;
 
+typedef struct output
+{
+    bool motor_left = false;
+    bool motor_right = false;
+    bool display = false;
+}output_t;
+
+typedef struct events
+{
+    bool open_button_pressed = false;
+    bool close_button_pressed = false;
+    bool light_barrier_1_reached = false;
+    bool light_barrier_2_reached = false;
+}events_t;
 
 class Door
 {
@@ -18,21 +36,16 @@ public:
         ERROR_SOMETHING_BADLY_WRONG,
     };
 
-
-    Door(Motor* motor, 
-         PushButton* do_close, PushButton* do_open,
-         LightBarrier* closed_position, LightBarrier* opened_position);
-    void check();
+    Door();
+    
+    // void check(const Events& events);
+    output_t init(const input_t input);
+    output_t cyclic(const events_t event);
 
     // for tests only
+    void set_state(State state) { _state = state; }
     State get_state() const { return _state; }
 
 private:
-    Motor* _motor;
-    PushButton* _do_close;
-    PushButton* _do_open;
-    LightBarrier* _closed_position;
-    LightBarrier* _opened_position;
-
     State _state;
 };

@@ -2,7 +2,54 @@
 
 #include <assert.h>
 
+Door::Door()
+{
+    _state = State::INIT;
+}
 
+output_t Door::init(const input_t input)
+{
+    if (input.sensor_closed && !input.sensor_opened)
+    {
+        _state = State::CLOSED;
+    }
+    else
+    {
+        _state = State::ERROR_MIDDLE_POSITION;
+    }
+
+    output_t output;
+    output.motor_left = false;
+    output.motor_right = false;
+    output.display = false;
+
+    return output;
+}
+
+output_t Door::cyclic(const events_t events)
+{
+    switch(_state)
+    {
+        case State::INIT:
+            _state = State::ERROR_SOMETHING_BADLY_WRONG;
+            break;
+
+        case State::CLOSED:
+            if (events.open_button_pressed)
+            {
+                _state = State::OPENING;
+            }
+            break;
+
+        default:
+            break;
+    }
+
+    output_t output;
+    return output;
+}
+
+/*
 Door::Door(Motor* motor, 
            PushButton* do_close, PushButton* do_open, 
            LightBarrier* closed_position, LightBarrier* opened_position)
@@ -19,7 +66,9 @@ Door::Door(Motor* motor,
 
     _state = State::INIT;
 }
+*/
 
+/*
 void Door::check()
 {
     switch (_state) {
@@ -80,3 +129,4 @@ void Door::check()
         }
     }
 }
+*/
