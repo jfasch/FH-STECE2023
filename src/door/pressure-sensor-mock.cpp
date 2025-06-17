@@ -1,7 +1,7 @@
 #include "pressure-sensor-mock.h"
 
-PressureSensorMock::PressureSensorMock(float pressure)
-: _pressure{pressure} {}
+PressureSensorMock::PressureSensorMock()
+: _pressure {}{}
 
 float PressureSensorMock::get_pressure() const
 {

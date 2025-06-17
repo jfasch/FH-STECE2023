@@ -3,6 +3,8 @@ add_executable(
 
   door-tests.cpp
   timespec-tests.cpp
+
+  pressure_mock_unit.cpp
 )
 target_link_libraries(
   door-tests
