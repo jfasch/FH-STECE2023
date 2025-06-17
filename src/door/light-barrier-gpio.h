@@ -15,7 +15,6 @@ class LightBarrierGPIO : public LightBarrier
 
     private:
     std::string _gpiodevice;
-    int _line_number;
     gpiod::line _line;
     gpiod::chip _chip;
 
