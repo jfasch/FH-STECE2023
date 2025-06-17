@@ -1,14 +1,17 @@
 #include "light-barrier.h"
 
 
-LightBarrier::LightBarrier(LightBarrierState state) : state(state) {}
-
-LightBarrierState LightBarrier::get_state() const
+void LightBarrier_init(LightBarrier* self, LightBarrierState state)
 {
-    return state;
+    self->state = state;
 }
 
-void LightBarrier::set_state(LightBarrierState new_state)
+LightBarrierState LightBarrier_get_state(LightBarrier* self)
 {
-    state = new_state;
+    return self->state;
+}
+
+void LightBarrier_set_state(LightBarrier* self, LightBarrierState state)
+{
+    self->state = state;
 }

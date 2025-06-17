@@ -1,27 +1,32 @@
 #include "motor.h"
 
 
-void Motor_init(Motor* self, MotorDirection direction)
+// Konstruktor - wird automatisch aufgerufen bei Objekterstellung
+Motor::Motor(Direction direction)
 {
-    self->direction = direction;
+    direction_ = direction;
 }
 
-void Motor_forward(Motor* self)
+// Setzt Motor auf vorwärts
+void Motor::forward()
 {
-    self->direction = MOTOR_FORWARD;
+    direction_ = Direction::FORWARD;
 }
 
-void Motor_backward(Motor* self)
+// Setzt Motor auf rückwärts  
+void Motor::backward()
 {
-    self->direction = MOTOR_BACKWARD;
+    direction_ = Direction::BACKWARD;
 }
 
-void Motor_stop(Motor* self)
+// Setzt Motor auf idle)
+void Motor::stop()
 {
-    self->direction = MOTOR_IDLE;
+    direction_ = Direction::IDLE;
 }
 
-MotorDirection Motor_get_direction(Motor* self)
+// Get Methode - gibt aktuelle Richtung zurück
+Motor::Direction Motor::get_direction() const
 {
-    return self->direction;
+    return direction_;
 }

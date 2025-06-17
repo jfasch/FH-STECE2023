@@ -20,7 +20,7 @@ Door::Door(Motor* motor,
     _state = State::INIT;
 }
 
-void Door::check()  
+void Door::check()
 {
     switch (_state) {
         case State::INIT: {

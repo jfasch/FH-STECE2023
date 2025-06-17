@@ -1,18 +1,19 @@
 #include <gtest/gtest.h>
 
 #include <push-button.h>
-//asdasd
+
 
 TEST(pushbutton_suite, init)
 {
-    PushButton PushButton;
-    
-    PushButton.PushButton_set_state(PushButton::PUSHBUTTON_PRESSED);
-    ASSERT_EQ(PushButton.PushButton_get_state(), PushButton::PUSHBUTTON_PRESSED);
-
-
-    PushButton.PushButton_set_state(PushButton::PUSHBUTTON_RELEASED);
-    ASSERT_EQ(PushButton.PushButton_get_state(), PushButton::PUSHBUTTON_RELEASED);
-
+    {
+        PushButton b;
+        PushButton_init(&b, PUSHBUTTON_PRESSED);
+        ASSERT_EQ(PushButton_get_state(&b), PUSHBUTTON_PRESSED);
+    }
+    {
+        PushButton b;
+        PushButton_init(&b, PUSHBUTTON_RELEASED);
+        ASSERT_EQ(PushButton_get_state(&b), PUSHBUTTON_RELEASED);
+    }
 }
 
