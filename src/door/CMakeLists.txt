@@ -18,6 +18,9 @@ add_library(
   push-button.h
   push-button-mock.h
   push-button-mock.cpp
+
+  event-edge-detector.h
+  event-edge-detector.cpp
 )
 
 # build information (include path) for our users
