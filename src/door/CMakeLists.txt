@@ -18,6 +18,11 @@ add_library(
   push-button.h
   push-button-mock.h
   push-button-mock.cpp
+
+  pressure-sensor.h
+  pressure-sensor.cpp
+  pressure-sensor-mock.h
+  pressure-sensor-mock.cpp
 )
 
 # build information (include path) for our users

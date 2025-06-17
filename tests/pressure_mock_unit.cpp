@@ -1,13 +1,13 @@
-#include "UnitTest++.h"
-#include <door/push-button-mock.h>
+#include <gtest/gtest.h>
+#include <door/pressure-sensor-mock.h>
 
-TEST(Pressure_read_test)
+TEST(Pressure_read_suite, Pressure_sensor_test)
 {
 
-    PressureMock Pressure_sensor(Pressure::xy);
+    PressureSensorMock PressureSensor;
 
-    CHECK_EQUAL(Pressure_sensor.read(), Pressure:xy);
+    PressureSensor.set_pressure(25.12);
+
+    ASSERT_NEAR(PressureSensor.get_pressure(),25.12,0.001);
 
 };
-
-//
