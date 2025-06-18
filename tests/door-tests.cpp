@@ -38,5 +38,5 @@ TEST(door_suite, straightforward_open)
                                                                    //     if one beam is broken, the other must be solid, 
                                                                    //     and vice versa
     door.check();
-    ASSERT_EQ(motor.get_direction(), Motor::Direction::IDLE);
+    EXPECT_EQ(motor.get_direction(), Motor::Direction::IDLE);
 }
