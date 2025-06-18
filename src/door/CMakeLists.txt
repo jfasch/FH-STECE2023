@@ -10,6 +10,8 @@ add_library(
   motor.h
   motor-mock.h
   motor-mock.cpp
+  motorLED.h 
+  motorLED.cpp
 
   light-barrier.h
   light-barrier-mock.h
