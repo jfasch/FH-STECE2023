@@ -5,13 +5,13 @@
 
 TEST(lightbarrier_polymorphic_suite, base_conversion)
 {
-    MockLightBarrier lb(LightBarrier::State::BEAM_SOLID);
+    LightBarrierMock lb(LightBarrier::State::BEAM_SOLID);
     [[maybe_unused]] LightBarrier* base = &lb;         // <-- derived converted to base
 }
 
 TEST(lightbarrier_polymorphic_suite, access_through_base)
 {
-    MockLightBarrier lb(LightBarrier::State::BEAM_SOLID);
+    LightBarrierMock lb(LightBarrier::State::BEAM_SOLID);
     LightBarrier* base = &lb;
 
     LightBarrier::State state = base->get_state();      // <-- through base, derived's get_state() is called
@@ -21,7 +21,7 @@ TEST(lightbarrier_polymorphic_suite, access_through_base)
 
 TEST(lightbarrier_polymorphic_suite, set_state)
 {
-    MockLightBarrier lb(LightBarrier::State::BEAM_SOLID);
+    LightBarrierMock lb(LightBarrier::State::BEAM_SOLID);
     [[maybe_unused]] LightBarrier* base = &lb;
 
     // ***this must not compile***

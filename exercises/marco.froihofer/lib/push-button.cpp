@@ -1,19 +1,16 @@
-// push-button.cpp
 #include "push-button.h"
 
-// Initialisiert den Button-Zustand
-PushButton::PushButton(PushButtonState state) {
-    _state = state;
+void PushButton_init(PushButton* self, PushButtonState state)
+{
+    self->state = state;
 }
 
-// Liefert den aktuellen Zustand zurück
-PushButtonState PushButton::get_state()  {
-    return _state;
+PushButtonState PushButton_get_state(PushButton* self)
+{
+    return self->state;
 }
 
-// Setzt den Zustand (z. B. für Unit-Tests)
-void PushButton::set_state(PushButtonState state) {
-    _state = state;
+void PushButton_set_state(PushButton* self, PushButtonState state)
+{
+    self->state = state;
 }
-
-

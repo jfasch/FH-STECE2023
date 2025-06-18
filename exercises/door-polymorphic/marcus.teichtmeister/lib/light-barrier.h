@@ -3,14 +3,20 @@
 
 class LightBarrier
 {
-    public:
+public:
+    enum class State
+        {
+            BEAM_SOLID,
+            BEAM_BROKEN,
+        };
 
-    enum State
-    {
-        BEAM_SOLID,
-        BEAM_BROKEN,
-    };
+    LightBarrier(State state);
+    State get_state() const;
 
-    virtual State get_state() const = 0;
-    virtual void set_state(State state) = 0;
+    // for tests only
+    void set_state(State state);
+
+private:
+    State _state;
 };
+

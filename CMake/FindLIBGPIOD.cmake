@@ -4,7 +4,7 @@
 #    target_link_libraries(MyTarget LIBGPIOD::LIBGPIOD)
 # endif()
 
-find_path(LIBGPIOD_INCLUDE_DIR gpiod.hpp)
+find_path(LIBGPIOD_INCLUDE_DIR gpiod.h)
 find_library(LIBGPIOD_LIBRARY NAMES gpiod)
 include(FindPackageHandleStandardArgs)
 

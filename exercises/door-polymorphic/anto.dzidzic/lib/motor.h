@@ -1,25 +1,20 @@
 #pragma once
 
-
-class Motor
-{
+class IMotor {
 public:
-    enum class Direction
-    {
+
+    enum class Direction {
         IDLE,
         FORWARD,
-        BACKWARD,
+        BACKWARD
     };
 
-    Motor(Direction direction);
-    void forward();
-    void backward();
-    void stop();
+    virtual ~IMotor() = default;
+    
+    // Nur Methoden, die von Door benutzt oder von Tests überprüft werden
+    virtual void forward() = 0;
+    virtual void backward() = 0;
+    virtual void stop() = 0;
 
-    // for tests only? (Door uses for a sanity check)
-    Direction get_direction() const;
-
-private:
-    Direction _direction;
+    virtual Direction get_direction() const = 0;
 };
-

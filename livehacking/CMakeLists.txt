@@ -12,3 +12,5 @@ add_subdirectory(interfaces)
 add_executable(assignment assignment.cpp)
 # add_executable(nullptr nullptr.cpp)
 add_executable(auto auto.cpp)
+
+add_executable(event event.cpp)

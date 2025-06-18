@@ -5,13 +5,13 @@
 
 TEST(pushbutton_polymorphic_suite, base_conversion)
 {
-    MockPushButton pb(PushButton::State::RELEASED);
+    PushButtonMock pb(PushButton::State::RELEASED);
     [[maybe_unused]] PushButton* base = &pb;           // <-- derived converted to base
 }
 
 TEST(pushbutton_polymorphic_suite, access_through_base)
 {
-    MockPushButton pb(PushButton::State::RELEASED);
+    PushButtonMock pb(PushButton::State::RELEASED);
     PushButton* base = &pb;
 
     PushButton::State state = base->get_state();      // <-- through base, derived's get_state() is called
@@ -21,7 +21,7 @@ TEST(pushbutton_polymorphic_suite, access_through_base)
 
 TEST(pushbutton_polymorphic_suite, set_state)
 {
-    MockPushButton pb(PushButton::State::RELEASED);
+    PushButtonMock pb(PushButton::State::RELEASED);
     [[maybe_unused]] PushButton* base = &pb;
 
     // ***this must not compile***

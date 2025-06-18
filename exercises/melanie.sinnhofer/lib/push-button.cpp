@@ -1,16 +1,18 @@
 #include "push-button.h"
 
-void PushButton_init(PushButton* self, PushButtonState state)
+PushButton::PushButton(State state) // Class:: ImplementationVomKonstruktorPushButton(State state) - wird automatisch aufgerufen bei Objekterstellung
 {
-    self->state = state;
+    state_ = state;
 }
 
-PushButtonState PushButton_get_state(PushButton* self)
+// get Methode - gibt aktuellen Zustand zurück
+PushButton::State PushButton::get_state() const
 {
-    return self->state;
+    return state_;
 }
 
-void PushButton_set_state(PushButton* self, PushButtonState state)
+// set Methode - ändert den Zustand (für Tests)
+void PushButton::set_state(State state)
 {
-    self->state = state;
+    state_ = state;
 }
