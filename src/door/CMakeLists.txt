@@ -23,6 +23,9 @@ add_library(
   pressure-sensor.cpp
   pressure-sensor-mock.h
   pressure-sensor-mock.cpp
+
+  pressure-sensor-bmp280.h
+  pressure-sensor-bmp280.cpp
 )
 
 # build information (include path) for our users
