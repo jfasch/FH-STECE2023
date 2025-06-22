@@ -5,13 +5,13 @@
 class BMP280 : public PressureSensor
 {
 public:
-    BMP280(const std::string& i2c_device = "/dev/i2c-1");
+    BMP280(const std::string& i2c_device = "/dev/i2c-1", unsigned address = 0x76);
+    ~BMP280();
     
-    float get_pressure() const override;
+    float get_pressure() const;
 
-    //for tests
     void set_pressure(float pressure) override;
 
 private:
-    float _pressure;
+    int _fd;
 };
