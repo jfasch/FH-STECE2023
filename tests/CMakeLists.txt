@@ -23,3 +23,17 @@ if (LIBGPIOD_FOUND)
 else()
   message(WARNING "Not building gpio-read-value-loop because libgpiod not found")
 endif()
+
+add_executable(bmp280_test bmp280-test.cpp)
+target_link_libraries(
+  bmp280_test
+
+  PRIVATE
+  door
+  gtest_main
+)
+
+add_test(
+  NAME bmp280_test
+  COMMAND bmp280_test
+)
