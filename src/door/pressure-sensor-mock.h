@@ -9,7 +9,7 @@ public:
     float get_pressure() const override;
 
     //for tests
-    void set_pressure(float pressure) override;
+    void set_pressure(float pressure);
 
 private:
     float _pressure;
