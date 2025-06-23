@@ -10,6 +10,6 @@ public:
     };
 
     virtual ~LightBarrier() = default;
-    virtual State get_state() const = 0;
+    virtual State get_state();
 };
 

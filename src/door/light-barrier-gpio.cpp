@@ -1,21 +1,41 @@
 #include "light-barrier-gpio.h"
-#include <stdexcept>
-#include <cstdlib>
-#include <filesystem>
-#include <gpiod.hpp>
 #include <iostream>
 
 
+
 LightBarrierGPIO::LightBarrierGPIO(const std::string& gpiodevice, int line_number)
-    : _gpiodevice(gpiodevice), _chip(gpiodevice),  _line(_chip.get_line(line_number))
+    : _gpiodevice(gpiodevice), _line_number(line_number), _chip(gpiodevice)
 {
+    try     
+    {
+        _request = _chip.prepare_request()
+                    .set_consumer("light-barrier")
+                    .add_line_settings(_line_number,
+                                        gpiod::line_settings()
+                                        .set_direction(gpiod::line::direction::INPUT))
+                    .do_request();
+    } 
+    catch (const std::exception& error) 
+     {
+        std::cerr << "LightBarrierGPIO initialization failed: " << error.what() << std::endl;
+        throw;
+     }
 
-    _line.request({"light_barrier_gpio",gpiod::line_request::DIRECTION_INPUT});
 }
 
-LightBarrier::State LightBarrierGPIO::get_state() const
+LightBarrierGPIO::~LightBarrierGPIO()
 {
-    int value = _line.get_value();
+    _chip.close();
+    _request.release();  
 
-    return (value == 1) ? State::BEAM_SOLID : State::BEAM_BROKEN;
 }
+
+LightBarrier::State LightBarrierGPIO::get_state() 
+{
+    auto value = _request.get_value(_line_number);  
+
+    return (value == gpiod::line::value::ACTIVE)
+           ? LightBarrier::State::BEAM_SOLID
+           : LightBarrier::State::BEAM_BROKEN;
+}
+
