@@ -1,15 +1,21 @@
 #pragma once
 
-class PushButton{
-    
-    public:
-        enum State
-            {
-                PRESSED,
-                RELEASED,
-            };
+class PushButton
+{
+public:
+    enum State
+    {
+        PRESSED,
+        RELEASED,
+    };
 
-        virtual ~PushButton() = default;
-        virtual State get_state() const = 0;
-        virtual void set_state(State state) = 0;
+public:
+    PushButton(State state);
+    State get_state() const;
+
+    // for tests only
+    void set_state(State state);
+
+private:
+    State _state;
 };
