@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/run-door-polymorphic-johannes.mlinar.dir/run-door.o -o run-door-polymorphic-johannes.mlinar  ../lib/libdoor-polymorphic-johannes.mlinar.a 

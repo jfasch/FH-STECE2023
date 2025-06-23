@@ -1,6 +1,5 @@
 #include "light-barrier.h"
 
-/*
 
 LightBarrier::LightBarrier(State state)
 {
@@ -16,4 +15,3 @@ void LightBarrier::set_state(State state)
 {
     _state = state;
 }
-*/
