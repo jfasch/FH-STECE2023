@@ -1,6 +1,7 @@
 *~
 .bin
 .build
+/.vscode
 build/
 # Ignore build artifacts inside googletest if built in place
 googletest/build/

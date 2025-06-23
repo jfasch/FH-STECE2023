@@ -10,6 +10,8 @@ add_library(
   motor.h
   motor-mock.h
   motor-mock.cpp
+  motorLED.h 
+  motorLED.cpp
 
   light-barrier.h
   light-barrier-gpio.cpp
@@ -20,6 +22,9 @@ add_library(
   push-button.h
   push-button-mock.h
   push-button-mock.cpp
+
+  event-edge-detector.h
+  event-edge-detector.cpp
 )
 
 # build information (include path) for our users
