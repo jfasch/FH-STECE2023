@@ -22,3 +22,19 @@ if (LIBGPIOD_FOUND)
 else()
   message(WARNING "Not building gpio-read-value-loop because libgpiod not found")
 endif()
+
+add_executable(
+  motorLED-tests
+
+  motorLED-tests.cpp
+)
+
+target_link_libraries(
+  motorLED-tests
+
+  door
+  gtest_main
+)
+
+  target_link_libraries(motorLED-tests LIBGPIOD::LIBGPIOD)
+
