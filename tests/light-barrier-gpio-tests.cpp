@@ -19,7 +19,7 @@ protected:
 
 TEST_F(LightBarrierGPIOTest, BeamIsSolidWhenNotBlocked) {
     // Manually ensure the beam is not blocked 
-    printf("Press Enter to simulate beam is solid(=0) ...\n");
+    printf("Press Enter to simulate beam is solid(=1) ...\n");
     getchar(); // Wait for user input to proceed
     EXPECT_EQ(lightbarrier->get_state(), LightBarrier::State::BEAM_SOLID);
     
@@ -28,7 +28,7 @@ TEST_F(LightBarrierGPIOTest, BeamIsSolidWhenNotBlocked) {
 
 TEST_F(LightBarrierGPIOTest, BeamIsBrokenWhenBlocked) {
     // Manually block the beam 
-    printf("Press Enter to simulate beam is broken(=1) ...\n");
+    printf("Press Enter to simulate beam is broken(=0) ...\n");
     getchar(); // Wait for user input to proceed
     EXPECT_EQ(lightbarrier->get_state(), LightBarrier::State::BEAM_BROKEN);
 }
