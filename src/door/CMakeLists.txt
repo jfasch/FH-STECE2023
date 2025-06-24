@@ -1,5 +1,4 @@
-add_library(
-  door
+set(DOOR_FILES
 
   door.h
   door.cpp
@@ -29,6 +28,24 @@ add_library(
 
   pressure-sensor-bmp280.h
   pressure-sensor-bmp280.cpp
+  event-edge-detector.h
+  event-edge-detector.cpp
+)
+
+if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)
+  set(DOOR_FILES 
+
+    ${DOOR_FILES}
+    motorLED.h 
+    motorLED.cpp
+  )
+endif()
+
+
+add_library(
+  door
+
+  ${DOOR_FILES}
 )
 
 # build information (include path) for our users
