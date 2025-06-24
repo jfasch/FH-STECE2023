@@ -5,6 +5,13 @@
 class PressureSensorEventGenerator
 {
     public:
+        enum PressureSensorEvent
+        {
+            NORMAL_PRESSURE,
+            UNDER_PRESSURE,
+            OVER_PRESSURE,
+            PRESSURE_SENSOR_ERROR,
+        };
         PressureSensorEventGenerator(PressureSensor* sensor, 
                                      float under_pressure = 0.0f, 
                                      float over_pressure = 0.0f);
