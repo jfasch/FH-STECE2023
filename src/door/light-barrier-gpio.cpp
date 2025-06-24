@@ -35,6 +35,7 @@ LightBarrierGPIO::~LightBarrierGPIO()
     gpiod_line_request_release(request);
 }
 
+
 LightBarrier::State LightBarrierGPIO::get_state() 
 {
     auto value = gpiod_line_request_get_value(request, *_line_number); 
