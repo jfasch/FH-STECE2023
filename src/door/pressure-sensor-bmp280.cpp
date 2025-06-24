@@ -1,6 +1,7 @@
+#include "pressure-sensor-bmp280.h"
+
 #include <iostream>
 #include <fcntl.h>
-#include <vector>
 #include <chrono>
 #include <thread>
 #include <unistd.h>
@@ -11,8 +12,6 @@
 
 using namespace std;
 
-#include "door/pressure-sensor-bmp280.h"
-
 #define BMP280_REG_CONTROL 0xF4
 #define BMP280_REG_CONFIG  0xF5
 #define BMP280_REG_PRESSURE_MSB 0xF7
@@ -22,18 +21,30 @@ BMP280::BMP280(const std::string& i2c_dev, unsigned int address) : _fd(-1) {
     _fd = open(i2c_dev.c_str(), O_RDWR);
     if (_fd < 0) {
         perror("Failed to open /dev/i2c-1");
+        throw runtime_error("Failed to open /dev/i2c-1");
     }
 
     if (ioctl(_fd, I2C_SLAVE, address) < 0) {
-        perror("Failed to acquire bus access and/or talk to slave");
         close(_fd);
+        perror("Failed to acquire bus access and/or talk to slave");
+        throw runtime_error("Failed to acquire bus access and/or talk to slave");
     }
 
     // Write config
     uint8_t config1[2] = {BMP280_REG_CONTROL, 0x27};  // Temp+Press oversampling x1, normal mode
     uint8_t config2[2] = {BMP280_REG_CONFIG, 0xA0};   // Standby 1000ms, filter off
-    write(_fd, config1, 2);
-    write(_fd, config2, 2);
+
+    if (write(_fd, config1, 2) != 1) {
+        perror("Failed to write config1 to the i2c bus.");
+        close(_fd);
+        throw runtime_error("Failed to write config1 to the i2c bus.");
+    }
+
+    if (write(_fd, config2, 2) != 1) {
+        perror("Failed to write config2 to the i2c bus.");
+        close(_fd);
+        throw runtime_error("Failed to write config2 to the i2c bus.");
+    }
 
     // sleep for 100ms to allow sensor to stabilize
     this_thread::sleep_for(chrono::milliseconds(100));
@@ -43,11 +54,13 @@ BMP280::BMP280(const std::string& i2c_dev, unsigned int address) : _fd(-1) {
     if (write(_fd, &calib_reg, 1) != 1) {
         perror("Failed to write to the i2c bus.");
         close(_fd);
+        throw runtime_error("Failed to write to the i2c bus.");
     }
-    vector<uint8_t> calib_data(24);
-    if (read(_fd, calib_data.data(), 24) != 24) {
+    uint8_t calib_data[24];
+    if (read(_fd, calib_data, 24) != 24) {
         perror("Failed to read from the i2c bus.");
         close(_fd);
+        throw runtime_error("Failed to write to the i2c bus.");
     }
 
     // Unpack calibration data
@@ -77,14 +90,13 @@ float BMP280::get_pressure() const
     uint8_t press_reg = BMP280_REG_PRESSURE_MSB;
     if (write(_fd, &press_reg, 1) != 1) {
         perror("Failed to write to the i2c bus.");
-        close(_fd);
-        return 1;
+        throw runtime_error("Failed to write to the i2c bus.");
     }
-    vector<uint8_t> raw_data(6);
-    if (read(_fd, raw_data.data(), 6) != 6) {
+    uint8_t raw_data[6];
+    if (read(_fd, raw_data, 6) != 6) {
         perror("Failed to read from the i2c bus.");
         close(_fd);
-        return 1;
+        throw runtime_error("Failed to write to the i2c bus.");
     }
 
     int32_t raw_pressure = (raw_data[0] << 12) | (raw_data[1] << 4) | (raw_data[2] >> 4);
@@ -98,7 +110,7 @@ float BMP280::get_pressure() const
     var2 = (((((raw_temp >> 4) - ((int32_t)_dig_T1)) * ((raw_temp >> 4) - ((int32_t)_dig_T1))) >> 12) * ((int32_t)_dig_T3)) >> 14;
     t_fine = var1 + var2;
 
-    // PÜressure compensation formula according to datasheet
+    // Pressure compensation formula according to datasheet
 
     int64_t p_var1, p_var2, p;
     p_var1 = ((int64_t)t_fine) - 128000;
