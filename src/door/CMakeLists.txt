@@ -1,5 +1,4 @@
-add_library(
-  door
+set(DOOR_FILES
 
   door.h
   door.cpp
@@ -10,8 +9,6 @@ add_library(
   motor.h
   motor-mock.h
   motor-mock.cpp
-  motorLED.h 
-  motorLED.cpp
 
   light-barrier.h
   light-barrier-mock.h
@@ -23,6 +20,22 @@ add_library(
 
   event-edge-detector.h
   event-edge-detector.cpp
+)
+
+if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)
+  set(DOOR_FILES 
+
+    ${DOOR_FILES}
+    motorLED.h 
+    motorLED.cpp
+  )
+endif()
+
+
+add_library(
+  door
+
+  ${DOOR_FILES}
 )
 
 # build information (include path) for our users
