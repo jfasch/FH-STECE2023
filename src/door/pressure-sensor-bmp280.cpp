@@ -32,7 +32,7 @@ BMP280::BMP280(const std::string& i2c_dev, unsigned int address) : _fd(-1) {
 
     // Write config
     uint8_t config1[2] = {BMP280_REG_CONTROL, 0x27};  // Temp+Press oversampling x1, normal mode
-    uint8_t config2[2] = {BMP280_REG_CONFIG, 0xA0};   // Standby 1000ms, filter off
+    uint8_t config2[2] = {BMP280_REG_CONFIG, 0x00};   // Standby 0.5ms, filter off
 
     if (write(_fd, config1, 2) != 2) {
         perror("Failed to write config1 to the i2c bus.");
