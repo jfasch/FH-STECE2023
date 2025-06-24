@@ -1,20 +1,22 @@
 #pragma once
 
 #include "light-barrier.h"
-#include <gpiod.hpp>
+#include <gpiod.h>
 #include <string>
 
 class LightBarrierGPIO : public LightBarrier {
 public:
-    LightBarrierGPIO(const std::string& gpiodevice, int line_number);
+    LightBarrierGPIO(const std::string& gpiodevice, unsigned int* line_number);
     ~LightBarrierGPIO();
 
-    State get_state() override;
+    State get_state();
 
 private:
     std::string _gpiodevice;
-    int _line_number;
+    unsigned int* _line_number;
+    gpiod_chip* _chip;
 
-    gpiod::chip _chip;
-    gpiod::line_request _request;
+    gpiod_line_request* request;
+    gpiod_line_settings* settings;
+    gpiod_line_config* line_cfg;
 };

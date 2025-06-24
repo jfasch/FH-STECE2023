@@ -6,7 +6,7 @@ class LightBarrierMock : public LightBarrier
 {
 public:
     LightBarrierMock(State state);
-    virtual State get_state() const override;
+    virtual State get_state();
 
     // for tests only (puropsely not part of the interface)
     void set_state(State state);
