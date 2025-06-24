@@ -1,6 +1,6 @@
 #pragma once
 
-enum class PressuerSensorEvent
+enum PressuerSensorEvent
 {
     NORMAL_PRESSURE,
     UNDER_PRESSURE,
