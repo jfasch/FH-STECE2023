@@ -20,14 +20,14 @@ TEST(Pressure_read_suite, Pressure_sensor_event_generator_test)
 
     PressureSensorEventGenerator event_generator(&PressureSensor, 20.0f, 30.0f);
     
-    ASSERT_EQ(event_generator.get_event(), PressuerSensorEvent::NORMAL_PRESSURE);
+    ASSERT_EQ(event_generator.get_event(), PressureSensorEvent::NORMAL_PRESSURE);
 
     PressureSensor.set_pressure(15.56f);
-    ASSERT_EQ(event_generator.get_event(), PressuerSensorEvent::UNDER_PRESSURE);
+    ASSERT_EQ(event_generator.get_event(), PressureSensorEvent::UNDER_PRESSURE);
 
     PressureSensor.set_pressure(35.0f);
-    ASSERT_EQ(event_generator.get_event(), PressuerSensorEvent::OVER_PRESSURE);
+    ASSERT_EQ(event_generator.get_event(), PressureSensorEvent::OVER_PRESSURE);
 
     PressureSensor.set_pressure(-5.0f);
-    ASSERT_EQ(event_generator.get_event(), PressuerSensorEvent::PRESSURE_SENSOR_ERROR);
+    ASSERT_EQ(event_generator.get_event(), PressureSensorEvent::PRESSURE_SENSOR_ERROR);
 }
