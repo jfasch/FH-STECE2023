@@ -20,14 +20,14 @@ protected:
 TEST_F(LightBarrierGPIOTest, BeamIsSolidWhenNotBlocked) {
     // Manually ensure the beam is not blocked 
     EXPECT_EQ(lightbarrier->get_state(), LightBarrier::State::BEAM_SOLID);
-    char c = getchar(); // Wait for user input to proceed
+    getchar(); // Wait for user input to proceed
 }
 
 TEST_F(LightBarrierGPIOTest, BeamIsBrokenWhenBlocked) {
     // Manually block the beam 
 
     EXPECT_EQ(lightbarrier->get_state(), LightBarrier::State::BEAM_BROKEN);
-    char c = getchar(); // Wait for user input to proceed
+    getchar(); // Wait for user input to proceed
 }
 
 int main(int argc, char** argv) {
