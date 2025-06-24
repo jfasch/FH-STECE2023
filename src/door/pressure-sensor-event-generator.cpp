@@ -1,5 +1,4 @@
 #include "pressure-sensor-event-generator.h"
-#include "pressure-sensor.h"
 
 PressureSensorEventGenerator::PressureSensorEventGenerator(PressureSensor* sensor, 
                                                            float under_pressure, 
@@ -10,7 +9,7 @@ PressureSensorEventGenerator::PressureSensorEventGenerator(PressureSensor* senso
     this->_under_pressure = under_pressure;
     this->_over_pressure = over_pressure;
 }
-PressuerSensorEvent::get_event() const
+PressuerSensorEvent PressureSensorEventGenerator::get_event() const
 {
     float pressure = _sensor->get_pressure();
     
