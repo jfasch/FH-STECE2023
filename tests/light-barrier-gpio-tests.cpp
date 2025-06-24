@@ -25,8 +25,8 @@ TEST_F(LightBarrierGPIOTest, BeamIsSolidWhenNotBlocked) {
 
 TEST_F(LightBarrierGPIOTest, BeamIsBrokenWhenBlocked) {
     // Manually block the beam 
-    sleep(2); 
-    EXPECT_EQ(lightbarrier->get_state(), LightBarrier::State::BEAM_BROKEN);#
+
+    EXPECT_EQ(lightbarrier->get_state(), LightBarrier::State::BEAM_BROKEN);
     char c = getchar(); // Wait for user input to proceed
 }
 
