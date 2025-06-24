@@ -37,6 +37,20 @@ if (LIBGPIOD_FOUND)
     door
     gtest_main
   )
+<<<<<<< HEAD
+=======
+
+  add_executable(
+    input-switch-gpio-tests input-switch-gpio-tests.cpp
+  )
+  target_link_libraries(
+    input-switch-gpio-tests
+  
+    door
+    gtest_main
+  )
+
+>>>>>>> 7b7a9d7 (added input-switch)
 else()
   message(WARNING "Skip motorLED-tests and gpio-read-value-loop because libgpiod not found")
 endif()
