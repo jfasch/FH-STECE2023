@@ -5,8 +5,8 @@ class LightBarrier
 public:
     enum class State
     {
-        BEAM_SOLID,
         BEAM_BROKEN,
+        BEAM_SOLID,
     };
 
     virtual ~LightBarrier() = default;
