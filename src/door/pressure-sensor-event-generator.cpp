@@ -13,7 +13,7 @@ PressuerSensorEvent PressureSensorEventGenerator::get_event() const
 {
     float pressure = _sensor->get_pressure();
     
-    if (pressure < _under_pressure) {
+    if (pressure < _under_pressure && pressure >= 0.0f) {
         return PressuerSensorEvent::UNDER_PRESSURE;
     } else if (pressure > _over_pressure) {
         return PressuerSensorEvent::OVER_PRESSURE;
