@@ -123,7 +123,3 @@ float BMP280::get_pressure() const
 
     return pressure;
 }
-
-void BMP280::set_pressure(float pressure) {
-    (void)pressure; // Verhindert Compiler-Warnungen über ungenutzte Parameter.
-}

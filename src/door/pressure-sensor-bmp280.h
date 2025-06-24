@@ -10,8 +10,6 @@ public:
     
     float get_pressure() const;
 
-    void set_pressure(float pressure) override;
-
 private:
     int _fd;
 };
