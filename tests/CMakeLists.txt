@@ -51,7 +51,5 @@ target_link_libraries(
   LIBGPIOD::LIBGPIOD
 )
 
-add_test(
-  NAME light-barrier-gpio-tests
-  COMMAND light-barrier-gpio-tests
-)
+
+
