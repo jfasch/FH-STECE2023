@@ -1,5 +1,5 @@
-Development Docs
-================
+Developer Documentation
+=======================
 
 .. contents::
    :local:
