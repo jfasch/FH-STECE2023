@@ -34,7 +34,24 @@ target_link_libraries(
 
   door
   gtest_main
+  LIBGPIOD::LIBGPIOD
 )
 
-  target_link_libraries(motorLED-tests LIBGPIOD::LIBGPIOD)
+add_executable(
+  light-barrier-gpio-tests
 
+  light-barrier-gpio-tests.cpp
+)
+
+target_link_libraries(
+  light-barrier-gpio-tests
+
+  door
+  gtest_main
+  LIBGPIOD::LIBGPIOD
+)
+
+add_test(
+  NAME light-barrier-gpio-tests
+  COMMAND light-barrier-gpio-tests
+)

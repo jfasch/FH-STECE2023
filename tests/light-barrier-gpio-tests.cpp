@@ -7,8 +7,9 @@ protected:
     LightBarrierGPIO* lightbarrier;
 
     void SetUp() override {
+        unsigned int line_number = 17;
 
-        lightbarrier = new LightBarrierGPIO("/dev/gpiochip0", 17);
+        lightbarrier = new LightBarrierGPIO("/dev/gpiochip0", &line_number);
     }
 
     void TearDown() override {
