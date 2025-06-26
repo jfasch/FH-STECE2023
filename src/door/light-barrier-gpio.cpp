@@ -39,7 +39,7 @@ LightBarrierGPIO::~LightBarrierGPIO()
 LightBarrier::State LightBarrierGPIO::get_state() 
 {
     auto value = gpiod_line_request_get_value(request, *_line_number); 
-
+    
     return (value == 1)
            ? LightBarrier::State::BEAM_SOLID
            : LightBarrier::State::BEAM_BROKEN;
