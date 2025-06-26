@@ -18,6 +18,9 @@ set(DOOR_FILES
   push-button-mock.h
   push-button-mock.cpp
 
+  inputs.h
+  inputs.cpp
+
   event-edge-detector.h
   event-edge-detector.cpp
 )

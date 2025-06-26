@@ -9,7 +9,7 @@ Door::Door()
 
 output_t Door::init(const input_t input)
 {
-    if (input.sensor_closed && !input.sensor_opened)
+    if ((input.sensor_closed == LightBarrier::State::BEAM_SOLID) && !(input.sensor_opened == LightBarrier::State::BEAM_BROKEN))
     {
         _state = State::CLOSED;
     }
@@ -35,7 +35,7 @@ output_t Door::cyclic(const events_t events)
             break;
 
         case State::CLOSED:
-            if (events.open_button_pressed)
+            if (events.open_button_pressed == EdgeDetector::RISING)
             {
                 _state = State::OPENING;
             }

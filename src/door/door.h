@@ -1,12 +1,6 @@
 #pragma once
+#include <door/structs.h>
 
-typedef struct input
-{
-    bool sensor_closed = false;
-    bool sensor_opened = false;
-    bool button_outside = false;
-    bool button_inside = false;
-}input_t;
 
 typedef struct output
 {
@@ -15,13 +9,7 @@ typedef struct output
     bool display = false;
 }output_t;
 
-typedef struct events
-{
-    bool open_button_pressed = false;
-    bool close_button_pressed = false;
-    bool light_barrier_1_reached = false;
-    bool light_barrier_2_reached = false;
-}events_t;
+
 
 class Door
 {

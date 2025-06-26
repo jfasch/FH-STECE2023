@@ -9,7 +9,7 @@ TEST(door_suite, door_init)
 
     // create Input struct
     input_t input;
-    input.sensor_closed = true;
+    input.sensor_closed = LightBarrier::State::BEAM_SOLID;
 
     // create Output struct
     output_t output;
@@ -75,7 +75,7 @@ TEST(door_suite, door_cyclic_open_button_pressed)
 
     // create events struct
     events_t events;
-    events.open_button_pressed = true;
+    events.open_button_pressed = EdgeDetector::RISING;
 
     // create output struct
     output_t output;
