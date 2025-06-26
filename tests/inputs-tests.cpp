@@ -22,8 +22,8 @@ TEST(input_suite, input_init)
     input_t inputs;
     events_t events;
 
-    inputs = inputs_set.get_inputs(&inputs);
-    events = inputs_set.get_events(&events);
+    inputs = inputs_set.get_inputs();
+    events = inputs_set.get_events();
 
 
     // check state and output
@@ -49,8 +49,8 @@ TEST(input_suite, input_switch)
     input_t inputs;
     events_t events;
 
-    inputs = inputs_set.get_inputs(&inputs);
-    events = inputs_set.get_events(&events);
+    inputs = inputs_set.get_inputs();
+    events = inputs_set.get_events();
 
 
     // check state and output
@@ -64,7 +64,7 @@ TEST(input_suite, input_switch)
     closed_position.set_state(LightBarrier::State::BEAM_SOLID);
     opened_position.set_state(LightBarrier::State::BEAM_BROKEN);
 
-    inputs = inputs_set.get_inputs(&inputs);
+    inputs = inputs_set.get_inputs();
 
     // check state and output
     ASSERT_EQ(inputs.button_inside, PushButton::State::PRESSED);
@@ -89,8 +89,8 @@ TEST(input_suite, event_init)
     input_t inputs;
     events_t events;
 
-    inputs = inputs_set.get_inputs(&inputs);
-    events = inputs_set.get_events(&events);
+    inputs = inputs_set.get_inputs();
+    events = inputs_set.get_events();
 
 
     // check state and output
@@ -116,8 +116,8 @@ TEST(input_suite, event_switch)
     input_t inputs;
     events_t events;
 
-    inputs = inputs_set.get_inputs(&inputs);
-    events = inputs_set.get_events(&events);
+    inputs = inputs_set.get_inputs();
+    events = inputs_set.get_events();
 
 
     // check state and output
@@ -127,12 +127,12 @@ TEST(input_suite, event_switch)
     do_close.set_state(PushButton::State::PRESSED);
     do_open.set_state(PushButton::State::PRESSED);
 
-    events = inputs_set.get_events(&events);
+    events = inputs_set.get_events();
 
     ASSERT_EQ(events.close_button_pressed, EdgeDetector::RISING);
     ASSERT_EQ(events.open_button_pressed, EdgeDetector::RISING);
 
-    events = inputs_set.get_events(&events);
+    events = inputs_set.get_events();
 
     ASSERT_EQ(events.close_button_pressed, EdgeDetector::NONE);
     ASSERT_EQ(events.open_button_pressed, EdgeDetector::NONE);

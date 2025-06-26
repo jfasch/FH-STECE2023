@@ -19,3 +19,11 @@ typedef struct events
     EdgeDetector::State light_barrier_2_reached;
 
 }events_t;
+
+typedef struct output
+{
+    bool motor_backward = false;
+    bool motor_forward = false;
+    bool motor_stop = false;
+    bool display = false;
+}output_t;

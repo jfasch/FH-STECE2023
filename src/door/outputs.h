@@ -1,6 +1,6 @@
 #pragma once
+#include <door/structs.h>
 #include <door/motor.h>
-#include <door/door.h>
 #include "stdbool.h"
 
 class Outputs

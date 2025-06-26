@@ -1,17 +1,6 @@
 #pragma once
 #include <door/structs.h>
 
-
-typedef struct output
-{
-    bool motor_backward = false;
-    bool motor_forward = false;
-    bool motor_stop = false;
-    bool display = false;
-}output_t;
-
-
-
 class Door
 {
 public:

@@ -10,9 +10,6 @@ Inputs::Inputs(PushButton* button, PushButton* button2, LightBarrier* lightbarri
 
     _edge_button = new EdgeDetector(button);
     _edge_button2 = new EdgeDetector(button2);
-    //EdgeDetector _edge_lightbarrier(lightbarrier);
-    //EdgeDetector _edge_lightbarrier2(lightbarrier2);
-
 }
 
 Inputs::~Inputs()
@@ -21,24 +18,21 @@ Inputs::~Inputs()
     delete _edge_button2;
 }
 
-input_t Inputs::get_inputs(input_t* input)
+input_t Inputs::get_inputs()
 {
-    input->button_inside = _button->get_state();
-    input->button_outside = _button2->get_state();
-    input->sensor_closed = _lightbarrier->get_state();
-    input->sensor_opened = _lightbarrier2->get_state();
-    return *input;
+    input_t input;
+    input.button_inside = _button->get_state();
+    input.button_outside = _button2->get_state();
+    input.sensor_closed = _lightbarrier->get_state();
+    input.sensor_opened = _lightbarrier2->get_state();
+    return input;
 
 }
 
-events_t Inputs::get_events(events_t* event)
+events_t Inputs::get_events()
 {
-   
-    event->close_button_pressed = _edge_button->detect_edge();
-    event->open_button_pressed = _edge_button2->detect_edge();
-    //event->light_barrier_1_reached = _edge_lightbarrier.detect_edge();
-    //event->light_barrier_2_reached = _edge_lightbarrier2.detect_edge();
-    return *event;
-
-
+    events_t events;
+    events.close_button_pressed = _edge_button->detect_edge();
+    events.open_button_pressed = _edge_button2->detect_edge();
+    return events;
 }
