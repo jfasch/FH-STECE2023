@@ -20,6 +20,12 @@ if (LIBGPIOD_FOUND)
   add_executable(gpio-read-value-loop gpio-read-value-loop.cpp)
   target_link_libraries(gpio-read-value-loop LIBGPIOD::LIBGPIOD)
   add_executable(push-button-gpio-test push-button-gpio-test.cpp)
+  target_link_libraries(
+    push-button-gpio-test
+    door
+    gpiodcxx
+    gtest_main
+  )
   add_executable(motorLED-tests motorLED-tests.cpp)
   target_link_libraries(
     motorLED-tests
