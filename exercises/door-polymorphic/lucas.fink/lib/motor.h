@@ -19,7 +19,10 @@ public:
     // for tests only? (Door uses for a sanity check)
     Direction get_direction() const;
 
+<<<<<<< HEAD
 private:
     Direction _direction;
+=======
+>>>>>>> 18bd18d (light-barrier.gpio)
 };
 
