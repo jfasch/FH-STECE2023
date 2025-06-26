@@ -4,6 +4,8 @@ add_executable(
   door-tests.cpp
   timespec-tests.cpp
   event-edge-detector-tests.cpp
+
+  outputs-tests.cpp
 )
 target_link_libraries(
   door-tests
