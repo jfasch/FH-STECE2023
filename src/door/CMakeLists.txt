@@ -23,6 +23,10 @@ set(DOOR_FILES
 
   event-edge-detector.h
   event-edge-detector.cpp
+
+  outputs.h
+  outputs.cpp 
+  
 )
 
 if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)

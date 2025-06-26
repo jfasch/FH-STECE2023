@@ -4,8 +4,9 @@
 
 typedef struct output
 {
-    bool motor_left = false;
-    bool motor_right = false;
+    bool motor_backward = false;
+    bool motor_forward = false;
+    bool motor_stop = false;
     bool display = false;
 }output_t;
 

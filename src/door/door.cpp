@@ -19,8 +19,8 @@ output_t Door::init(const input_t input)
     }
 
     output_t output;
-    output.motor_left = false;
-    output.motor_right = false;
+    output.motor_backward = false;
+    output.motor_forward = false;
     output.display = false;
 
     return output;
