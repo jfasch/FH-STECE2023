@@ -32,7 +32,8 @@ input_t Inputs::get_inputs()
 events_t Inputs::get_events()
 {
     events_t events;
-    events.close_button_pressed = _edge_button->detect_edge();
-    events.open_button_pressed = _edge_button2->detect_edge();
+    auto now = TimeSpec::now_monotonic();
+    events.close_button_pressed = _edge_button->detect_edge(now);
+    events.open_button_pressed = _edge_button2->detect_edge(now);
     return events;
 }

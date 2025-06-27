@@ -16,8 +16,8 @@ TEST(input_suite, input_init)
     
 
     // create Input struct
-
-    Inputs inputs_set(&do_close, &do_open, &closed_position, &opened_position);
+    TimeSpec time;
+    Inputs inputs_set(&do_close, &do_open, &closed_position, &opened_position, time);
 
     input_t inputs;
     events_t events;
@@ -43,8 +43,8 @@ TEST(input_suite, input_switch)
     
 
     // create Input struct
-
-    Inputs inputs_set(&do_close, &do_open, &closed_position, &opened_position);
+    TimeSpec time;
+    Inputs inputs_set(&do_close, &do_open, &closed_position, &opened_position, time);
 
     input_t inputs;
     events_t events;
@@ -83,8 +83,8 @@ TEST(input_suite, event_init)
     
 
     // create Input struct
-
-    Inputs inputs_set(&do_close, &do_open, &closed_position, &opened_position);
+    TimeSpec time;
+    Inputs inputs_set(&do_close, &do_open, &closed_position, &opened_position, time);
 
     input_t inputs;
     events_t events;
@@ -110,8 +110,8 @@ TEST(input_suite, event_switch)
     
 
     // create Input struct
-
-    Inputs inputs_set(&do_close, &do_open, &closed_position, &opened_position);
+    TimeSpec time;
+    Inputs inputs_set(&do_close, &do_open, &closed_position, &opened_position, time);
 
     input_t inputs;
     events_t events;

@@ -1,5 +1,6 @@
 #pragma once
 #include <door/structs.h>
+#include <door/timespec.h>
 
 
 class Inputs

@@ -22,7 +22,9 @@ int main()
     LightBarrierMock light2(LightBarrier::State::BEAM_SOLID);
     MotorMock motor(Motor::Direction::IDLE);
 
-    Inputs inputs(&button1, &button2, &light1, &light2);
+    TimeSpec time;
+
+    Inputs inputs(&button1, &button2, &light1, &light2, time);
     Outputs outputs(&motor);
 
     input_t in;
