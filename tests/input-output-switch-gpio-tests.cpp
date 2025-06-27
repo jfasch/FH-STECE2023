@@ -1,5 +1,5 @@
-#include "../src/door/input-switch-gpio.h"
-#include "../src/door/output-switch-gpio.h"
+#include <door/input-switch-gpio.h>
+#include <door/output-switch-gpio.h>
 #include <gtest/gtest.h>
 #include <unistd.h>
 
