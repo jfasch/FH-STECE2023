@@ -4,7 +4,7 @@
 LightBarrierMock::LightBarrierMock(State state)
 : _state{state} {}
 
-LightBarrier::State LightBarrierMock::get_state() const
+LightBarrier::State LightBarrierMock::get_state()
 {
     return _state;
 }
