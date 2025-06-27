@@ -9,7 +9,7 @@ protected:
     Motor* motor;
 
     void SetUp() override {
-        motorstepper = new MotorStepper("/dev/gpiochip0", 26, 16, "50000000", "25000000");
+        motorstepper = new MotorStepper("/dev/gpiochip0", 26, 17, "2000000", "1000000");
         motor = motorstepper;
     }
 
@@ -21,9 +21,9 @@ protected:
 TEST_F(MotorStepperTest, MotorMovesForward) {
     motor->forward();
     EXPECT_EQ(motor->get_direction(), Motor::Direction::FORWARD);
-    //sleep(2);
+    sleep(2);
 }
-/*
+
 TEST_F(MotorStepperTest, MotorMovesBackward) {
     motor->backward();
     EXPECT_EQ(motor->get_direction(), Motor::Direction::BACKWARD);
@@ -35,7 +35,7 @@ TEST_F(MotorStepperTest, MotorStops) {
     EXPECT_EQ(motor->get_direction(), Motor::Direction::IDLE);
     sleep(2);
 }
-*/
+
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

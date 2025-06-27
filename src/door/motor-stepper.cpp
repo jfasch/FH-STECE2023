@@ -48,7 +48,7 @@ MotorStepper::MotorStepper(const std::string& gpiodevice, unsigned int line_enab
     request = gpiod_chip_request_lines(_chip, nullptr, line_cfg);
     assert(request != nullptr);
 
-    MotorStepper::ensureExported();
+    //MotorStepper::ensureExported();
     MotorStepper::stop();
 }
 
@@ -72,6 +72,7 @@ void MotorStepper::forward(){
 
     writeData("/sys/class/pwm/pwmchip0/pwm0/period", _period_nanosec);
     writeData("/sys/class/pwm/pwmchip0/pwm0/duty_cycle", _duty_nanosec);
+    writeData("/sys/class/pwm/pwmchip0/pwm0/enable", "1");
 }
 
 void MotorStepper::backward(){
@@ -83,6 +84,7 @@ void MotorStepper::backward(){
 
     writeData("/sys/class/pwm/pwmchip0/pwm0/period", _period_nanosec);
     writeData("/sys/class/pwm/pwmchip0/pwm0/duty_cycle", _duty_nanosec);
+    writeData("/sys/class/pwm/pwmchip0/pwm0/enable", "1");
 }
 
 void MotorStepper::stop(){
@@ -92,8 +94,7 @@ void MotorStepper::stop(){
 
     _direction = Direction::IDLE;
 
-    writeData("/sys/class/pwm/pwmchip0/pwm0/period", "0");
-    writeData("/sys/class/pwm/pwmchip0/pwm0/duty_cycle", "0");
+    writeData("/sys/class/pwm/pwmchip0/pwm0/enable", "0");
 }
 
 Motor::Direction MotorStepper::get_direction() const{
@@ -117,6 +118,7 @@ int MotorStepper::writeData(std::string path, std::string value) {
     return 0;
 }
 
+/*
 //stellt sicher das pwm0 exportiert ist
 int MotorStepper::ensureExported() {
     struct stat st;
@@ -128,3 +130,4 @@ int MotorStepper::ensureExported() {
     }
     return 0;
 }
+*/
