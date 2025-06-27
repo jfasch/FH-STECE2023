@@ -29,6 +29,16 @@ if (LIBGPIOD_FOUND)
     door
     gtest_main
   )
+
+  add_executable(
+    light-barrier-gpio-tests light-barrier-gpio-tests.cpp
+  )
+  target_link_libraries(
+    light-barrier-gpio-tests
+  
+    door
+    gtest_main
+  )
 else()
   message(WARNING "Skip motorLED-tests and gpio-read-value-loop because libgpiod not found")
 endif()
