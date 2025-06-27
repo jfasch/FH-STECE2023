@@ -23,8 +23,6 @@ set(DOOR_FILES
   output-switch-mock.cpp
   
   light-barrier.h
-  light-barrier-gpio.cpp
-  light-barrier-gpio.h
   light-barrier-mock.h
   light-barrier-mock.cpp
 
@@ -34,6 +32,15 @@ set(DOOR_FILES
   push-button-gpio.h
   push-button-gpio.cpp
 
+  pressure-sensor.h
+  pressure-sensor.cpp
+  pressure-sensor-mock.h
+  pressure-sensor-mock.cpp
+  pressure-sensor-event-generator.h
+  pressure-sensor-event-generator.cpp
+
+  pressure-sensor-bmp280.h
+  pressure-sensor-bmp280.cpp
   event-edge-detector.h
   event-edge-detector.cpp
 )
@@ -44,6 +51,8 @@ if (LIBGPIOD_FOUND)                                    # <-- set toplevel by fin
     ${DOOR_FILES}
     motorLED.h 
     motorLED.cpp
+    light-barrier-gpio.cpp
+    light-barrier-gpio.h
   )
 endif()
 

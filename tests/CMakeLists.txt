@@ -3,6 +3,8 @@ add_executable(
 
   door-tests.cpp
   timespec-tests.cpp
+
+  pressure_mock_unit.cpp
   event-edge-detector-tests.cpp
 )
 target_link_libraries(
@@ -64,3 +66,17 @@ if (LIBGPIOD_FOUND)
 else()
   message(WARNING "Skip motorLED-tests and gpio-read-value-loop because libgpiod not found")
 endif()
+
+add_executable(bmp280_test bmp280-test.cpp)
+target_link_libraries(
+  bmp280_test
+
+  PRIVATE
+  door
+  gtest_main
+)
+
+add_test(
+  NAME bmp280_test
+  COMMAND bmp280_test
+)
