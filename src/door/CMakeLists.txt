@@ -19,6 +19,8 @@ set(DOOR_FILES
   push-button.h
   push-button-mock.h
   push-button-mock.cpp
+  push-button-gpio.h
+  push-button-gpio.cpp
 
   event-edge-detector.h
   event-edge-detector.cpp
@@ -51,6 +53,12 @@ target_include_directories(
 
 if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)
   target_link_libraries(door LIBGPIOD::LIBGPIOD)
+else()
+  message(WARNING "door will not use libgpiod (which has not been found). note that this might lead to errors in the build process")
+endif()
+
+if (LIBGPIODCXX_FOUND)                                 # <-- set toplevel by find_package(LIBGPIODCXX)
+  target_link_libraries(door LIBGPIODCXX::LIBGPIODCXX)
 else()
   message(WARNING "door will not use libgpiod (which has not been found). note that this might lead to errors in the build process")
 endif()
