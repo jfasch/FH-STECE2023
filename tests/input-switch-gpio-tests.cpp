@@ -21,7 +21,7 @@ TEST_F(InputSwitchGPIOTest, BeamIsSolidWhenNotBlocked) {
     // Manually ensure the beam is not blocked 
     printf("Press Enter to simulate beam is solid(=1) ...\n");
     getchar(); // Wait for user input to proceed
-    EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_TRUE);
+    EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_HIGH);
     
     
 }
@@ -30,7 +30,7 @@ TEST_F(InputSwitchGPIOTest, BeamIsBrokenWhenBlocked) {
     // Manually block the beam 
     printf("Press Enter to simulate beam is broken(=0) ...\n");
     getchar(); // Wait for user input to proceed
-    EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_FALSE);
+    EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_LOW);
 }
 
 int main(int argc, char** argv) {
