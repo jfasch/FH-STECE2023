@@ -10,9 +10,15 @@ set(DOOR_FILES
   motor-mock.h
   motor-mock.cpp
 
+  input-switch.h
+  input-switch-mock.h
+  input-switch-mock.cpp
+
+  output-switch.h
+  output-switch-mock.h
+  output-switch-mock.cpp
+  
   light-barrier.h
-  light-barrier-gpio.cpp
-  light-barrier-gpio.h
   light-barrier-mock.h
   light-barrier-mock.cpp
 
@@ -20,6 +26,15 @@ set(DOOR_FILES
   push-button-mock.h
   push-button-mock.cpp
 
+  pressure-sensor.h
+  pressure-sensor.cpp
+  pressure-sensor-mock.h
+  pressure-sensor-mock.cpp
+  pressure-sensor-event-generator.h
+  pressure-sensor-event-generator.cpp
+
+  pressure-sensor-bmp280.h
+  pressure-sensor-bmp280.cpp
   event-edge-detector.h
   event-edge-detector.cpp
 )
@@ -33,6 +48,14 @@ if (LIBGPIOD_FOUND)                                    # <-- set toplevel by fin
     motor-stepper.h
     motor-stepper.cpp
     
+    light-barrier-gpio.cpp
+    light-barrier-gpio.h
+    output-switch-gpio.cpp
+    output-switch-gpio.h
+    input-switch-gpio.cpp
+    input-switch-gpio.h
+    push-button-gpio.h
+    push-button-gpio.cpp
   )
 endif()
 
@@ -54,6 +77,12 @@ target_include_directories(
 
 if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)
   target_link_libraries(door LIBGPIOD::LIBGPIOD)
+else()
+  message(WARNING "door will not use libgpiod (which has not been found). note that this might lead to errors in the build process")
+endif()
+
+if (LIBGPIODCXX_FOUND)                                 # <-- set toplevel by find_package(LIBGPIODCXX)
+  target_link_libraries(door LIBGPIODCXX::LIBGPIODCXX)
 else()
   message(WARNING "door will not use libgpiod (which has not been found). note that this might lead to errors in the build process")
 endif()
