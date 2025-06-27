@@ -1,9 +1,5 @@
 #pragma once
-
-#include "motor.h"
-#include "push-button.h"
-#include "light-barrier.h"
-
+#include <door/structs.h>
 
 class Door
 {
@@ -18,21 +14,16 @@ public:
         ERROR_SOMETHING_BADLY_WRONG,
     };
 
-
-    Door(Motor* motor, 
-         PushButton* do_close, PushButton* do_open,
-         LightBarrier* closed_position, LightBarrier* opened_position);
-    void check();
+    Door();
+    
+    // void check(const Events& events);
+    output_t init(const input_t input);
+    output_t cyclic(const events_t event);
 
     // for tests only
+    void set_state(State state) { _state = state; }
     State get_state() const { return _state; }
 
 private:
-    Motor* _motor;
-    PushButton* _do_close;
-    PushButton* _do_open;
-    LightBarrier* _closed_position;
-    LightBarrier* _opened_position;
-
     State _state;
 };

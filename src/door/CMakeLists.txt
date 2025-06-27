@@ -25,7 +25,10 @@ set(DOOR_FILES
   push-button.h
   push-button-mock.h
   push-button-mock.cpp
-
+  
+  inputs.h
+  inputs.cpp
+  
   pressure-sensor.h
   pressure-sensor.cpp
   pressure-sensor-mock.h
@@ -37,6 +40,10 @@ set(DOOR_FILES
   pressure-sensor-bmp280.cpp
   event-edge-detector.h
   event-edge-detector.cpp
+
+  outputs.h
+  outputs.cpp 
+  
 )
 
 if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)
