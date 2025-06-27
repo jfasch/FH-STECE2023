@@ -27,7 +27,7 @@ TEST_F(InputOutputSwitchGPIOTest, InputDetectsHighFromOutput) {
     EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_HIGH);
 }
 
-TEST_F(InputOutputSwitchGPIOTest, InputDetectsHighFromOutput) {
+TEST_F(InputOutputSwitchGPIOTest, InputDetectsNotLowFromOutput) {
     outputswitch->set_state(OutputSwitch::State::OUTPUT_LOW);
     EXPECT_NE(inputswitch->get_state(), InputSwitch::State::INPUT_HIGH);
 }
@@ -37,7 +37,7 @@ TEST_F(InputOutputSwitchGPIOTest, InputDetectsLowFromOutput) {
     EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_LOW);
 }
 
-TEST_F(InputOutputSwitchGPIOTest, InputDetectsLowFromOutput) {
+TEST_F(InputOutputSwitchGPIOTest, InputDetectsNotHighFromOutput) {
     outputswitch->set_state(OutputSwitch::State::OUTPUT_HIGH);
     EXPECT_NE(inputswitch->get_state(), InputSwitch::State::INPUT_LOW);
 }
