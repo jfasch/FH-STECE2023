@@ -10,6 +10,18 @@ set(DOOR_FILES
   motor-mock.h
   motor-mock.cpp
 
+  input-switch.h
+  input-switch-gpio.cpp
+  input-switch-gpio.h
+  input-switch-mock.h
+  input-switch-mock.cpp
+
+  output-switch.h
+  output-switch-gpio.cpp
+  output-switch-gpio.h
+  output-switch-mock.h
+  output-switch-mock.cpp
+  
   light-barrier.h
   light-barrier-gpio.cpp
   light-barrier-gpio.h

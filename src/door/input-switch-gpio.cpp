@@ -1,11 +1,11 @@
-#include "light-barrier-gpio.h"
+#include "input-switch-gpio.h"
 #include <string>
 #include <stdexcept>
 #include <cassert>
 
 
 
-LightBarrierGPIO::LightBarrierGPIO(const std::string& gpiodevice, unsigned int* line_number)
+InputSwitchGPIO::InputSwitchGPIO(const std::string& gpiodevice, unsigned int* line_number)
     : _gpiodevice(gpiodevice), _line_number(line_number)
 {
    _chip = gpiod_chip_open(gpiodevice.c_str());
@@ -27,7 +27,7 @@ LightBarrierGPIO::LightBarrierGPIO(const std::string& gpiodevice, unsigned int* 
     assert(request != nullptr);
 }
 
-LightBarrierGPIO::~LightBarrierGPIO()
+InputSwitchGPIO::~InputSwitchGPIO()
 {
     gpiod_chip_close(_chip);
     gpiod_line_settings_free(settings);
@@ -36,12 +36,12 @@ LightBarrierGPIO::~LightBarrierGPIO()
 }
 
 
-LightBarrier::State LightBarrierGPIO::get_state() 
+InputSwitch::State InputSwitchGPIO::get_state()
 {
     auto value = gpiod_line_request_get_value(request, *_line_number); 
     
     return (value == 1)
-           ? LightBarrier::State::BEAM_SOLID
-           : LightBarrier::State::BEAM_BROKEN;
+              ? InputSwitch::State::INPUT_HIGH
+              : InputSwitch::State::INPUT_LOW;
 }
 
