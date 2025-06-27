@@ -11,8 +11,6 @@ set(DOOR_FILES
   motor-mock.cpp
 
   light-barrier.h
-  light-barrier-gpio.cpp
-  light-barrier-gpio.h
   light-barrier-mock.h
   light-barrier-mock.cpp
 
@@ -37,6 +35,8 @@ if (LIBGPIOD_FOUND)                                    # <-- set toplevel by fin
     ${DOOR_FILES}
     motorLED.h 
     motorLED.cpp
+    light-barrier-gpio.cpp
+    light-barrier-gpio.h
   )
 endif()
 

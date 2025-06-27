@@ -5,7 +5,7 @@
 class Inputs
 {
 public:
-    Inputs(PushButton* button, PushButton* button2, LightBarrier* lightbarrier, LightBarrier* lightbarrier2);
+    Inputs(PushButton* button, PushButton* button2, LightBarrier* lightbarrier, LightBarrier* lightbarrier2, const TimeSpec& debounce_time);
     ~Inputs();
 
     // void check(const Events& events);

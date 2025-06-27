@@ -1,15 +1,15 @@
 #include <door/inputs.h>
 #include <door/event-edge-detector.h>
 
-Inputs::Inputs(PushButton* button, PushButton* button2, LightBarrier* lightbarrier, LightBarrier* lightbarrier2)
+Inputs::Inputs(PushButton* button, PushButton* button2, LightBarrier* lightbarrier, LightBarrier* lightbarrier2, const TimeSpec& debounce_time)
 {
     _button = button;
     _button2 = button2;
     _lightbarrier = lightbarrier;
     _lightbarrier2 = lightbarrier2;
 
-    _edge_button = new EdgeDetector(button);
-    _edge_button2 = new EdgeDetector(button2);
+    _edge_button = new EdgeDetector(button, debounce_time);
+    _edge_button2 = new EdgeDetector(button2, debounce_time);
 }
 
 Inputs::~Inputs()
