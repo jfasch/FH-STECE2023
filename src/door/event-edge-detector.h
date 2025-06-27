@@ -1,6 +1,6 @@
 #pragma once
 
-#include <door/push-button.h>
+#include <door/input-switch.h>
 #include <door/timespec.h>
 
 class EdgeDetector
@@ -13,12 +13,12 @@ public:
         NONE
     };
 
-    EdgeDetector(PushButton* button, const TimeSpec& debounce_time);
+    EdgeDetector(InputSwitch* input, const TimeSpec& debounce_time);
     State detect_edge(const TimeSpec& now);
 
 private:
-    PushButton::State _old_state;
-    PushButton* _button;
+    InputSwitch::State _old_state;
+    InputSwitch* _input;
     State _state;
 
     TimeSpec _debounce;
