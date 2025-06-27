@@ -50,6 +50,9 @@ if (LIBGPIOD_FOUND)                                    # <-- set toplevel by fin
     ${DOOR_FILES}
     motorLED.h 
     motorLED.cpp
+    motor-stepper.h
+    motor-stepper.cpp
+    
     light-barrier-gpio.cpp
     light-barrier-gpio.h
     output-switch-gpio.cpp

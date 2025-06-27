@@ -56,6 +56,15 @@ if (LIBGPIOD_FOUND)
     gtest_main
   )
 
+  add_executable(motor-stepper-tests motor-stepper-tests.cpp)
+  target_link_libraries(
+    motor-stepper-tests
+  
+    door
+    gtest_main
+  )
+  
+
   add_executable(
   input-output-switch-gpio-tests input-output-switch-gpio-tests.cpp
   )
