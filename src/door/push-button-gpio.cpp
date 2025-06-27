@@ -12,7 +12,6 @@ PushButtonGpio::PushButtonGpio(State state, unsigned int line_offset, const std:
 
 {
     line_offset_ = line_offset;
-    chipname_ = chipname;
 }
 PushButton::State PushButtonGpio::get_state()
 {
