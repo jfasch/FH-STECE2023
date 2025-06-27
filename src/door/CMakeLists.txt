@@ -56,3 +56,9 @@ if (LIBGPIOD_FOUND)                                    # <-- set toplevel by fin
 else()
   message(WARNING "door will not use libgpiod (which has not been found). note that this might lead to errors in the build process")
 endif()
+
+if (LIBGPIODCXX_FOUND)                                 # <-- set toplevel by find_package(LIBGPIODCXX)
+  target_link_libraries(door LIBGPIODCXX::LIBGPIODCXX)
+else()
+  message(WARNING "door will not use libgpiod (which has not been found). note that this might lead to errors in the build process")
+endif()
