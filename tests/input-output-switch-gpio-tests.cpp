@@ -27,10 +27,21 @@ TEST_F(InputOutputSwitchGPIOTest, InputDetectsHighFromOutput) {
     EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_HIGH);
 }
 
+TEST_F(InputOutputSwitchGPIOTest, InputDetectsHighFromOutput) {
+    outputswitch->set_state(OutputSwitch::State::OUTPUT_LOW);
+    EXPECT_NE(inputswitch->get_state(), InputSwitch::State::INPUT_HIGH);
+}
+
 TEST_F(InputOutputSwitchGPIOTest, InputDetectsLowFromOutput) {
     outputswitch->set_state(OutputSwitch::State::OUTPUT_LOW);
     EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_LOW);
 }
+
+TEST_F(InputOutputSwitchGPIOTest, InputDetectsLowFromOutput) {
+    outputswitch->set_state(OutputSwitch::State::OUTPUT_HIGH);
+    EXPECT_NE(inputswitch->get_state(), InputSwitch::State::INPUT_LOW);
+}
+
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
