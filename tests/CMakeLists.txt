@@ -6,6 +6,8 @@ add_executable(
 
   pressure_mock_unit.cpp
   event-edge-detector-tests.cpp
+
+  adc-mock-tests.cpp
 )
 target_link_libraries(
   door-tests

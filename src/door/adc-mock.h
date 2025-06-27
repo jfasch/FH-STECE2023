@@ -1,7 +1,7 @@
 #pragma once
 #include "adc.h"
 
-class MockAdc:: public Adc
+class MockAdc : public Adc
 {
 public:
     MockAdc();
@@ -10,4 +10,4 @@ public:
     void set_value(float value);
 private:
     float _value;
-}
+};

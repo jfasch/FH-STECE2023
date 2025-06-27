@@ -19,7 +19,6 @@ set(DOOR_FILES
   push-button-mock.cpp
 
   pressure-sensor.h
-  pressure-sensor.cpp
   pressure-sensor-mock.h
   pressure-sensor-mock.cpp
   pressure-sensor-event-generator.h
