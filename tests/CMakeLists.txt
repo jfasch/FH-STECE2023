@@ -27,6 +27,15 @@ if (LIBGPIOD_FOUND)
     door
     gtest_main
   )
+
+  add_executable(motor-stepper-tests motor-stepper-tests.cpp)
+  target_link_libraries(
+    motor-stepper-tests
+  
+    door
+    gtest_main
+  )
+  
 else()
   message(WARNING "Skip motorLED-tests and gpio-read-value-loop because libgpiod not found")
 endif()

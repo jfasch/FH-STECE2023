@@ -28,6 +28,9 @@ if (LIBGPIOD_FOUND)                                    # <-- set toplevel by fin
     ${DOOR_FILES}
     motorLED.h 
     motorLED.cpp
+    motor-stepper.h
+    motor-stepper.cpp
+    
   )
 endif()
 
