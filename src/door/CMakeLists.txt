@@ -29,6 +29,10 @@ set(DOOR_FILES
   pressure-sensor-bmp280.cpp
   event-edge-detector.h
   event-edge-detector.cpp
+
+  adc.h
+  adc-mock.h
+  adc-mock.cpp
 )
 
 if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)
