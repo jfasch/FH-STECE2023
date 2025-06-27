@@ -19,9 +19,7 @@ output_t Door::init(const input_t input)
     }
 
     output_t output;
-    output.motor_backward = false;
-    output.motor_forward = false;
-    output.display = false;
+    output.motor_direction = Motor::Direction::IDLE;
 
     return output;
 }
@@ -46,6 +44,7 @@ output_t Door::cyclic(const events_t events)
     }
 
     output_t output;
+    output.motor_direction = Motor::Direction::IDLE;
     return output;
 }
 

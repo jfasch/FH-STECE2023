@@ -12,7 +12,7 @@ TEST(output_suite, motor_forward)
     output_t out;
 
     // set output
-    out.motor_forward = true;
+    out.motor_direction = Motor::Direction::FORWARD;
     output.set_outputs(out);
 
     // test actors
@@ -27,7 +27,7 @@ TEST(output_suite, motor_backward)
     output_t out;
 
     // set output
-    out.motor_backward = true;
+    out.motor_direction = Motor::Direction::BACKWARD;
     output.set_outputs(out);
 
     // test actors
@@ -42,7 +42,7 @@ TEST(output_suite, motor_stop)
     output_t out;
 
     // set output
-    out.motor_stop = true;
+    out.motor_direction = Motor::Direction::IDLE;
     output.set_outputs(out);
 
     // test actors

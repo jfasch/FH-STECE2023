@@ -19,9 +19,7 @@ TEST(door_suite, door_init)
 
     // check state and output
     ASSERT_EQ(door.get_state(), Door::State::CLOSED);
-    ASSERT_EQ(output.motor_backward, false);
-    ASSERT_EQ(output.motor_forward, false);
-    ASSERT_EQ(output.display, false);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
 }
 
 TEST(door_suite, door_init_error)
@@ -40,9 +38,7 @@ TEST(door_suite, door_init_error)
 
     // check state
     ASSERT_EQ(door.get_state(), Door::State::ERROR_MIDDLE_POSITION);
-    ASSERT_EQ(output.motor_backward, false);
-    ASSERT_EQ(output.motor_forward, false);
-    ASSERT_EQ(output.display, false);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
 }
 
 TEST(door_suite, door_cyclic)
@@ -62,9 +58,7 @@ TEST(door_suite, door_cyclic)
 
     // check state and output
     ASSERT_EQ(door.get_state(), Door::State::CLOSED);
-    ASSERT_EQ(output.motor_backward, false);
-    ASSERT_EQ(output.motor_forward, false);
-    ASSERT_EQ(output.display, false);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
 }
 
 TEST(door_suite, door_cyclic_open_button_pressed)
@@ -85,9 +79,7 @@ TEST(door_suite, door_cyclic_open_button_pressed)
 
     // check state and output
     ASSERT_EQ(door.get_state(), Door::State::OPENING);
-    ASSERT_EQ(output.motor_backward, false);
-    ASSERT_EQ(output.motor_forward, false);
-    ASSERT_EQ(output.display, false);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
 }
 
 TEST(door_suite, door_cyclic_error)
@@ -107,9 +99,7 @@ TEST(door_suite, door_cyclic_error)
 
     // check state and output
     ASSERT_EQ(door.get_state(), Door::State::ERROR_SOMETHING_BADLY_WRONG);
-    ASSERT_EQ(output.motor_backward, false);
-    ASSERT_EQ(output.motor_forward, false);
-    ASSERT_EQ(output.display, false);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
 }
 
 /*

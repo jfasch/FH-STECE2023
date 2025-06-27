@@ -8,16 +8,18 @@ Outputs::Outputs(Motor* motor)
 
 void Outputs::set_outputs(const output_t out)
 {
-    if (out.motor_forward)
+    switch(out.motor_direction)
     {
-        _motor->forward();
-    }
-    if (out.motor_backward)
-    {
-        _motor->backward();
-    }
-    if (out.motor_stop)
-    {
-        _motor->stop();
+        case Motor::Direction::FORWARD:
+            _motor->forward();
+            break;
+
+        case Motor::Direction::BACKWARD:
+            _motor->backward();
+            break;
+
+        case Motor::Direction::IDLE:
+            _motor->stop();
+            break;
     }
 }
