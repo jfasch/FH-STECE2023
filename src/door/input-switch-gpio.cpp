@@ -41,7 +41,7 @@ InputSwitch::State InputSwitchGPIO::get_state()
     auto value = gpiod_line_request_get_value(request, *_line_number); 
     
     return (value == 1)
-              ? InputSwitch::State::INPUT_TRUE
-              : InputSwitch::State::INPUT_FALSE;
+              ? InputSwitch::State::INPUT_HIGH
+              : InputSwitch::State::INPUT_LOW;
 }
 

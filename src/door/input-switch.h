@@ -5,8 +5,8 @@ class InputSwitch
 public:
     enum class State
     {
-        INPUT_FALSE,
-        INPUT_TRUE,
+        INPUT_LOW,
+        INPUT_HIGH,
     };
 
     virtual ~InputSwitch() = default;
