@@ -1,15 +1,13 @@
 #pragma once
-#include <door/push-button.h>
-#include <door/light-barrier.h>
 #include <door/event-edge-detector.h>
 #include <door/motor.h>
-
+#include <door/input-switch.h>
 typedef struct input
 {
-    LightBarrier::State sensor_closed;
-    LightBarrier::State sensor_opened;
-    PushButton::State button_outside;
-    PushButton::State button_inside;
+    InputSwitch::State sensor_closed;
+    InputSwitch::State sensor_opened;
+    InputSwitch::State button_outside;
+    InputSwitch::State button_inside;
     // TODO: PressureSensor Inputs
 }input_t;
 
