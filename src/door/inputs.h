@@ -6,7 +6,7 @@
 class Inputs
 {
 public:
-    Inputs(PushButton* button, PushButton* button2, LightBarrier* lightbarrier, LightBarrier* lightbarrier2, const TimeSpec& debounce_time);
+    Inputs(InputSwitch* button, InputSwitch* button2, InputSwitch* LightBarrier1, InputSwitch* LightBarrier2, const TimeSpec& debounce_time);
     ~Inputs();
 
     // void check(const Events& events);
@@ -15,10 +15,10 @@ public:
 
     
 private:
-    PushButton* _button;
-    PushButton* _button2;
-    LightBarrier* _lightbarrier;
-    LightBarrier* _lightbarrier2;
+    InputSwitch* _button;
+    InputSwitch* _button2;
+    InputSwitch* _LightBarrier1;
+    InputSwitch* _LightBarrier2;
 
     EdgeDetector *_edge_button;
     EdgeDetector *_edge_button2;
