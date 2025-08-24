@@ -11,8 +11,6 @@
 
 int main()
 {
-    std::cout << "howdy" << std::endl;
-
     Door door;
 
     InputSwitchMock button1(InputSwitch::State::INPUT_LOW);
@@ -66,8 +64,6 @@ int main()
         auto suspend = interval - spent;
         nanosleep(&suspend, nullptr);
     }
-
-    std::cerr << "bye" << std::endl;
 
     return 0;
 }
