@@ -9,7 +9,7 @@ TEST(door_suite, door_init)
 
     // create Input struct
     input_t input;
-    input.sensor_closed = LightBarrier::State::BEAM_SOLID;
+    input.sensor_closed = InputSwitch::State::INPUT_HIGH;
 
     // create Output struct
     output_t output;
