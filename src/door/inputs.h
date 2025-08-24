@@ -1,12 +1,13 @@
 #pragma once
-#include <door/structs.h>
-#include <door/timespec.h>
+
+#include "structs.h"
+#include "timespec.h"
 
 
 class Inputs
 {
 public:
-    Inputs(PushButton* button, PushButton* button2, LightBarrier* lightbarrier, LightBarrier* lightbarrier2, const TimeSpec& debounce_time);
+    Inputs(InputSwitch* button, InputSwitch* button2, InputSwitch* lightbarrier, InputSwitch* lightbarrier2, const TimeSpec& debounce_time);
     ~Inputs();
 
     // void check(const Events& events);
@@ -15,10 +16,10 @@ public:
 
     
 private:
-    PushButton* _button;
-    PushButton* _button2;
-    LightBarrier* _lightbarrier;
-    LightBarrier* _lightbarrier2;
+    InputSwitch* _button;
+    InputSwitch* _button2;
+    InputSwitch* _lightbarrier;
+    InputSwitch* _lightbarrier2;
 
     EdgeDetector *_edge_button;
     EdgeDetector *_edge_button2;
