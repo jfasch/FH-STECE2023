@@ -25,10 +25,10 @@ set(DOOR_FILES
   push-button.h
   push-button-mock.h
   push-button-mock.cpp
-
+  
   inputs.h
   inputs.cpp
-
+  
   pressure-sensor.h
   pressure-sensor.cpp
   pressure-sensor-mock.h
@@ -58,8 +58,8 @@ if (LIBGPIOD_FOUND)                                    # <-- set toplevel by fin
     output-switch-gpio.h
     input-switch-gpio.cpp
     input-switch-gpio.h
-    push-button-gpio.cpp
     push-button-gpio.h
+    push-button-gpio.cpp
   )
 endif()
 
