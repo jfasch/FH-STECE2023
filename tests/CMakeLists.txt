@@ -46,8 +46,16 @@ else()
 endif()
 
 add_executable(bmp280_test bmp280-test.cpp)
+add_executable(adc_ads1115_test adc-ads1115-test.cpp)
 target_link_libraries(
   bmp280_test
+
+  PRIVATE
+  door
+  gtest_main
+)
+target_link_libraries(
+  adc_ads1115_test
 
   PRIVATE
   door
@@ -57,4 +65,9 @@ target_link_libraries(
 add_test(
   NAME bmp280_test
   COMMAND bmp280_test
+)
+
+add_test(
+  NAME adc_ads1115_test
+  COMMAND adc_ads1115_test
 )

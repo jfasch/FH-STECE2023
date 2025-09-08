@@ -32,6 +32,9 @@ set(DOOR_FILES
   adc.h
   adc-mock.h
   adc-mock.cpp
+
+  adc-ads1115.h
+  adc-ads1115.cpp
 )
 
 if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)
