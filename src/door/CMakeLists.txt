@@ -18,14 +18,6 @@ set(DOOR_FILES
   output-switch-mock.h
   output-switch-mock.cpp
   
-  light-barrier.h
-  light-barrier-mock.h
-  light-barrier-mock.cpp
-
-  push-button.h
-  push-button-mock.h
-  push-button-mock.cpp
-  
   pressure-sensor.h
   pressure-sensor-mock.h
   pressure-sensor-mock.cpp

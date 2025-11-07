@@ -6,14 +6,18 @@
 
 class InputSwitchGPIO : public InputSwitch {
 public:
-    InputSwitchGPIO(const std::string& gpiodevice, unsigned int* line_number);
+    InputSwitchGPIO(const std::string& gpiodevice, unsigned int line_number);
     ~InputSwitchGPIO();
 
     State get_state();
 
+    // Prevent copying
+    InputSwitchGPIO(const InputSwitchGPIO&) = delete;
+    InputSwitchGPIO& operator=(const InputSwitchGPIO&) = delete;
+
 private:
     std::string _gpiodevice;
-    unsigned int* _line_number;
+    unsigned int _line_number;
     gpiod_chip* _chip;
 
     gpiod_line_request* request;
