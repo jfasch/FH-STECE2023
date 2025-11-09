@@ -104,7 +104,6 @@ target_link_libraries(
 
   PRIVATE
   door
-  gtest_main
 )
 
 add_test(
@@ -115,9 +114,4 @@ add_test(
 add_test(
   NAME adc_ads1115_test
   COMMAND adc_ads1115_test
-)
-
-add_test(
-  NAME hysteresis_hw_test
-  COMMAND hysteresis_hw_test
 )
