@@ -83,6 +83,8 @@ endif()
 
 add_executable(bmp280_test bmp280-test.cpp)
 add_executable(adc_ads1115_test adc-ads1115-test.cpp)
+add_executable(hysteresis_hw_test hysteresis_hw_test.cpp)
+
 target_link_libraries(
   bmp280_test
 
@@ -106,4 +108,9 @@ add_test(
 add_test(
   NAME adc_ads1115_test
   COMMAND adc_ads1115_test
+)
+
+add_test(
+  NAME hysteresis_hw_test
+  COMMAND hysteresis_hw_test
 )
