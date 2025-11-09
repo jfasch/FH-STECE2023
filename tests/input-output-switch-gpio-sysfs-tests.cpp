@@ -24,25 +24,25 @@ protected:
 
 TEST_F(InputOutputSwitchGPIOSysfsTest, InputDetectsHighFromOutput) {
     outputswitch->set_state(OutputSwitch::State::OUTPUT_HIGH);
-    usleep(50000);
+    usleep(200000);
     EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_HIGH);
 }
 
 TEST_F(InputOutputSwitchGPIOSysfsTest, InputDetectsLowFromOutput) {
     outputswitch->set_state(OutputSwitch::State::OUTPUT_LOW);
-    usleep(50000);
+    usleep(200000);
     EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_LOW);
 }
 
 TEST_F(InputOutputSwitchGPIOSysfsTest, InputDetectsNotLowFromOutput) {
     outputswitch->set_state(OutputSwitch::State::OUTPUT_HIGH);
-    usleep(50000);
+    usleep(200000);
     EXPECT_NE(inputswitch->get_state(), InputSwitch::State::INPUT_LOW);
 }
 
 TEST_F(InputOutputSwitchGPIOSysfsTest, InputDetectsNotHighFromOutput) {
     outputswitch->set_state(OutputSwitch::State::OUTPUT_LOW);
-    usleep(50000);
+    usleep(200000);
     EXPECT_NE(inputswitch->get_state(), InputSwitch::State::INPUT_HIGH);
 }
 
