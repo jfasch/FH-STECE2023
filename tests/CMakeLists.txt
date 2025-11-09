@@ -83,6 +83,8 @@ endif()
 
 add_executable(bmp280_test bmp280-test.cpp)
 add_executable(adc_ads1115_test adc-ads1115-test.cpp)
+add_executable(hysteresis_hw_test hysteresis_hw_test.cpp)
+
 target_link_libraries(
   bmp280_test
 
@@ -96,6 +98,12 @@ target_link_libraries(
   PRIVATE
   door
   gtest_main
+)
+target_link_libraries(
+  hysteresis_hw_test
+
+  PRIVATE
+  door
 )
 
 add_test(
