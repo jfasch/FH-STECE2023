@@ -1,5 +1,3 @@
-#pragma once
-
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -49,10 +47,6 @@ InputSwitchGPIOSysfs::InputSwitchGPIOSysfs(unsigned int line_number){
     write_to_sysfs(inputDirection, "in");
 
     usleep(100000);
-
-    int inputNumber = std::stoi(read_in_sysfs(inputValue));
-
-    (inputNumber == 1) ? _state = State::INPUT_HIGH : _state = State::INPUT_LOW;
 }
 
 InputSwitchGPIOSysfs::~InputSwitchGPIOSysfs()
@@ -62,7 +56,13 @@ InputSwitchGPIOSysfs::~InputSwitchGPIOSysfs()
 
 InputSwitch::State InputSwitchGPIOSysfs::get_state()
 {
-    const std::string value = (_state == State::INPUT_HIGH) ? "1" : "0";
 
-    return _state;
+    const std::string path = "/sys/class/gpio/gpio" + std::to_string(_line_number) + "/value";
+
+    std::string value = read_in_sysfs(path); 
+
+    if (value == "1")
+        return State::INPUT_HIGH;
+    else
+        return State::INPUT_LOW;
 }
