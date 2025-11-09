@@ -1,5 +1,4 @@
 // Hardware hysteresis integration test using BMP280
-#include <gtest/gtest.h>
 #include <door/pressure-sensor-bmp280.h>
 #include <door/pressure-sensor-event-generator.h>
 #include <chrono>
