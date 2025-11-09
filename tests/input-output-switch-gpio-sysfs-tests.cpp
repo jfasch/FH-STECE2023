@@ -7,8 +7,12 @@ class InputOutputSwitchGPIOSysfsTest : public ::testing::Test {
 protected:
     InputSwitchGPIOSysfs* inputswitch;
     OutputSwitchGPIO* outputswitch;
-    unsigned int input_line = 17;
-    unsigned int output_line = 27;
+/*
+When using the legacy Sysfs interface, it is necessary to use the Global Pin Number (Base + Offset) 
+instead of the simple BCM pin offset (like 17 or 27) for the kernel to recognize the pin correctly.
+*/  
+    unsigned int input_line = 529;
+    unsigned int output_line = 539;
 
     void SetUp() override {
         inputswitch = new InputSwitchGPIOSysfs(input_line);
