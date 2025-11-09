@@ -170,3 +170,217 @@ Run Unit Tests
    [----------] Global test environment tear-down
    [==========] 19 tests from 3 test suites ran. (0 ms total)
    [  PASSED  ] 19 tests.
+
+
+
+Refactoring and Architecture
+============================
+
+.. contents::
+   :local:
+
+Motivation
+----------
+
+The `door` module is currently undergoing structural refactoring to improve separation of concerns,
+maintainability, and testing flexibility. The goal is to modularize components such as motors,
+sensors, and GPIO interfaces into isolated libraries.
+
+Structural Refactoring — Proposal
+---------------------------------
+
+This section outlines the proposed plan for the refactoring of the `src/door` module.
+
+Ziel
+----
+
+This document describes the proposed structural refactoring plan for the `src/door` module. The goal is a clear separation of responsibilities, improved clarity through directories, and better test/deployment flexibility via separate libraries (Core / Mocks / Hardware).
+
+Inhalt
+------
+
+.. contents::
+   :local:
+
+1. Kurzüberblick
+2. Neue Verzeichnisstruktur
+3. Include-Konventionen
+4. CMake: Option B (Multi-Library) — vollständiges Beispiel
+5. Schritt-für-Schritt-Migrationsanleitung (Git-kompatibel)
+6. Tests & Debugging
+7. README / .rst Dokumentation (Vorlage)
+
+1. Kurzüberblick
+-----------------
+
+Instead of keeping all files flat in `src/door/`, the module will be split into multiple logical subdirectories (e.g., `core`, `common`, `motor`, `input_switch`, `output_switch`, `pressure_sensor`).
+
+Key design decisions:
+
+* Each component contains its interface (header), mock implementations, and — if present — hardware implementations.
+* Within a module: local includes with quotes, e.g., ``#include "motorLED.h"``.
+* Between modules: system-include syntax with project root `door`, e.g., ``#include <door/motor/motor.h>``.
+* CMake generates three libraries: `door_core`, `door_mocks`, and `door_hw`.
+
+2. Neue Verzeichnisstruktur
+---------------------------
+
+.. code-block:: text
+
+   src/door/
+   ├── CMakeLists.txt
+   ├── core/
+   │   ├── door.h
+   │   └── door.cpp
+   ├── common/
+   │   ├── structs.h
+   │   └── timespec.cpp
+   ├── motor/
+   │   ├── motor.h
+   │   ├── motor-mock.cpp
+   │   └── motorLED.cpp
+   ├── input_switch/
+   │   ├── input-switch.h
+   │   └── input-switch-mock.cpp
+   ├── output_switch/
+   │   └── ...
+   └── pressure_sensor/
+       └── ...
+
+3. Include-Konventionen
+-----------------------
+
+* Within the same module (e.g., `motor`):
+
+.. code-block:: cpp
+
+   #include "motorLED.h"   // local header file
+
+* Between modules (always from project include root):
+
+.. code-block:: cpp
+
+   #include <door/motor/motor.h>
+   #include <door/common/structs.h>
+
+This avoids "../"-includes and keeps include paths stable if files are moved or libraries are separated.
+
+4. CMake: Option B (Multi-Library) — vollständiges Beispiel
+-----------------------------------------------------------
+
+.. code-block:: cmake
+
+   # --- Project-specific files for door_core, door_mocks, door_hw ---
+   # door_core: core logic + interfaces (no hardware)
+   set(DOOR_CORE_FILES
+     core/door.h
+     core/door.cpp
+     core/inputs.h
+     core/inputs.cpp
+     core/outputs.h
+     core/outputs.cpp
+     common/structs.h
+     common/timespec.h
+     common/timespec.cpp
+     common/event-edge-detector.h
+     common/event-edge-detector.cpp
+     motor/motor.h
+     input_switch/input-switch.h
+     output_switch/output-switch.h
+     pressure_sensor/pressure-sensor.h
+   )
+
+   add_library(door_core ${DOOR_CORE_FILES})
+   target_include_directories(door_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+
+   # door_mocks: mocks implement interfaces from door_core
+   set(DOOR_MOCK_FILES
+     motor/motor-mock.cpp
+     input_switch/input-switch-mock.cpp
+     output_switch/output-switch-mock.cpp
+     pressure_sensor/pressure-sensor-mock.cpp
+   )
+
+   add_library(door_mocks ${DOOR_MOCK_FILES})
+   target_include_directories(door_mocks PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+   target_link_libraries(door_mocks PUBLIC door_core)
+
+   # door_hw: hardware implementations - only if libs present
+   find_package(PkgConfig QUIET)
+   find_package(Libgpiod QUIET)
+
+   if (LIBGPIOD_FOUND)
+     set(DOOR_HW_FILES
+       motor/motorLED.cpp
+       input_switch/input-switch-gpio.cpp
+       output_switch/output-switch-gpio.cpp
+       pressure_sensor/pressure-sensor-bmp280.cpp
+     )
+     add_library(door_hw ${DOOR_HW_FILES})
+     target_include_directories(door_hw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+     target_link_libraries(door_hw PUBLIC door_core LIBGPIOD::LIBGPIOD)
+   endif()
+
+5. Schritt-für-Schritt-Migrationsanleitung
+------------------------------------------
+
+1. Branch erstellen (Git)
+
+.. code-block:: console
+
+   $ git checkout -b refactor/structural
+
+2. Anlegen der neuen Verzeichnisse lokal
+
+.. code-block:: console
+
+   $ mkdir -p src/door/{core,common,motor,input_switch,output_switch,pressure_sensor}
+
+3. Dateien schrittweise verschieben (in kleinen Commits)
+
+* Recommended: move headers first, adjust includes, commit; then move implementations.
+
+.. code-block:: console
+
+   $ git mv src/door/motor.h src/door/motor/motor.h
+   $ git mv src/door/motor-mock.cpp src/door/motor/motor-mock.cpp
+   $ git add -A
+   $ git commit -m "refactor(motor): move motor files into motor/ and update includes"
+
+4. CMake anpassen
+
+* Replace old DOOR_FILES list with new paths or use multi-library setup above.
+* Ensure `target_include_directories(... ${CMAKE_CURRENT_SOURCE_DIR}/..)` remains.
+
+5. Build & Tests
+
+.. code-block:: console
+
+   $ mkdir -p ~/My-Builds/FH-STECE2023-x86_64
+   $ cd ~/My-Builds/FH-STECE2023-x86_64
+   $ cmake /path/to/FH-STECE2023
+   $ make -j$(nproc)
+   $ ./tests/door-tests
+
+6. Iteriere: fix compile errors, include paths, linker errors in small commits.
+
+6. Tests & Debugging
+--------------------
+
+* Run unit tests after each significant step.
+* If linker errors occur: check that target is added and linked in CMake.
+* For include errors: check spelling and that `target_include_directories(... ${CMAKE_CURRENT_SOURCE_DIR}/..)` is set.
+
+7. README / .rst Documentation (Vorlage)
+----------------------------------------
+
+* Purpose of the new structure
+* How to build (short cmake/make instructions)
+* How to switch between Mocks and Hardware (which targets to link)
+* Example include conventions
+
+Abschluss
+---------
+
+This document contains a full template for migrating to the multi-library variant (Option B) and a pragmatic step-by-step Git migration guide. Key points: small steps, frequent build/test, and clear include rules.
+
