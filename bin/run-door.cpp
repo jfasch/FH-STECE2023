@@ -90,12 +90,13 @@ int main()
     }
 
     // cleanup before exit
-    // TODO
+    // TODO: Nothing todo for now
 
     // Bye message
+    std::cout << "Oh, I need to go, someone is calling me..." << std::endl;
     std::cout << "Bye, see you soon :)" << std::endl;
     std::cout << "I'll miss you <3" << std::endl;
-    std::cout << " -- yours, Depperte Door" << std::endl;
+    std::cout << "  -- yours, Depperte Door" << std::endl << std::endl;
 
     return 0;
 }
