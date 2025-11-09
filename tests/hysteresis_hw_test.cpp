@@ -9,14 +9,12 @@ TEST(HardwareHysteresisTest, BMP280DetectsChangeAndTriggersEvent)
 {
     using namespace std::chrono_literals;
 
-
-     BMP280 bmp;
+    BMP280 bmp;
 
     // Try to read two different values from the sensor by polling for a short time
     float first = 0.0f;
 
     first = bmp.get_pressure();
-
 
     const float min_delta = 0.01f; // minimal delta to consider values "different"
     float second = first;
@@ -32,7 +30,7 @@ TEST(HardwareHysteresisTest, BMP280DetectsChangeAndTriggersEvent)
     }
 
     // If values did not change enough, fail the test (hardware may be static)
-    ASSERT_NEAR(first, second, min_delta) << "BMP280 readings did not change enough for hysteresis test";
+    ASSERT_GE(std::fabs(second - first), min_delta) << "BMP280 readings did not change enough for hysteresis test (first=" << first << " second=" << second << ")";
 
     // Determine direction of change and set thresholds between the two readings
     float low = std::min(first, second);
