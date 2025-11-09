@@ -1,19 +1,16 @@
-// Hardware hysteresis integration test using BMP280
+#include <gtest/gtest.h>
 #include <door/pressure-sensor-bmp280.h>
 #include <door/pressure-sensor-event-generator.h>
 #include <chrono>
 #include <thread>
 #include <cmath>
 
-// This test requires a real BMP280 sensor on the I2C bus. If the device
-// cannot be opened the test will be skipped.
 TEST(HardwareHysteresisTest, BMP280DetectsChangeAndTriggersEvent)
 {
     using namespace std::chrono_literals;
 
 
      BMP280 bmp;
-
 
     // Try to read two different values from the sensor by polling for a short time
     float first = 0.0f;

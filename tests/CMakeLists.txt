@@ -99,6 +99,13 @@ target_link_libraries(
   door
   gtest_main
 )
+target_link_libraries(
+  hysteresis_hw_test
+
+  PRIVATE
+  door
+  gtest_main
+)
 
 add_test(
   NAME bmp280_test
