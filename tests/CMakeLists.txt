@@ -7,6 +7,8 @@ add_executable(
   pressure_mock_unit.cpp
   event-edge-detector-tests.cpp
 
+  input-output-switch-gpio-sysfs-tests.cpp
+
   inputs-tests.cpp
   outputs-tests.cpp
 
@@ -65,7 +67,6 @@ if (LIBGPIOD_FOUND)
     door
     gtest_main
   )
-  
 
   add_executable(
   input-output-switch-gpio-tests input-output-switch-gpio-tests.cpp
@@ -80,6 +81,20 @@ if (LIBGPIOD_FOUND)
 else()
   message(WARNING "Skip motorLED-tests and gpio-read-value-loop because libgpiod not found")
 endif()
+
+add_executable(
+  input-output-switch-gpio-sysfs-tests
+  input-output-switch-gpio-sysfs-tests.cpp
+)
+target_link_libraries(
+  input-output-switch-gpio-sysfs-tests
+  door
+  gtest_main
+)
+add_test(
+  NAME input-output-switch-gpio-sysfs-tests
+  COMMAND sudo input-output-switch-gpio-sysfs-tests
+)
 
 add_executable(bmp280_test bmp280-test.cpp)
 add_executable(adc_ads1115_test adc-ads1115-test.cpp)
@@ -99,6 +114,7 @@ target_link_libraries(
   door
   gtest_main
 )
+
 target_link_libraries(
   hysteresis_hw_test
 
