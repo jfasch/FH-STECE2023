@@ -86,7 +86,15 @@ int main()
 
         // suspend for the rest of the interval
         auto suspend = interval - spent;
-        nanosleep(&suspend, nullptr);
+        rv = nanosleep(&suspend, nullptr);
+        if (rv == -1) {
+            if (errno == EINTR)
+                continue;
+            else {
+                perror("nanosleep");
+                return 1;
+            }
+        }
     }
 
     // cleanup before exit
