@@ -4,6 +4,8 @@
 #include <door/outputs.h>
 #include <door/motor-mock.h>
 #include <door/input-switch-mock.h>
+#include <door/pressure-sensor-mock.h>
+#include <door/pressure-sensor-event-generator.h>
 #include <door/timespec.h>
 
 #include <iostream>
@@ -41,6 +43,12 @@ int main()
     InputSwitchMock button2(InputSwitch::State::INPUT_LOW);
     InputSwitchMock light1(InputSwitch::State::INPUT_LOW);
     InputSwitchMock light2(InputSwitch::State::INPUT_HIGH);
+
+    // Pressure Sensor
+    PressureSensorMock pressureSensor;
+    // Pressure Sensor Event Generator
+    PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
+
     MotorMock motor(Motor::Direction::IDLE);
 
     TimeSpec time;
