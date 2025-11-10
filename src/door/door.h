@@ -1,5 +1,7 @@
 #pragma once
-#include <door/structs.h>
+
+#include "structs.h"
+
 
 class Door
 {
