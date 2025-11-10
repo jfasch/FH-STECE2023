@@ -27,7 +27,7 @@ static void handler(int signal)
 int main(int argc, char** argv)
 {
     // test flag
-    int test = 0;
+    [[maybe_unused]] int test = 0;
 
     // too many arguments
     if (argc > 2)
