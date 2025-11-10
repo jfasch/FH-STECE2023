@@ -10,33 +10,6 @@
 #include "input-switch-gpio-sysfs.h"
 #include "small_file_handling.h"
 
-static bool write_to_sysfs(const std::string& path, const std::string& value) {
-    std::ofstream fs(path);
-    if (!fs.is_open()) {
-        return false;
-    }
-    fs << value;
-    if (!fs.good()) {
-        return false;
-    }
-    fs.close();
-    return true;
-}
-
-std::string read_in_sysfs(const std::string& path) {
-    std::string level;
-    std::ifstream fs(path);
-    if (!fs.is_open()) {
-        return "";
-    }
-    std::getline(fs, level);
-    if (!fs.good()) {
-        return "";
-    }
-    fs.close();
-    return level;
-}
-
 InputSwitchGPIOSysfs::InputSwitchGPIOSysfs(unsigned int line_number){
     _line_number = line_number;
     const std::string gpio_str = std::to_string(_line_number);

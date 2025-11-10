@@ -4,20 +4,6 @@
 #include <unistd.h> // for usleep
 #include "small_file_handling.h"
 
-// Helper function to write to a sysfs file
-// Returns true on success, false on failure (e.g., cannot open or write file).
-static bool write_to_sysfs(const std::string& path, const std::string& value) {
-    std::ofstream fs(path);
-    if (!fs.is_open()) {
-        return false;
-    }
-    fs << value;
-    if (!fs.good()) {
-        return false;
-    }
-    fs.close();
-    return true;
-}
 
 OutputSwitchGPIO::OutputSwitchGPIO(unsigned int line_number)
     : _line_number(line_number)
