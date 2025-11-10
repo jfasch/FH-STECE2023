@@ -5,7 +5,7 @@
 class PressureSensorMock : public PressureSensor
 {
 public:
-    PressureSensorMock();
+    PressureSensorMock(float pressure = 0.0f);
     float get_pressure() const override;
 
     //for tests
