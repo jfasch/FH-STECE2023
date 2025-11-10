@@ -7,10 +7,34 @@
 #include <door/timespec.h>
 
 #include <iostream>
+#include <signal.h>
 
+// quit flag with atomic type
+static volatile sig_atomic_t quit = 0;
+
+// hander function to set quit flag
+static void handler(int signal)
+{
+    if (signal == SIGTERM || signal == SIGINT)
+        quit = 1;
+}
 
 int main()
 {
+    struct sigaction sa = { 0 };
+    sa.sa_handler = handler;
+
+    int rv = sigaction(SIGTERM, &sa, nullptr);
+    if (rv == -1) {
+        perror("sigaction(SIGTERM)");
+        return 1;
+    }
+    rv = sigaction(SIGINT, &sa, nullptr);
+    if (rv == -1) {
+        perror("sigaction(SIGINT)");
+        return 1;
+    }
+
     Door door;
 
     InputSwitchMock button1(InputSwitch::State::INPUT_LOW);
@@ -40,8 +64,8 @@ int main()
     // --- run main SPS loop
     auto interval = TimeSpec::from_milliseconds(1);
 
-    while (true) {
-
+    while (!quit) // gracefull termination
+    {
         // get current events and create event struct
         ev = inputs.get_events();
 
@@ -64,6 +88,15 @@ int main()
         auto suspend = interval - spent;
         nanosleep(&suspend, nullptr);
     }
+
+    // cleanup before exit
+    // TODO: Nothing todo for now
+
+    // Bye message
+    std::cout << "Oh, I need to go, someone is calling me..." << std::endl;
+    std::cout << "Bye, see you soon :)" << std::endl;
+    std::cout << "I'll miss you <3" << std::endl;
+    std::cout << "  -- yours, Depperte Door" << std::endl << std::endl;
 
     return 0;
 }
