@@ -1,8 +1,7 @@
-#include <gpiod.h>
+#include "../src/door/input-switch-gpio.h"
 #include <string>
 #include <unistd.h>
 #include <iostream>
-#include <cassert>
 
 
 int main(int argc, char** argv)
@@ -10,34 +9,14 @@ int main(int argc, char** argv)
     std::string gpiodev = argv[1];
     unsigned int line = std::stoi(argv[2]);
 
-    auto chip = gpiod_chip_open(gpiodev.c_str());
-	if (!chip) {
-        perror("gpiod_chip_open");
-        return 1;
-    }
-
-	auto settings = gpiod_line_settings_new();
-    assert(settings);
-    
-	gpiod_line_settings_set_direction(settings, GPIOD_LINE_DIRECTION_INPUT);
-
-	auto line_cfg = gpiod_line_config_new();
-    assert(line_cfg);
-
-    int error = gpiod_line_config_add_line_settings(line_cfg, &line, 1, settings);
-    assert(!error);
-
-    auto request = gpiod_chip_request_lines(chip, nullptr, line_cfg);
-    assert(request != nullptr);
+    InputSwitchGPIO input_switch(gpiodev, &line);
 
     while (true) {
-        auto value = gpiod_line_request_get_value(request, line);
-        if (value == GPIOD_LINE_VALUE_ACTIVE)
+        auto state = input_switch.get_state();
+        if (state == InputSwitch::State::INPUT_HIGH)
             std::cout << "active" << std::endl;
-        else if (value == GPIOD_LINE_VALUE_INACTIVE)
+        else if (state == InputSwitch::State::INPUT_LOW)
             std::cout << "inactive" << std::endl;
-        else 
-            assert("wtf?");
 
         sleep(1);
     }    

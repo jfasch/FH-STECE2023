@@ -1,4 +1,5 @@
 #include <door/door.h>
+#include <door/input-switch.h>
 #include <gtest/gtest.h>
 #include <stdbool.h>
 
@@ -9,7 +10,7 @@ TEST(door_suite, door_init)
 
     // create Input struct
     input_t input;
-    input.sensor_closed = LightBarrier::State::BEAM_SOLID;
+    input.sensor_closed = InputSwitch::State::INPUT_LOW;
 
     // create Output struct
     output_t output;

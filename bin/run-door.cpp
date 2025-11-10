@@ -3,8 +3,7 @@
 #include <door/inputs.h>
 #include <door/outputs.h>
 #include <door/motor-mock.h>
-#include <door/push-button-mock.h>
-#include <door/light-barrier-mock.h>
+#include <door/input-switch-mock.h>
 #include <door/timespec.h>
 
 #include <iostream>
@@ -16,10 +15,10 @@ int main()
 
     Door door;
 
-    PushButtonMock button1(PushButton::State::RELEASED);
-    PushButtonMock button2(PushButton::State::RELEASED);
-    LightBarrierMock light1(LightBarrier::State::BEAM_BROKEN);
-    LightBarrierMock light2(LightBarrier::State::BEAM_SOLID);
+    InputSwitchMock button1(InputSwitch::State::INPUT_LOW);
+    InputSwitchMock button2(InputSwitch::State::INPUT_LOW);
+    InputSwitchMock light1(InputSwitch::State::INPUT_LOW);
+    InputSwitchMock light2(InputSwitch::State::INPUT_HIGH);
     MotorMock motor(Motor::Direction::IDLE);
 
     TimeSpec time;

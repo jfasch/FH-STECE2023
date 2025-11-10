@@ -23,7 +23,7 @@ add_test(
 
 if (LIBGPIOD_FOUND)
   add_executable(gpio-read-value-loop gpio-read-value-loop.cpp)
-  target_link_libraries(gpio-read-value-loop LIBGPIOD::LIBGPIOD)
+  target_link_libraries(gpio-read-value-loop door)
 
   add_executable(push-button-gpio-test push-button-gpio-test.cpp)
   target_link_libraries(
