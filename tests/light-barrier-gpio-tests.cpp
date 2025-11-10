@@ -1,4 +1,4 @@
-#include "../src/door/light-barrier-gpio.h"
+#include <door/light-barrier-gpio.h>
 #include <gtest/gtest.h>
 #include <unistd.h>  
 
