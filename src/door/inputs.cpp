@@ -2,12 +2,13 @@
 #include "event-edge-detector.h"
 
 
-Inputs::Inputs(InputSwitch* button, InputSwitch* button2, InputSwitch* lightbarrier, InputSwitch* lightbarrier2, const TimeSpec& debounce_time)
+Inputs::Inputs(InputSwitch* button, InputSwitch* button2, InputSwitch* lightbarrier, InputSwitch* lightbarrier2, InputSwitch* pressuresensor, const TimeSpec& debounce_time)
 {
     _button = button;
     _button2 = button2;
     _lightbarrier = lightbarrier;
     _lightbarrier2 = lightbarrier2;
+    _pressuresensor = pressuresensor;
 
     _edge_button = new EdgeDetector(button, debounce_time);
     _edge_button2 = new EdgeDetector(button2, debounce_time);
@@ -26,6 +27,8 @@ input_t Inputs::get_inputs()
     input.button_outside = _button2->get_state();
     input.sensor_closed = _lightbarrier->get_state();
     input.sensor_opened = _lightbarrier2->get_state();
+    input.pressure_sensor = _pressuresensor->get_state();
+
     return input;
 
 }

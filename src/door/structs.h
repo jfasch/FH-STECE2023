@@ -10,7 +10,8 @@ typedef struct input
     InputSwitch::State sensor_opened;
     InputSwitch::State button_outside;
     InputSwitch::State button_inside;
-    // TODO: PressureSensor Inputs
+    InputSwitch::State pressure_sensor;
+
 }input_t;
 
 typedef struct events
@@ -19,7 +20,12 @@ typedef struct events
     EdgeDetector::State close_button_pressed;
     EdgeDetector::State light_barrier_1_reached;
     EdgeDetector::State light_barrier_2_reached;
-    // TODO: PressureSensor Events
+    EdgeDetector::State under_pressure;
+    EdgeDetector::State over_pressure;
+    EdgeDetector::State normal_pressure;
+    EdgeDetector::State pressure_sensor_error;
+    
+
 
 }events_t;
 
