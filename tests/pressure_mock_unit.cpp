@@ -2,6 +2,15 @@
 #include <door/pressure-sensor-mock.h>
 #include <door/pressure-sensor-event-generator.h>
 
+TEST(Pressure_read_suite, Pressure_sensor_init_test)
+{
+
+    PressureSensorMock PressureSensor;
+
+    ASSERT_NEAR(PressureSensor.get_pressure(),0.0f,0.001);
+
+};
+
 TEST(Pressure_read_suite, Pressure_sensor_test)
 {
 
