@@ -7,7 +7,6 @@
 #include <door/motor-mock.h>
 #include <door/input-switch-mock.h>
 #include <door/pressure-sensor-mock.h>
-#include <door/pressure-sensor-event-generator.h>
 #include <door/timespec.h>
 
 #include <door/input-switch.h>

@@ -9,15 +9,15 @@ endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 
-find_package(LIBGPIOD)
-if (NOT LIBGPIOD_FOUND)
-  message(WARNING "libgpiod not found (some code will not be built)")
-endif()
-
-find_package(LIBGPIODCXX)
-if (NOT LIBGPIODCXX_FOUND)
-  message(WARNING "libgpiodcxx not found (some code will not be built)")
-endif()
+# find_package(LIBGPIOD)
+# if (NOT LIBGPIOD_FOUND)
+#   message(WARNING "libgpiod not found (some code will not be built)")
+# endif()
+# 
+# find_package(LIBGPIODCXX)
+# if (NOT LIBGPIODCXX_FOUND)
+#   message(WARNING "libgpiodcxx not found (some code will not be built)")
+# endif()
 
 add_subdirectory(bin)
 add_subdirectory(src)

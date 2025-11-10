@@ -6,9 +6,15 @@
 #include <thread>
 #include <unistd.h>
 #include <sys/ioctl.h>
-#include <linux/i2c-dev.h>
 #include <string>
 #include <cstring>
+
+#ifdef __linux__
+#include <linux/i2c-dev.h>
+#else
+// Mock I2C definitions for non-Linux platforms (e.g., macOS)
+#define I2C_SLAVE 0x0703
+#endif
 
 using namespace std;
 
@@ -18,6 +24,7 @@ using namespace std;
 #define BMP280_REG_CALIB 0x88
 
 BMP280::BMP280(const std::string& i2c_dev, unsigned int address) : _fd(-1) {
+#ifdef __linux__
     _fd = open(i2c_dev.c_str(), O_RDWR);
     if (_fd < 0) {
         perror("Failed to open /dev/i2c-1");
@@ -76,6 +83,22 @@ BMP280::BMP280(const std::string& i2c_dev, unsigned int address) : _fd(-1) {
     _dig_P7 = (calib_data[19] << 8) | calib_data[18];
     _dig_P8 = (calib_data[21] << 8) | calib_data[20];
     _dig_P9 = (calib_data[23] << 8) | calib_data[22];
+#else
+    // Non-Linux platform: Initialize with dummy calibration data
+    std::cerr << "BMP280: Running on non-Linux platform - sensor will not work" << std::endl;
+    _dig_T1 = 27504;
+    _dig_T2 = 26435;
+    _dig_T3 = -1000;
+    _dig_P1 = 36477;
+    _dig_P2 = -10685;
+    _dig_P3 = 3024;
+    _dig_P4 = 2855;
+    _dig_P5 = 140;
+    _dig_P6 = -7;
+    _dig_P7 = 15500;
+    _dig_P8 = -14600;
+    _dig_P9 = 6000;
+#endif
 }
 
 BMP280::~BMP280() {
@@ -86,6 +109,7 @@ BMP280::~BMP280() {
 
 float BMP280::get_pressure() const
 {
+#ifdef __linux__
     // Read raw temperature and pressure
     uint8_t press_reg = BMP280_REG_PRESSURE_MSB;
     if (write(_fd, &press_reg, 1) != 1) {
@@ -131,4 +155,8 @@ float BMP280::get_pressure() const
     }
 
     return pressure;
+#else
+    // Non-Linux platform: Return dummy pressure value
+    return 1013.25; // Standard atmospheric pressure in hPa
+#endif
 }
