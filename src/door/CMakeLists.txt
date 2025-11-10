@@ -21,6 +21,9 @@ set(DOOR_FILES
   output-switch-mock.cpp
   output-switch-gpio-sysfs.h
   output-switch-gpio-sysfs.cpp
+
+  small_file_handling.h
+  small_file_handling.cpp
   
   light-barrier.h
   light-barrier-mock.h

@@ -8,6 +8,7 @@
 #include <string>
 
 #include "input-switch-gpio-sysfs.h"
+#include "small_file_handling.h"
 
 static bool write_to_sysfs(const std::string& path, const std::string& value) {
     std::ofstream fs(path);
@@ -47,15 +48,15 @@ InputSwitchGPIOSysfs::InputSwitchGPIOSysfs(unsigned int line_number){
     check_dir.close();
 
     if (!already_exported) {
-        write_to_sysfs("/sys/class/gpio/export", gpio_str);
+        write_string_to_file("/sys/class/gpio/export", gpio_str);
         usleep(100000);
     }
-    write_to_sysfs(inputDirection, "in");
+    write_string_to_file(inputDirection, "in");
 }
 
 InputSwitchGPIOSysfs::~InputSwitchGPIOSysfs()
 {
-    write_to_sysfs("/sys/class/gpio/unexport", std::to_string(_line_number));
+    write_string_to_file("/sys/class/gpio/unexport", std::to_string(_line_number));
 }
 
 InputSwitch::State InputSwitchGPIOSysfs::get_state()
@@ -63,7 +64,7 @@ InputSwitch::State InputSwitchGPIOSysfs::get_state()
 
     const std::string path = "/sys/class/gpio/gpio" + std::to_string(_line_number) + "/value";
 
-    std::string value = read_in_sysfs(path); 
+    std::string value = read_string_from_file(path); 
 
     if (value == "1")
         return State::INPUT_HIGH;

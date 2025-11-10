@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <unistd.h> // for usleep
+#include "small_file_handling.h"
 
 // Helper function to write to a sysfs file
 // Returns true on success, false on failure (e.g., cannot open or write file).
@@ -32,22 +33,22 @@ OutputSwitchGPIO::OutputSwitchGPIO(unsigned int line_number)
 
     if (!already_exported) {
         // Export the GPIO line if not already done.
-        write_to_sysfs("/sys/class/gpio/export", gpio_str);
+        write_string_to_file("/sys/class/gpio/export", gpio_str);
 
         // A small delay might be needed for the sysfs directory to be created.
         usleep(100000); // 100ms
     }
 
-    write_to_sysfs(gpio_path + "/direction", "out");
+    write_string_to_file(gpio_path + "/direction", "out");
 }
 
 OutputSwitchGPIO::~OutputSwitchGPIO()
 {
-    write_to_sysfs("/sys/class/gpio/unexport", std::to_string(_line_number));
+    write_string_to_file("/sys/class/gpio/unexport", std::to_string(_line_number));
 }
 
 void OutputSwitchGPIO::set_state(State state)
 {
     const std::string value = (state == State::OUTPUT_HIGH) ? "1" : "0";
-    write_to_sysfs("/sys/class/gpio/gpio" + std::to_string(_line_number) + "/value", value);
+    write_string_to_file("/sys/class/gpio/gpio" + std::to_string(_line_number) + "/value", value);
 }
