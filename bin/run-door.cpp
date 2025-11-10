@@ -10,6 +10,9 @@
 #include <door/pressure-sensor-event-generator.h>
 #include <door/timespec.h>
 
+#include <door/input-switch.h>
+#include <door/output-switch.h>
+
 #include <string>
 #include <iostream>
 #include <signal.h>
@@ -74,18 +77,27 @@ int main(int argc, char** argv)
     // create door
     Door door;
 
-    // create sensors
-    InputSwitchMock button1(InputSwitch::State::INPUT_LOW);
-    InputSwitchMock button2(InputSwitch::State::INPUT_LOW);
-    InputSwitchMock light1(InputSwitch::State::INPUT_LOW);
-    InputSwitchMock light2(InputSwitch::State::INPUT_HIGH);
+    InputSwitch* inputs;
+    Motor* outputs;
 
-    // Pressure Sensor
-    PressureSensorMock pressureSensor;
-    // Pressure Sensor Event Generator
-    PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
+    if(test == 1)
+    {
+        // create sensors
+        InputSwitchMock button1(InputSwitch::State::INPUT_LOW);
+        InputSwitchMock button2(InputSwitch::State::INPUT_LOW);
+        InputSwitchMock light1(InputSwitch::State::INPUT_LOW);
+        InputSwitchMock light2(InputSwitch::State::INPUT_HIGH);
 
-    MotorMock motor(Motor::Direction::IDLE);
+        // Pressure Sensor
+        PressureSensorMock pressureSensor;
+        // Pressure Sensor Event Generator
+        PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
+
+        MotorMock motor(Motor::Direction::IDLE);
+
+        inputs = new InputSwitchMock(&button1, &button2, &light1, &light2, &pressureSensorEG, time);
+        outputs = new MotorMock(&motor);
+    }
 
     TimeSpec time;
 
