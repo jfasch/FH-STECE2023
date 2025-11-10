@@ -1,4 +1,4 @@
-#include "../src/door/motorLED.h"
+#include <door/motorLED.h>
 #include <gtest/gtest.h>
 #include <unistd.h>
 

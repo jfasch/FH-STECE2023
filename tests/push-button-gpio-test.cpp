@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include "../src/door/push-button-gpio.h"
+#include <door/push-button-gpio.h>
 
 int main() {
     try {
