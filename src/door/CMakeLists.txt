@@ -59,8 +59,7 @@ if (LIBGPIOD_FOUND)                                    # <-- set toplevel by fin
     output-switch-gpio.h
     input-switch-gpio.cpp
     input-switch-gpio.h
-
-  )
+    )
 endif()
 
 
