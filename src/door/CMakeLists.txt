@@ -13,10 +13,14 @@ set(DOOR_FILES
   input-switch.h
   input-switch-mock.h
   input-switch-mock.cpp
+  input-switch-gpio-sysfs.h
+  input-switch-gpio-sysfs.cpp
 
   output-switch.h
   output-switch-mock.h
   output-switch-mock.cpp
+  output-switch-gpio-sysfs.h
+  output-switch-gpio-sysfs.cpp
   
   pressure-sensor.h
   pressure-sensor-mock.h
