@@ -19,8 +19,6 @@ add_executable(event event.cpp)
 
 add_executable(2025-10-20 2025-10-20.cpp)
 
-add_executable(uninitialized-memory uninitialized-memory.cpp)
-
 add_executable(sizeof sizeof.cpp)
 
 add_executable(signals signals.cpp)
