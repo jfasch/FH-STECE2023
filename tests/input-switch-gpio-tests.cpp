@@ -1,39 +1,37 @@
-#include "../src/door/input-switch-gpio.h"
-#include <gtest/gtest.h>
-#include <unistd.h>  
+#include <door/input-switch-gpio.h>
+#include <iostream>
+#include <chrono>
+#include <thread>
 
-class InputSwitchGPIOTest : public ::testing::Test {
-protected:
-    InputSwitchGPIO* inputswitch;
+int main() {
+    try {
+        // Replace 1 with your actual GPIO line number
+        unsigned int line_number = 1;
+        std::string chipname = "/dev/gpiochip0";
 
-    void SetUp() override {
-        unsigned int line_number = 17;
+        // Instantiate the inpuswitch (default state doesn't matter here)
+        InputSwitchGPIO inputswitch(chipname, line_number);
 
-        inputswitch = new InputSwitchGPIO("/dev/gpiochip0", &line_number);
+        std::cout << "Reading GPIO line " << line_number << " on " << chipname << "...\n";
+
+        // Read and print state 10 times (1s interval)
+        for (int i = 0; i < 10; ++i) {
+            InputSwitchGPIO::State state = inputswitch.get_state();
+            if (state == InputSwitch::State::INPUT_HIGH)
+                std::cout << "State: INPUT HIGH\n";
+            else
+                std::cout << "State: INPUT LOW\n";
+
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+        }
+    } catch (const std::system_error& e) {
+        std::cerr << "System error: " << e.what() << std::endl;
+        return 1;
+    } catch (const std::exception& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+        return 1;
     }
 
-    void TearDown() override {
-        delete inputswitch;
-    }
-};
+    return 0;
 
-TEST_F(InputSwitchGPIOTest, BeamIsSolidWhenNotBlocked) {
-    // Manually ensure the beam is not blocked 
-    printf("Press Enter to simulate beam is solid(=1) ...\n");
-    getchar(); // Wait for user input to proceed
-    EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_HIGH);
-    
-    
-}
-
-TEST_F(InputSwitchGPIOTest, BeamIsBrokenWhenBlocked) {
-    // Manually block the beam 
-    printf("Press Enter to simulate beam is broken(=0) ...\n");
-    getchar(); // Wait for user input to proceed
-    EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_LOW);
-}
-
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }

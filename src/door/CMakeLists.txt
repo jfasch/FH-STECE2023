@@ -55,14 +55,11 @@ if (LIBGPIOD_FOUND)                                    # <-- set toplevel by fin
     motor-stepper.h
     motor-stepper.cpp
     
-    light-barrier-gpio.cpp
-    light-barrier-gpio.h
     output-switch-gpio.cpp
     output-switch-gpio.h
     input-switch-gpio.cpp
     input-switch-gpio.h
-    push-button-gpio.h
-    push-button-gpio.cpp
+
   )
 endif()
 
