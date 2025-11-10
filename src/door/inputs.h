@@ -2,12 +2,13 @@
 
 #include "structs.h"
 #include "timespec.h"
+#include "pressure-sensor-event-generator.h"
 
 
 class Inputs
 {
 public:
-    Inputs(InputSwitch* button, InputSwitch* button2, InputSwitch* lightbarrier, InputSwitch* lightbarrier2, PressureSensorEventGenerator* pressuresensor, const TimeSpec& debounce_time);
+    Inputs(InputSwitch* button, InputSwitch* button2, InputSwitch* LightBarrier1, InputSwitch* LightBarrier2, PressureSensorEventGenerator* pressuresensor, const TimeSpec& debounce_time);
     ~Inputs();
 
     // void check(const Events& events);
@@ -18,8 +19,8 @@ public:
 private:
     InputSwitch* _button;
     InputSwitch* _button2;
-    InputSwitch* _lightbarrier;
-    InputSwitch* _lightbarrier2;
+    InputSwitch* _LightBarrier1;
+    InputSwitch* _LightBarrier2;
     PressureSensorEventGenerator* _pressuresensor;
 
     EdgeDetector *_edge_button;

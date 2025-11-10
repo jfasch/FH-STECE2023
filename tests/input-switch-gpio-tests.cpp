@@ -1,4 +1,4 @@
-#include "../src/door/input-switch-gpio.h"
+#include <door/input-switch-gpio.h>
 #include <gtest/gtest.h>
 #include <unistd.h>  
 

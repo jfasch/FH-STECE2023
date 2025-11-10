@@ -1,4 +1,4 @@
-#include "../src/door/motor-stepper.h"
+#include <door/motor-stepper.h>
 #include <gtest/gtest.h>
 #include <unistd.h>
 #include <string>
