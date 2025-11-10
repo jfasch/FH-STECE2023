@@ -75,10 +75,10 @@ int main(int argc, char** argv)
     Door door;
 
     // create sensors
-    InputSwitchMock button1(InputSwitch::State::INPUT_LOW);
-    InputSwitchMock button2(InputSwitch::State::INPUT_LOW);
-    InputSwitchMock light1(InputSwitch::State::INPUT_LOW);
-    InputSwitchMock light2(InputSwitch::State::INPUT_HIGH);
+    InputSwitchMock button_outside(InputSwitch::State::INPUT_LOW);
+    InputSwitchMock button_inside(InputSwitch::State::INPUT_LOW);
+    InputSwitchMock lightbarrier_closed(InputSwitch::State::INPUT_LOW);
+    InputSwitchMock lightbarrier_open(InputSwitch::State::INPUT_HIGH);
 
     // Pressure Sensor
     PressureSensorMock pressureSensor;
@@ -89,7 +89,7 @@ int main(int argc, char** argv)
 
     TimeSpec time;
 
-    Inputs inputs(&button1, &button2, &light1, &light2, &pressureSensorEG, time);
+    Inputs inputs(&button_outside, &button_inside, &lightbarrier_closed, &lightbarrier_open, &pressureSensorEG, time);
     Outputs outputs(&motor);
 
     input_t in;

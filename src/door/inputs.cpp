@@ -3,16 +3,16 @@
 #include "pressure-sensor-event-generator.h"
 
 
-Inputs::Inputs(InputSwitch* button, InputSwitch* button2, InputSwitch* lightbarrier, InputSwitch* lightbarrier2, PressureSensorEventGenerator* pressuresensor, const TimeSpec& debounce_time)
+Inputs::Inputs(InputSwitch* button_outside, InputSwitch* button_inside, InputSwitch* lightbarrier_closed, InputSwitch* lightbarrier_open, PressureSensorEventGenerator* pressuresensor, const TimeSpec& debounce_time)
 {
-    _button = button;
-    _button2 = button2;
-    _lightbarrier = lightbarrier;
-    _lightbarrier2 = lightbarrier2;
+    _button_outside = button_outside;
+    _button_inside = button_inside;
+    _lightbarrier_closed = lightbarrier_closed;
+    _lightbarrier_open = lightbarrier_open;
     _pressuresensor = pressuresensor;
 
-    _edge_button = new EdgeDetector(button, debounce_time);
-    _edge_button2 = new EdgeDetector(button2, debounce_time);
+    _edge_button = new EdgeDetector(button_outside, debounce_time);
+    _edge_button2 = new EdgeDetector(button_inside, debounce_time);
 }
 
 Inputs::~Inputs()
@@ -24,10 +24,10 @@ Inputs::~Inputs()
 input_t Inputs::get_inputs()
 {
     input_t input;
-    input.button_inside = _button->get_state();
-    input.button_outside = _button2->get_state();
-    input.sensor_closed = _lightbarrier->get_state();
-    input.sensor_opened = _lightbarrier2->get_state();
+    input.button_outside = _button_outside->get_state();
+    input.button_inside = _button_inside->get_state();
+    input.sensor_closed = _lightbarrier_closed->get_state();
+    input.sensor_open = _lightbarrier_open->get_state();
     input.pressuresensor = _pressuresensor->get_event();
 
     return input;

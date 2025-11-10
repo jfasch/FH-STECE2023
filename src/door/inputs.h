@@ -7,7 +7,7 @@
 class Inputs
 {
 public:
-    Inputs(InputSwitch* button, InputSwitch* button2, InputSwitch* lightbarrier, InputSwitch* lightbarrier2, PressureSensorEventGenerator* pressuresensor, const TimeSpec& debounce_time);
+    Inputs(InputSwitch* button_outside, InputSwitch* button_inside, InputSwitch* light_barrier_closed, InputSwitch* light_barrier_open, PressureSensorEventGenerator* pressuresensor, const TimeSpec& debounce_time);
     ~Inputs();
 
     // void check(const Events& events);
@@ -16,10 +16,10 @@ public:
 
     
 private:
-    InputSwitch* _button;
-    InputSwitch* _button2;
-    InputSwitch* _lightbarrier;
-    InputSwitch* _lightbarrier2;
+    InputSwitch* _button_outside;
+    InputSwitch* _button_inside;
+    InputSwitch* _lightbarrier_closed;
+    InputSwitch* _lightbarrier_open;
     PressureSensorEventGenerator* _pressuresensor;
 
     EdgeDetector *_edge_button;
