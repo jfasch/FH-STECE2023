@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include <door/push-button-gpio.h>
+#include "../src/door/input-switch-gpio.h"
 
 int main() {
     try {
@@ -9,18 +9,18 @@ int main() {
         unsigned int line_offset = 1;
         std::string chipname = "/dev/gpiochip0";
 
-        // Instantiate the button (default state doesn't matter here)
-        PushButtonGpio button(PushButton::RELEASED, line_offset, chipname);
+        // Instantiate the input switch
+        InputSwitchGPIO button(chipname, &line_offset);
 
         std::cout << "Reading GPIO line " << line_offset << " on " << chipname << "...\n";
 
         // Read and print state 10 times (1s interval)
         for (int i = 0; i < 10; ++i) {
-            PushButton::State state = button.get_state();
-            if (state == PushButton::PRESSED)
-                std::cout << "State: PRESSED\n";
+            InputSwitch::State state = button.get_state();
+            if (state == InputSwitch::State::INPUT_HIGH)
+                std::cout << "State: INPUT_HIGH\n";
             else
-                std::cout << "State: RELEASED\n";
+                std::cout << "State: INPUT_LOW\n";
 
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
