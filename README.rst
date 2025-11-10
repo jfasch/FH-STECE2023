@@ -191,26 +191,25 @@ Structural Refactoring — Proposal
 
 This section outlines the proposed plan for the refactoring of the `src/door` module.
 
-Ziel
+Goal
 ----
 
 This document describes the proposed structural refactoring plan for the `src/door` module. The goal is a clear separation of responsibilities, improved clarity through directories, and better test/deployment flexibility via separate libraries (Core / Mocks / Hardware).
 
-Inhalt
-------
+Contents
+--------
 
 .. contents::
    :local:
 
-1. Kurzüberblick
-2. Neue Verzeichnisstruktur
-3. Include-Konventionen
-4. CMake: Option B (Multi-Library) — vollständiges Beispiel
-5. Schritt-für-Schritt-Migrationsanleitung (Git-kompatibel)
+1. Brief Overview
+2. New Directory Structure
+3. Include Conventions
+4. CMake: Option B (Multi-Library) — Complete Example
+5. Step-by-Step Migration Guide (Git-compatible)
 6. Tests & Debugging
-7. README / .rst Dokumentation (Vorlage)
 
-1. Kurzüberblick
+1. Brief Overview
 -----------------
 
 Instead of keeping all files flat in `src/door/`, the module will be split into multiple logical subdirectories (e.g., `core`, `common`, `motor`, `input_switch`, `output_switch`, `pressure_sensor`).
@@ -222,8 +221,8 @@ Key design decisions:
 * Between modules: system-include syntax with project root `door`, e.g., ``#include <door/motor/motor.h>``.
 * CMake generates three libraries: `door_core`, `door_mocks`, and `door_hw`.
 
-2. Neue Verzeichnisstruktur
----------------------------
+2. New Directory Structure
+--------------------------
 
 .. code-block:: text
 
@@ -247,8 +246,8 @@ Key design decisions:
    └── pressure_sensor/
        └── ...
 
-3. Include-Konventionen
------------------------
+3. Include Conventions
+----------------------
 
 * Within the same module (e.g., `motor`):
 
@@ -265,8 +264,8 @@ Key design decisions:
 
 This avoids "../"-includes and keeps include paths stable if files are moved or libraries are separated.
 
-4. CMake: Option B (Multi-Library) — vollständiges Beispiel
------------------------------------------------------------
+4. CMake: Option B (Multi-Library) — Complete Example
+------------------------------------------------------
 
 .. code-block:: cmake
 
@@ -283,7 +282,7 @@ This avoids "../"-includes and keeps include paths stable if files are moved or 
      common/timespec.h
      common/timespec.cpp
      common/event-edge-detector.h
-     common/event-edge-detector.cpp
+     common.h
      motor/motor.h
      input_switch/input-switch.h
      output_switch/output-switch.h
@@ -321,22 +320,22 @@ This avoids "../"-includes and keeps include paths stable if files are moved or 
      target_link_libraries(door_hw PUBLIC door_core LIBGPIOD::LIBGPIOD)
    endif()
 
-5. Schritt-für-Schritt-Migrationsanleitung
-------------------------------------------
+5. Step-by-Step Migration Guide
+-------------------------------
 
-1. Branch erstellen (Git)
+1. Create branch (Git)
 
 .. code-block:: console
 
    $ git checkout -b refactor/structural
 
-2. Anlegen der neuen Verzeichnisse lokal
+2. Create the new directories locally
 
 .. code-block:: console
 
    $ mkdir -p src/door/{core,common,motor,input_switch,output_switch,pressure_sensor}
 
-3. Dateien schrittweise verschieben (in kleinen Commits)
+3. Move files step-by-step (in small commits)
 
 * Recommended: move headers first, adjust includes, commit; then move implementations.
 
@@ -347,7 +346,7 @@ This avoids "../"-includes and keeps include paths stable if files are moved or 
    $ git add -A
    $ git commit -m "refactor(motor): move motor files into motor/ and update includes"
 
-4. CMake anpassen
+4. Adjust CMake
 
 * Replace old DOOR_FILES list with new paths or use multi-library setup above.
 * Ensure `target_include_directories(... ${CMAKE_CURRENT_SOURCE_DIR}/..)` remains.
@@ -362,7 +361,7 @@ This avoids "../"-includes and keeps include paths stable if files are moved or 
    $ make -j$(nproc)
    $ ./tests/door-tests
 
-6. Iteriere: fix compile errors, include paths, linker errors in small commits.
+6. Iterate: fix compile errors, include paths, linker errors in small commits.
 
 6. Tests & Debugging
 --------------------
@@ -370,17 +369,3 @@ This avoids "../"-includes and keeps include paths stable if files are moved or 
 * Run unit tests after each significant step.
 * If linker errors occur: check that target is added and linked in CMake.
 * For include errors: check spelling and that `target_include_directories(... ${CMAKE_CURRENT_SOURCE_DIR}/..)` is set.
-
-7. README / .rst Documentation (Vorlage)
-----------------------------------------
-
-* Purpose of the new structure
-* How to build (short cmake/make instructions)
-* How to switch between Mocks and Hardware (which targets to link)
-* Example include conventions
-
-Abschluss
----------
-
-This document contains a full template for migrating to the multi-library variant (Option B) and a pragmatic step-by-step Git migration guide. Key points: small steps, frequent build/test, and clear include rules.
-
