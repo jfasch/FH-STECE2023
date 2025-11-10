@@ -4,6 +4,13 @@
 #include <door/inputs.h>
 #include <door/event-edge-detector.h>
 #include <door/input-switch-mock.h>
+#include <door/inputs.h>
+#include <door/pressure-sensor.h>
+#include <door/pressure-sensor-event-generator.h>
+
+
+
+
 
 
 TEST(input_suite, input_init)
@@ -13,6 +20,8 @@ TEST(input_suite, input_init)
     InputSwitchMock do_open(InputSwitch::State::INPUT_LOW);
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);    // door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // door not in "opened" position
+    PressureSensorMock pressuresensor;
+
     
 
     // create Input struct
