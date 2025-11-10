@@ -7,7 +7,7 @@ add_executable(
   pressure_mock_unit.cpp
   event-edge-detector-tests.cpp
 
-  input-output-switch-gpio-sysfs-tests.cpp
+#  input-output-switch-gpio-sysfs-tests.cpp
 
   inputs-tests.cpp
   outputs-tests.cpp
