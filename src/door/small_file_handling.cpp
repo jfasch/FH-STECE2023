@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
-void write_string_to_file(std::string &dest_filepath, const std::string &content)
+void write_string_to_file(const std::string &dest_filepath, const std::string &content)
 {
     int dest_fd = open(dest_filepath.c_str(), O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
     if(dest_fd < 0)
@@ -20,6 +20,8 @@ void write_string_to_file(std::string &dest_filepath, const std::string &content
 
     if(nbytes_written != (ssize_t) content.length())
     {
+
+
         throw std::runtime_error("Error writing string to file");
     }
 
@@ -34,7 +36,7 @@ void write_number_to_file(const std::string &dest_filepath,const int number)
         throw std::runtime_error("Error opening file for writing number");
     }
 
-    ssize_t nbytes_written = write(dest_fd,(const void*) number, sizeof(int));
+    ssize_t nbytes_written = write(dest_fd,(const void*) &number, sizeof(int));
 
     if(nbytes_written != (ssize_t) sizeof(int))
     {

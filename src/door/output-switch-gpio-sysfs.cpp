@@ -5,7 +5,7 @@
 #include "small_file_handling.h"
 
 
-OutputSwitchGPIO::OutputSwitchGPIO(unsigned int line_number)
+OutputSwitchGPIOSysfs::OutputSwitchGPIOSysfs(unsigned int line_number)
     : _line_number(line_number)
 {
     // Convert line number to string for sysfs paths.
@@ -28,12 +28,12 @@ OutputSwitchGPIO::OutputSwitchGPIO(unsigned int line_number)
     write_string_to_file(gpio_path + "/direction", "out");
 }
 
-OutputSwitchGPIO::~OutputSwitchGPIO()
+OutputSwitchGPIOSysfs::~OutputSwitchGPIOSysfs()
 {
     write_string_to_file("/sys/class/gpio/unexport", std::to_string(_line_number));
 }
 
-void OutputSwitchGPIO::set_state(State state)
+void OutputSwitchGPIOSysfs::set_state(State state)
 {
     const std::string value = (state == State::OUTPUT_HIGH) ? "1" : "0";
     write_string_to_file("/sys/class/gpio/gpio" + std::to_string(_line_number) + "/value", value);
