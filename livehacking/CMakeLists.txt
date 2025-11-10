@@ -14,3 +14,10 @@ add_executable(assignment assignment.cpp)
 add_executable(auto auto.cpp)
 
 add_executable(event event.cpp)
+
+# add_executable(str-segfault-maybe str-segfault-maybe.cpp)
+
+add_executable(2025-10-20 2025-10-20.cpp)
+
+add_executable(signals signals.cpp)
+target_compile_options(signals PRIVATE -Wno-div-by-zero)
