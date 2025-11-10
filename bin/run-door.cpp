@@ -89,7 +89,7 @@ int main(int argc, char** argv)
 
     TimeSpec time;
 
-    Inputs inputs(&button1, &button2, &light1, &light2, &s1, time);
+    Inputs inputs(&button1, &button2, &light1, &light2, &pressureSensorEG, time);
     Outputs outputs(&motor);
 
     input_t in;
