@@ -26,3 +26,4 @@ add_executable(sizeof sizeof.cpp)
 add_executable(signals signals.cpp)
 target_compile_options(signals PRIVATE -Wno-div-by-zero)
 
+add_executable(defint defint.cpp)

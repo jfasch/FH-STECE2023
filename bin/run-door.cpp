@@ -6,8 +6,11 @@
 #include <door/outputs.h>
 #include <door/motor-mock.h>
 #include <door/input-switch-mock.h>
+#include <door/pressure-sensor-mock.h>
+#include <door/pressure-sensor-event-generator.h>
 #include <door/timespec.h>
 
+#include <string>
 #include <iostream>
 #include <signal.h>
 
@@ -21,8 +24,39 @@ static void handler(int signal)
         quit = 1;
 }
 
-int main()
+int main(int argc, char** argv)
 {
+    // test flag
+    int test = 0;
+
+    // too many arguments
+    if (argc > 2)
+    {
+        std::cout << "Error: Too many arguments!" << std::endl;
+        std::cout << "Usage: ./run-door [--test]" << std::endl;
+        
+        return 1;
+    }
+
+    // one additional argument
+    if (argc == 2)
+    {
+        std::string flag = argv[1];
+        if (flag == "--test")
+        {
+            test = 1;
+            std::cout << "Info: Test run, only using mock sensors." << std::endl;
+        }
+        else
+        {
+            std::cout << "Error: Invalide argument!" << std::endl;
+            std::cout << "Usage: ./run-door [--test]" << std::endl;
+
+            return 1;
+        }
+    }
+
+    // event handler for SIGTERM and SIGINT
     struct sigaction sa = { 0 };
     sa.sa_handler = handler;
 
@@ -37,13 +71,19 @@ int main()
         return 1;
     }
 
+    // create door
     Door door;
 
+    // create sensors
     InputSwitchMock button1(InputSwitch::State::INPUT_LOW);
     InputSwitchMock button2(InputSwitch::State::INPUT_LOW);
     InputSwitchMock light1(InputSwitch::State::INPUT_LOW);
     InputSwitchMock light2(InputSwitch::State::INPUT_HIGH);
-    PressureSensorEventGenerator s1();
+
+    // Pressure Sensor
+    PressureSensorMock pressureSensor;
+    // Pressure Sensor Event Generator
+    PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
 
     MotorMock motor(Motor::Direction::IDLE);
 
@@ -90,7 +130,15 @@ int main()
 
         // suspend for the rest of the interval
         auto suspend = interval - spent;
-        nanosleep(&suspend, nullptr);
+        rv = nanosleep(&suspend, nullptr);
+        if (rv == -1) {
+            if (errno == EINTR)
+                continue;
+            else {
+                perror("nanosleep");
+                return 1;
+            }
+        }
     }
 
     // cleanup before exit
