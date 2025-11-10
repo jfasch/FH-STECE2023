@@ -1,22 +1,20 @@
-#include <door/input-switch-gpio.h>
+#include <door/input-switch-gpio-sysfs.h>
 #include <iostream>
 #include <chrono>
 #include <thread>
 
 int main() {
     try {
-        // Replace 1 with your actual GPIO line number
-        unsigned int line_number = 1;
-        std::string chipname = "/dev/gpiochip0";
+        unsigned int input_line = 529;
 
-        // Instantiate the inpuswitch (default state doesn't matter here)
-        InputSwitchGPIO inputswitch(chipname, line_number);
+        // Instantiate the inpuswitch 
+        InputSwitchGPIOSysfs inputswitch(input_line);
 
-        std::cout << "Reading GPIO line " << line_number << " on " << chipname << "...\n";
+        std::cout << "Reading GPIO line " << input_line << " on " << std::endl;
 
         // Read and print state 10 times (1s interval)
         for (int i = 0; i < 10; ++i) {
-            InputSwitchGPIO::State state = inputswitch.get_state();
+            InputSwitch::State state = inputswitch.get_state();
             if (state == InputSwitch::State::INPUT_HIGH)
                 std::cout << "State: INPUT HIGH\n";
             else
