@@ -2,19 +2,12 @@
 #include <door/pressure-sensor-mock.h>
 #include <door/pressure-sensor-event-generator.h>
 
-TEST(Pressure_read_suite, Pressure_sensor_init_test)
-{
-
-    PressureSensorMock PressureSensor;
-
-    ASSERT_NEAR(PressureSensor.get_pressure(),0.0f,0.001);
-
-};
-
 TEST(Pressure_read_suite, Pressure_sensor_test)
 {
 
-    PressureSensorMock PressureSensor;
+    PressureSensorMock PressureSensor(0.0f);
+
+    ASSERT_NEAR(PressureSensor.get_pressure(),0.0f,0.001);
 
     PressureSensor.set_pressure(25.12);
 
@@ -24,7 +17,7 @@ TEST(Pressure_read_suite, Pressure_sensor_test)
 
 TEST(Pressure_read_suite, Pressure_sensor_event_generator_test)
 {
-    PressureSensorMock PressureSensor;
+    PressureSensorMock PressureSensor(0.0f);
     PressureSensor.set_pressure(25.12);
 
     PressureSensorEventGenerator event_generator(&PressureSensor, 20.0f, 30.0f);
@@ -43,7 +36,7 @@ TEST(Pressure_read_suite, Pressure_sensor_event_generator_test)
 
 TEST(Pressure_read_suite, Pressure_sensor_event_generator_hysteresis_test)
 {
-    PressureSensorMock mock;
+    PressureSensorMock mock(0.0f);
     // thresholds
     float under = 1.0f;
     float over = 3.0f;
