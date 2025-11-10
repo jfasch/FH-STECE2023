@@ -1,4 +1,4 @@
-#include <door/event-edge-detector.h>
+#include "event-edge-detector.h"
 
 EdgeDetector::EdgeDetector(InputSwitch* input, const TimeSpec& debounce_time)
 {
