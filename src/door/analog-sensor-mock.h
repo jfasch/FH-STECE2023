@@ -1,10 +1,10 @@
 #pragma once
 #include "analog-sensor.h"
 
-class MockAnalogSensor : public AnalogSensor
+class AnalogSensorMock : public AnalogSensor
 {
 public:
-MockAnalogSensor();
+AnalogSensorMock();
     float get_value() const override;
     // for tests
     void set_value(float value);

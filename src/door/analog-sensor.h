@@ -4,7 +4,7 @@ class AnalogSensor
 {
 public:
     virtual ~AnalogSensor() = default;
-    
+
     virtual float get_value() const = 0;
-    virtual float set_value() const = 0;
+    virtual void set_value(float value) = 0; // Remove `const`, add parameter
 };
