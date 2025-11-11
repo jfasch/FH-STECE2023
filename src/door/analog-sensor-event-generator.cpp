@@ -1,6 +1,6 @@
 #include "analog-sensor-event-generator.h"
 
-AnalogSensorEventGenerator::AnalogSensorEventGenerator(Analog_Sensor* sensor, 
+AnalogSensorEventGenerator::AnalogSensorEventGenerator(AnalogSensor* sensor, 
                                                            float under_value, 
                                                            float over_value,
                                                            bool hysteresis_enabled,

@@ -12,7 +12,7 @@ enum class AnalogSensorEvent
 class AnalogSensorEventGenerator
 {
     public:
-        AnalogSensorEventGenerator(Analog_Sensor* sensor, 
+        AnalogSensorEventGenerator(AnalogSensor* sensor, 
                                      float under_value = 0.0f, 
                                      float over_value = 0.0f,
                                      bool hysteresis_enabled = false,

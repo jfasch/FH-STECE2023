@@ -1,9 +1,9 @@
 #pragma once
 
-class Analog_Sensor
+class AnalogSensor
 {
 public:
-    virtual ~Analog_Sensor() = default;
+    virtual ~AnalogSensor() = default;
     
     virtual float get_value() const = 0;
     virtual float set_value() const = 0;
