@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
-#include <door/adc-mock.h>
+#include <door/analog-sensor-mock.h>
 
 TEST(Adc_mock_suite, Adc_test)
 {
-    MockAdc adc;
+    AnalogSensorMock adc;
 
     adc.set_value(3.3f);
 
