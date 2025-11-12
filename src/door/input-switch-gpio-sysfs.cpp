@@ -39,7 +39,7 @@ InputSwitch::State InputSwitchGPIOSysfs::get_state()
 
     std::string value = read_string_from_file(path); 
 
-    if (value == "1")
+    if (value.at(0) == '1')
         return State::INPUT_HIGH;
     else
         return State::INPUT_LOW;
