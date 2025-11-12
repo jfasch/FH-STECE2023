@@ -5,7 +5,7 @@
 
 
 
-InputSwitchGPIO::InputSwitchGPIO(const std::string& gpiodevice, unsigned int* line_number)
+InputSwitchGPIO::InputSwitchGPIO(const std::string& gpiodevice, unsigned int& line_number)
     : _gpiodevice(gpiodevice), _line_number(line_number)
 {
    _chip = gpiod_chip_open(gpiodevice.c_str());
@@ -20,7 +20,7 @@ InputSwitchGPIO::InputSwitchGPIO(const std::string& gpiodevice, unsigned int* li
 	line_cfg = gpiod_line_config_new();
     assert(line_cfg);
 
-    int error = gpiod_line_config_add_line_settings(line_cfg, _line_number, 1, settings);
+    int error = gpiod_line_config_add_line_settings(line_cfg, &_line_number, 1, settings);
     assert(!error);
 
     request = gpiod_chip_request_lines(_chip, nullptr, line_cfg);
@@ -38,7 +38,7 @@ InputSwitchGPIO::~InputSwitchGPIO()
 
 InputSwitch::State InputSwitchGPIO::get_state()
 {
-    auto value = gpiod_line_request_get_value(request, *_line_number); 
+    auto value = gpiod_line_request_get_value(request, _line_number); 
     
     return (value == 1)
               ? InputSwitch::State::INPUT_HIGH
