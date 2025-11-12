@@ -35,7 +35,7 @@ TEST(Pressure_read_suite, Pressure_sensor_event_generator_test)
 TEST(Pressure_read_suite, Pressure_sensor_event_generator_hysteresis_test)
 {
     PressureSensorMock mock;
-    // thresholds
+     // thresholds
     float under = 1.0f;
     float over = 3.0f;
 

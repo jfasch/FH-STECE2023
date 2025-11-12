@@ -44,7 +44,6 @@ int main(int argc, char** argv)
         if (flag == "--test")
         {
             test = 1;
-            std::cout << "Info: Test run, only using mock sensors." << std::endl;
         }
         else
         {
@@ -74,22 +73,54 @@ int main(int argc, char** argv)
     Door door;
 
     // create sensors
-    InputSwitchMock button1(InputSwitch::State::INPUT_LOW);
-    InputSwitchMock button2(InputSwitch::State::INPUT_LOW);
-    InputSwitchMock light1(InputSwitch::State::INPUT_LOW);
-    InputSwitchMock light2(InputSwitch::State::INPUT_HIGH);
+    InputSwitch* button_outside;
+    InputSwitch* button_inside;
+    InputSwitch* lightbarrier_closed;
+    InputSwitch* lightbarrier_open;
+    PressureSensor* pressureSensor;
+    Motor* motor;
 
-    // Pressure Sensor
-    PressureSensorMock pressureSensor;
+    if (test)
+    {
+        // Mock sensors
+        std::cout << "Info: Test run, only using mock sensors." << std::endl;
+
+        // Buttons
+        button_outside = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        button_inside = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        // Lightbarriers
+        lightbarrier_closed = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        lightbarrier_open = new InputSwitchMock(InputSwitch::State::INPUT_HIGH);
+        // Pressure sensor
+        pressureSensor = new PressureSensorMock();
+        // Motor
+        motor = new MotorMock(Motor::Direction::IDLE);
+    }
+    else
+    {
+        // Real sensors
+        std::cout << "Info: Normal run, using real sensors. [not realy, not implemented yet]" << std::endl;
+
+        // TODO: change to real sensors!
+        // Buttons
+        button_outside = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        button_inside = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        // Lightbarriers
+        lightbarrier_closed = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        lightbarrier_open = new InputSwitchMock(InputSwitch::State::INPUT_HIGH);
+        // Pressure sensor
+        pressureSensor = new PressureSensorMock();
+        // Motor
+        motor = new MotorMock(Motor::Direction::IDLE);
+    }
+
     // Pressure Sensor Event Generator
-    PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
-
-    MotorMock motor(Motor::Direction::IDLE);
+    PressureSensorEventGenerator pressureSensorEG(pressureSensor);
 
     TimeSpec time;
 
-    Inputs inputs(&button1, &button2, &light1, &light2, &pressureSensorEG, time);
-    Outputs outputs(&motor);
+    Inputs inputs(button_outside, button_inside, lightbarrier_closed, lightbarrier_open, &pressureSensorEG, time);
+    Outputs outputs(motor);
 
     input_t in;
     events_t ev;
@@ -141,9 +172,15 @@ int main(int argc, char** argv)
     }
 
     // cleanup before exit
-    // TODO: Nothing todo for now
+    delete button_outside;
+    delete button_inside;
+    delete lightbarrier_closed;
+    delete lightbarrier_open;
+    delete pressureSensor;
+    delete motor;
 
     // Bye message
+    std::cout << std::endl;
     std::cout << "Oh, I need to go, someone is calling me..." << std::endl;
     std::cout << "Bye, see you soon :)" << std::endl;
     std::cout << "I'll miss you <3" << std::endl;

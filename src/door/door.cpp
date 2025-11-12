@@ -9,7 +9,7 @@ Door::Door()
 
 output_t Door::init(const input_t input)
 {
-    if ((input.sensor_closed == InputSwitch::State::INPUT_LOW) && !(input.sensor_opened == InputSwitch::State::INPUT_HIGH))
+    if ((input.sensor_closed == InputSwitch::State::INPUT_LOW) && !(input.sensor_open == InputSwitch::State::INPUT_HIGH))
     {
         _state = State::CLOSED;
     }
