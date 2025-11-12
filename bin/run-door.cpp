@@ -7,7 +7,6 @@
 #include <door/motor-mock.h>
 #include <door/input-switch-mock.h>
 #include <door/pressure-sensor-mock.h>
-#include <door/pressure-sensor-event-generator.h>
 #include <door/timespec.h>
 
 #include <string>
@@ -27,7 +26,7 @@ static void handler(int signal)
 int main(int argc, char** argv)
 {
     // test flag
-    int test = 0;
+    [[maybe_unused]] int test = 0;
 
     // too many arguments
     if (argc > 2)

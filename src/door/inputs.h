@@ -2,6 +2,7 @@
 
 #include "structs.h"
 #include "timespec.h"
+#include "pressure-sensor-event-generator.h"
 
 
 class Inputs

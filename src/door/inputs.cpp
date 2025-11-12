@@ -29,7 +29,6 @@ input_t Inputs::get_inputs()
     input.sensor_closed = _lightbarrier_closed->get_state();
     input.sensor_open = _lightbarrier_open->get_state();
     input.pressuresensor = _pressuresensor->get_event();
-
     return input;
 
 }

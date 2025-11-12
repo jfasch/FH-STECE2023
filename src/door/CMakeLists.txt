@@ -22,14 +22,6 @@ set(DOOR_FILES
   output-switch-gpio-sysfs.h
   output-switch-gpio-sysfs.cpp
   
-  light-barrier.h
-  light-barrier-mock.h
-  light-barrier-mock.cpp
-
-  push-button.h
-  push-button-mock.h
-  push-button-mock.cpp
-  
   pressure-sensor.h
   pressure-sensor-mock.h
   pressure-sensor-mock.cpp
@@ -63,15 +55,11 @@ if (LIBGPIOD_FOUND)                                    # <-- set toplevel by fin
     motor-stepper.h
     motor-stepper.cpp
     
-    light-barrier-gpio.cpp
-    light-barrier-gpio.h
     output-switch-gpio.cpp
     output-switch-gpio.h
     input-switch-gpio.cpp
     input-switch-gpio.h
-    push-button-gpio.h
-    push-button-gpio.cpp
-  )
+    )
 endif()
 
 

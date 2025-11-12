@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdexcept>
-#include "door/pressure-sensor-bmp280.h"
+#include <door/pressure-sensor-bmp280.h>
 
 // Dies ist ein einfaches, eigenständiges Programm mit einer main()-Funktion.
 int main()
