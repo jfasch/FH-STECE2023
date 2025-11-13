@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <print>
-
 int main(int argc, char** argv)
 {
     int fd = open("/tmp/somefile", O_WRONLY | O_CREAT | O_EXCL, 0666);

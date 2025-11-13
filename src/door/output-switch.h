@@ -1,3 +1,5 @@
+#pragma once
+
 class OutputSwitch {
     public:
         enum class State {

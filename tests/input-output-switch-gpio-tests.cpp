@@ -12,7 +12,7 @@ protected:
     unsigned int output_line = 27;
 
     void SetUp() override {
-        inputswitch = new InputSwitchGPIO("/dev/gpiochip0", &input_line);
+        inputswitch = new InputSwitchGPIO("/dev/gpiochip0", input_line);
         outputswitch = new OutputSwitchGPIO("/dev/gpiochip0", output_line);
     }
 
