@@ -25,7 +25,7 @@ class AnalogSensorEventGenerator
         // get_event updates internal state when hysteresis is enabled
         AnalogSensorEvent get_event();
     private:
-        Analog_Sensor* _sensor;
+        AnalogSensor* _sensor;
         float _under_value;
         float _over_value;
         

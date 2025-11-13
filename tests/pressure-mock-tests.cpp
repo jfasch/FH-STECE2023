@@ -2,7 +2,7 @@
 #include <door/analog-sensor-mock.h>
 #include <door/analog-sensor-event-generator.h>
 
-TEST(Pressure_read_suite, Pressure_sensor_test)
+TEST(Pressure_mock_suite, Pressure_sensor_test)
 {
 
     AnalogSensorMock PressureSensor;
@@ -13,7 +13,7 @@ TEST(Pressure_read_suite, Pressure_sensor_test)
 
 };
 
-TEST(Pressure_read_suite, Pressure_sensor_event_generator_test)
+TEST(Pressure_mock_suite, Pressure_sensor_event_generator_test)
 {
     AnalogSensorMock PressureSensor;
     PressureSensor.set_value(25.12);
@@ -32,7 +32,7 @@ TEST(Pressure_read_suite, Pressure_sensor_event_generator_test)
     ASSERT_EQ(event_generator.get_event(), AnalogSensorEvent::ANALOG_SENSOR_ERROR);
 }
 
-TEST(Pressure_read_suite, Pressure_sensor_event_generator_hysteresis_test)
+TEST(Pressure_mock_suite, Pressure_sensor_event_generator_hysteresis_test)
 {
     AnalogSensorMock mock;
     // thresholds
