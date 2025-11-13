@@ -8,7 +8,6 @@ add_executable(db-manager
   eventloop.cpp
   stdin-db.h
   main.cpp
-  main.cpp.~1~
   stdin-db.cpp
   udp-db.h
   udp-db.cpp
