@@ -1,19 +1,26 @@
 #include "../src/door/motorLED.h"
+#include "../src/door/output-switch-gpio.h"
 #include <gtest/gtest.h>
 #include <unistd.h>
 
 class MotorLEDTest : public ::testing::Test {
 protected:
+    OutputSwitchGPIO* forward_switch;
+    OutputSwitchGPIO* backward_switch;
     MotorLED* motorled;
     Motor* motor;
 
     void SetUp() override {
-        motorled = new MotorLED("/dev/gpiochip0", 20, 21);
+        forward_switch = new OutputSwitchGPIO("/dev/gpiochip0", 20);
+        backward_switch = new OutputSwitchGPIO("/dev/gpiochip0", 21);
+        motorled = new MotorLED(*forward_switch, *backward_switch);
         motor = motorled;
     }
 
     void TearDown() override {
         delete motorled;
+        delete forward_switch;
+        delete backward_switch;
     }
 };
 

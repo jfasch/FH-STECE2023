@@ -1,7 +1,8 @@
 #include <assert.h>
 #include <signal.h>
 #include <unistd.h>
-#include <print>
+#include <string.h>
+#include <iostream>
 
 sig_atomic_t quit = 0;
 
@@ -16,7 +17,7 @@ void handler(int signal)
 
 int main()
 {
-    std::println("PID={}", getpid());
+    std::cout << "PID=" << getpid() << std::endl;
 
     struct sigaction termaction = {0};
     termaction.sa_handler = handler;
@@ -44,7 +45,7 @@ int main()
         assert(nread == 1);
     }
 
-    std::println("shutdown");
+    std::cout << "shutdown" << std::endl;
 
     return 0;
 }

@@ -8,7 +8,7 @@ class InputSwitchGPIOSysfs : public InputSwitch {
         InputSwitchGPIOSysfs(unsigned int line_number);
         ~InputSwitchGPIOSysfs();
 
-        State get_state();
+        State get_state() override;
 
     private:
         unsigned int _line_number;

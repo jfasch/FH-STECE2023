@@ -6,7 +6,7 @@
 class InputOutputSwitchGPIOSysfsTest : public ::testing::Test {
 protected:
     InputSwitchGPIOSysfs* inputswitch;
-    OutputSwitchGPIO* outputswitch;
+    OutputSwitchGPIOSysfs* outputswitch;
 /*
 When using the legacy Sysfs interface, it is necessary to use the Global Pin Number (Base + Offset) 
 instead of the simple BCM pin offset (like 17 or 27) for the kernel to recognize the pin correctly.
@@ -16,7 +16,7 @@ instead of the simple BCM pin offset (like 17 or 27) for the kernel to recognize
 
     void SetUp() override {
         inputswitch = new InputSwitchGPIOSysfs(input_line);
-        outputswitch = new OutputSwitchGPIO(output_line);
+        outputswitch = new OutputSwitchGPIOSysfs(output_line);
         usleep(100000); 
     }
 
