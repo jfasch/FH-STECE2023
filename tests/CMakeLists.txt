@@ -4,7 +4,6 @@ add_executable(
   door-tests.cpp
   timespec-tests.cpp
 
-  pressure_mock_unit.cpp
   event-edge-detector-tests.cpp
 
 #  input-output-switch-gpio-sysfs-tests.cpp
@@ -13,12 +12,13 @@ add_executable(
   outputs-tests.cpp
 
   adc-mock-tests.cpp
+  pressure-mock-tests.cpp
 )
 target_link_libraries(
   door-tests
 
   door
-  gtest_main 
+  gtest_main
 )
 add_test(
   NAME door-tests 
