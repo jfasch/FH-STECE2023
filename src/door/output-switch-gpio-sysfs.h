@@ -3,10 +3,10 @@
 #include "output-switch.h"
 #include <string>
 
-class OutputSwitchGPIO : public OutputSwitch {
+class OutputSwitchGPIOSysfs : public OutputSwitch {
 public:
-    OutputSwitchGPIO(unsigned int line_number);
-    ~OutputSwitchGPIO();
+    OutputSwitchGPIOSysfs(unsigned int line_number);
+    ~OutputSwitchGPIOSysfs();
 
     void set_state(State state) override;
 

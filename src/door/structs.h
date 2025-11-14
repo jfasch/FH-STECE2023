@@ -1,16 +1,18 @@
 #pragma once
 
-#include "input-switch.h"
-#include "event-edge-detector.h"
-#include "motor.h"
+#include <door/input-switch.h>
+#include <door/event-edge-detector.h>
+#include <door/motor.h>
+#include <door/pressure-sensor-event-generator.h>
 
 typedef struct input
 {
-    InputSwitch::State sensor_closed;
-    InputSwitch::State sensor_opened;
     InputSwitch::State button_outside;
     InputSwitch::State button_inside;
-    // TODO: PressureSensor Inputs
+    InputSwitch::State sensor_closed;
+    InputSwitch::State sensor_open;
+    PressureSensorEvent pressuresensor;
+
 }input_t;
 
 typedef struct events
@@ -19,7 +21,9 @@ typedef struct events
     EdgeDetector::State close_button_pressed;
     EdgeDetector::State light_barrier_1_reached;
     EdgeDetector::State light_barrier_2_reached;
-    // TODO: PressureSensor Events
+    PressureSensorEvent pressure_state;
+    
+
 
 }events_t;
 

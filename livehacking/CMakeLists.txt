@@ -19,9 +19,9 @@ add_executable(event event.cpp)
 
 add_executable(2025-10-20 2025-10-20.cpp)
 
-add_executable(sizeof sizeof.cpp)
-
 add_executable(signals signals.cpp)
 target_compile_options(signals PRIVATE -Wno-div-by-zero)
 
-add_executable(defint defint.cpp)
+add_executable(runtime-error runtime-error.cpp)
+
+add_subdirectory(poll)

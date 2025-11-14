@@ -1,11 +1,15 @@
 #include <door/door.h>
 #include <door/structs.h>
 #include <door/inputs.h>
+#include <door/pressure-sensor.h>
+#include <door/pressure-sensor-event-generator.h>
 #include <door/outputs.h>
 #include <door/motor-mock.h>
 #include <door/input-switch-mock.h>
+#include <door/pressure-sensor-mock.h>
 #include <door/timespec.h>
 
+#include <string>
 #include <iostream>
 #include <signal.h>
 
@@ -19,8 +23,38 @@ static void handler(int signal)
         quit = 1;
 }
 
-int main()
+int main(int argc, char** argv)
 {
+    // test flag
+    [[maybe_unused]] int test = 0;
+
+    // too many arguments
+    if (argc > 2)
+    {
+        std::cout << "Error: Too many arguments!" << std::endl;
+        std::cout << "Usage: ./run-door [--test]" << std::endl;
+        
+        return 1;
+    }
+
+    // one additional argument
+    if (argc == 2)
+    {
+        std::string flag = argv[1];
+        if (flag == "--test")
+        {
+            test = 1;
+        }
+        else
+        {
+            std::cout << "Error: Invalide argument!" << std::endl;
+            std::cout << "Usage: ./run-door [--test]" << std::endl;
+
+            return 1;
+        }
+    }
+
+    // event handler for SIGTERM and SIGINT
     struct sigaction sa = { 0 };
     sa.sa_handler = handler;
 
@@ -35,18 +69,58 @@ int main()
         return 1;
     }
 
+    // create door
     Door door;
 
-    InputSwitchMock button1(InputSwitch::State::INPUT_LOW);
-    InputSwitchMock button2(InputSwitch::State::INPUT_LOW);
-    InputSwitchMock light1(InputSwitch::State::INPUT_LOW);
-    InputSwitchMock light2(InputSwitch::State::INPUT_HIGH);
-    MotorMock motor(Motor::Direction::IDLE);
+    // create sensors
+    InputSwitch* button_outside;
+    InputSwitch* button_inside;
+    InputSwitch* lightbarrier_closed;
+    InputSwitch* lightbarrier_open;
+    PressureSensor* pressureSensor;
+    Motor* motor;
+
+    if (test)
+    {
+        // Mock sensors
+        std::cout << "Info: Test run, only using mock sensors." << std::endl;
+
+        // Buttons
+        button_outside = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        button_inside = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        // Lightbarriers
+        lightbarrier_closed = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        lightbarrier_open = new InputSwitchMock(InputSwitch::State::INPUT_HIGH);
+        // Pressure sensor
+        pressureSensor = new PressureSensorMock();
+        // Motor
+        motor = new MotorMock(Motor::Direction::IDLE);
+    }
+    else
+    {
+        // Real sensors
+        std::cout << "Info: Normal run, using real sensors. [not realy, not implemented yet]" << std::endl;
+
+        // TODO: change to real sensors!
+        // Buttons
+        button_outside = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        button_inside = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        // Lightbarriers
+        lightbarrier_closed = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        lightbarrier_open = new InputSwitchMock(InputSwitch::State::INPUT_HIGH);
+        // Pressure sensor
+        pressureSensor = new PressureSensorMock();
+        // Motor
+        motor = new MotorMock(Motor::Direction::IDLE);
+    }
+
+    // Pressure Sensor Event Generator
+    PressureSensorEventGenerator pressureSensorEG(pressureSensor);
 
     TimeSpec time;
 
-    Inputs inputs(&button1, &button2, &light1, &light2, time);
-    Outputs outputs(&motor);
+    Inputs inputs(button_outside, button_inside, lightbarrier_closed, lightbarrier_open, &pressureSensorEG, time);
+    Outputs outputs(motor);
 
     input_t in;
     events_t ev;
@@ -98,9 +172,15 @@ int main()
     }
 
     // cleanup before exit
-    // TODO: Nothing todo for now
+    delete button_outside;
+    delete button_inside;
+    delete lightbarrier_closed;
+    delete lightbarrier_open;
+    delete pressureSensor;
+    delete motor;
 
     // Bye message
+    std::cout << std::endl;
     std::cout << "Oh, I need to go, someone is calling me..." << std::endl;
     std::cout << "Bye, see you soon :)" << std::endl;
     std::cout << "I'll miss you <3" << std::endl;
