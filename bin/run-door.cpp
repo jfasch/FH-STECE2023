@@ -92,7 +92,7 @@ int main(int argc, char** argv)
         lightbarrier_closed = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
         lightbarrier_open = new InputSwitchMock(InputSwitch::State::INPUT_HIGH);
         // Pressure sensor
-        pressureSensor = new PressureSensorMock();
+        pressureSensor = new PressureSensorMock(0.0);
         // Motor
         motor = new MotorMock(Motor::Direction::IDLE);
     }
@@ -109,7 +109,7 @@ int main(int argc, char** argv)
         lightbarrier_closed = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
         lightbarrier_open = new InputSwitchMock(InputSwitch::State::INPUT_HIGH);
         // Pressure sensor
-        pressureSensor = new PressureSensorMock();
+        pressureSensor = new PressureSensorMock(0.0);
         // Motor
         motor = new MotorMock(Motor::Direction::IDLE);
     }

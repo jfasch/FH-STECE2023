@@ -15,7 +15,7 @@ TEST(input_suite, input_init)
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);  // <-- door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // <-- door not in "opened" position
     
-    PressureSensorMock pressureSensor;
+    PressureSensorMock pressureSensor(0.0);
     PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
 
     // create Input struct
@@ -44,7 +44,7 @@ TEST(input_suite, input_switch)
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);  // <-- door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // <-- door not in "opened" position
     
-    PressureSensorMock pressureSensor;
+    PressureSensorMock pressureSensor(0.0);
     PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
 
     // create Input struct
@@ -88,7 +88,7 @@ TEST(input_suite, event_init)
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);  // <-- door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // <-- door not in "opened" position
     
-    PressureSensorMock pressureSensor;
+    PressureSensorMock pressureSensor(0.0);
     PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
 
     // create Input struct
@@ -117,7 +117,7 @@ TEST(input_suite, event_switch)
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);  // <-- door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // <-- door not in "opened" position
     
-    PressureSensorMock pressureSensor;
+    PressureSensorMock pressureSensor(0.0);
     PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
 
     // create Input struct
@@ -162,7 +162,7 @@ TEST(input_suite, Pressure_sensor_init)
     InputSwitchMock do_open(InputSwitch::State::INPUT_LOW);
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);    // door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // door not in "opened" position
-    PressureSensorMock pressureSensor;
+    PressureSensorMock pressureSensor(0.0);
     PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
 
     // create Input struct
@@ -184,7 +184,7 @@ TEST(input_suite, Pressure_sensor_init)
 TEST(input_suite, Pressure_sensor_test)
 {
 
-    PressureSensorMock pressureSensor;
+    PressureSensorMock pressureSensor(0.0);
 
     pressureSensor.set_pressure(25.12);
 
@@ -198,7 +198,7 @@ TEST(input_suite, Pressure_sensor_event_generator_test)
     InputSwitchMock do_open(InputSwitch::State::INPUT_LOW);
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);    // door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // door not in "opened" position
-    PressureSensorMock pressureSensor;
+    PressureSensorMock pressureSensor(0.0);
 
     // set values for over- and under-pressure
     PressureSensorEventGenerator pressureSensorEG(&pressureSensor, 20.0f, 30.0f);
@@ -235,7 +235,7 @@ TEST(input_suite, Pressure_sensor_event_generator_hysteresis_test)
     InputSwitchMock do_open(InputSwitch::State::INPUT_LOW);
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);    // door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // door not in "opened" position
-    PressureSensorMock pressureSensor;
+    PressureSensorMock pressureSensor(0.0);
 
     // thresholds
     float under = 1.0f;
