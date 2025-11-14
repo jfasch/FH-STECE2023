@@ -47,6 +47,12 @@ set(DOOR_FILES
   outputs.h
   outputs.cpp 
 
+  analog-sensor.h
+  analog-sensor-mock.h
+  analog-sensor-mock.cpp
+  analog-sensor-event-generator.h
+  analog-sensor-event-generator.cpp
+
 )
 
 if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)
