@@ -12,6 +12,10 @@
 #include <door/input-switch.h>
 #include <door/output-switch.h>
 
+#include <door/input-switch-gpio-sysfs.h>
+#include <door/pressure-sensor-bmp280.h>
+#include <door/motor-stepper.h>
+
 #include <string>
 #include <iostream>
 #include <signal.h>
@@ -76,32 +80,50 @@ int main(int argc, char** argv)
     // create door
     Door door;
 
-    InputSwitch* inputs;
-    Motor* outputs;
+    InputSwitch*    button1 = nullptr;
+    InputSwitch*    button2 = nullptr;
+    InputSwitch*    light1 = nullptr;
+    InputSwitch*    light2 = nullptr;
+
+    PressureSensor* pressureSensor = nullptr;
+    PressureSensorEventGenerator*   pressureSensorEG = nullptr;
+    
+    Motor*  motor = nullptr;
+
+    TimeSpec time;
 
     if(test == 1)
     {
         // create sensors
-        InputSwitchMock button1(InputSwitch::State::INPUT_LOW);
-        InputSwitchMock button2(InputSwitch::State::INPUT_LOW);
-        InputSwitchMock light1(InputSwitch::State::INPUT_LOW);
-        InputSwitchMock light2(InputSwitch::State::INPUT_HIGH);
+        button1 = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        button2 = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        light1  = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        light2  = new InputSwitchMock(InputSwitch::State::INPUT_HIGH);
 
         // Pressure Sensor
-        PressureSensorMock pressureSensor;
+        pressureSensor = new BMP280("/dev/i2c-1", 0x76);
         // Pressure Sensor Event Generator
-        PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
+        pressureSensorEG = new PressureSensorEventGenerator(pressureSensor);
 
-        MotorMock motor(Motor::Direction::IDLE);
-
-        inputs = new InputSwitchMock(&button1, &button2, &light1, &light2, &pressureSensorEG, time);
-        outputs = new MotorMock(&motor);
+        motor = new MotorMock(Motor::Direction::IDLE);
     }
+    else
+    {
+        // create sensors
+        button1 = new InputSwitchGPIOSysfs(17);
+        button2 = new InputSwitchGPIOSysfs(27);
+        light1  = new InputSwitchGPIOSysfs(22);
+        light2  = new InputSwitchGPIOSysfs(23);
 
-    TimeSpec time;
+        // Pressure Sensor
+        pressureSensor = new PressureSensorMock;
+        // Pressure Sensor Event Generator
+        pressureSensorEG = new PressureSensorEventGenerator(pressureSensor);
 
-    Inputs inputs(&button1, &button2, &light1, &light2, &pressureSensorEG, time);
-    Outputs outputs(&motor);
+        motor = new MotorStepper("/dev/gpiochip0", 26, 17, "2000000", "1000000");
+    }
+    Inputs inputs(button1, button2, light1, light2, pressureSensorEG, time);
+    Outputs outputs(motor);
 
     input_t in;
     events_t ev;
