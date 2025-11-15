@@ -14,12 +14,12 @@
 
 #include <door/input-switch-gpio-sysfs.h>
 #include <door/pressure-sensor-bmp280.h>
-#include <door/motor-stepper.h>
+//#include <door/motor-stepper.h>
 
 #include <string>
 #include <iostream>
 #include <signal.h>
-
+/*
 // quit flag with atomic type
 static volatile sig_atomic_t quit = 0;
 
@@ -29,11 +29,23 @@ static void handler(int signal)
     if (signal == SIGTERM || signal == SIGINT)
         quit = 1;
 }
+*/
+static volatile sig_atomic_t quit_sigint = 0;
+static volatile sig_atomic_t quit_sigterm = 0;
+
+static void handler(int signal)
+{
+    if (signal == SIGINT)
+        quit_sigint = 1;
+    else if (signal == SIGTERM)
+        quit_sigterm = 1;
+}
 
 int main(int argc, char** argv)
 {
     // test flag
     [[maybe_unused]] int test = 0;
+    [[maybe_unused]] int real = 0;
 
     // too many arguments
     if (argc > 2)
@@ -51,6 +63,10 @@ int main(int argc, char** argv)
         if (flag == "--test")
         {
             test = 1;
+        }
+        else if(flag == "--real")
+        {
+            real = 1;
         }
         else
         {
@@ -86,10 +102,6 @@ int main(int argc, char** argv)
     PressureSensor* pressureSensor;
     Motor* motor;
 
-    PressureSensorEventGenerator*   pressureSensorEG = nullptr;
-
-    TimeSpec time;
-
     if (test)
     {
         // Mock sensors
@@ -106,8 +118,9 @@ int main(int argc, char** argv)
         // Motor
         motor = new MotorMock(Motor::Direction::IDLE);
     }
-    else
+    else if (real)
     {
+        std::cout << "Info: Real run, using real sensors." << std::endl;
         // create sensors
         button_outside = new InputSwitchGPIOSysfs(17);
         button_inside = new InputSwitchGPIOSysfs(27);
@@ -117,7 +130,7 @@ int main(int argc, char** argv)
         // Pressure Sensor
         pressureSensor = new BMP280("/dev/i2c-1", 0x76); 
 
-        motor = new MotorStepper("/dev/gpiochip0", 26, 17, "2000000", "1000000");
+        //motor = new MotorStepper("/dev/gpiochip0", 26, 17, "2000000", "1000000");
     }
 
     // Pressure Sensor Event Generator
@@ -125,7 +138,7 @@ int main(int argc, char** argv)
 
     TimeSpec time;
 
-    Inputs inputs(button_outside, button_inside, lightbarrier_closed, lightbarrier_open, pressureSensorEG, time);
+    Inputs inputs(button_outside, button_inside, lightbarrier_closed, lightbarrier_open, &pressureSensorEG, time);
     Outputs outputs(motor);
 
     input_t in;
@@ -144,7 +157,7 @@ int main(int argc, char** argv)
     // --- run main SPS loop
     auto interval = TimeSpec::from_milliseconds(1);
 
-    while (!quit) // gracefull termination
+    while (!quit_sigint && !quit_sigterm)/*(!quit)*/ // gracefull termination
     {
         // get current events and create event struct
         ev = inputs.get_events();
@@ -169,12 +182,24 @@ int main(int argc, char** argv)
         rv = nanosleep(&suspend, nullptr);
         if (rv == -1) {
             if (errno == EINTR)
+            {
+                            if (quit_sigint) {
+                    std::cout << "SIGINT received (Ctrl+C). Exiting gracefully..." << std::endl;
+                    break;
+                }
+
+                if (quit_sigterm) {
+                    std::cout << "SIGTERM received (termination request). Shutting down..." << std::endl;
+                    break;
+                }
                 continue;
+            }
             else {
                 perror("nanosleep");
                 return 1;
             }
         }
+
     }
 
     // cleanup before exit
