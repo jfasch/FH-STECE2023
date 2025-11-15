@@ -19,20 +19,12 @@
 #include <string>
 #include <iostream>
 #include <signal.h>
-/*
-// quit flag with atomic type
-static volatile sig_atomic_t quit = 0;
 
-// hander function to set quit flag
-static void handler(int signal)
-{
-    if (signal == SIGTERM || signal == SIGINT)
-        quit = 1;
-}
-*/
+// quit flag with atomic type
 static volatile sig_atomic_t quit_sigint = 0;
 static volatile sig_atomic_t quit_sigterm = 0;
 
+// hander function to set quit flag
 static void handler(int signal)
 {
     if (signal == SIGINT)
@@ -76,18 +68,26 @@ int main(int argc, char** argv)
             return 1;
         }
     }
+    else 
+    {
+        std::cout << "Error: Missing argument!" << std::endl;
+        std::cout << "Usage: ./run-door [--test]" << std::endl;
+        return 1;
+    }
 
     // event handler for SIGTERM and SIGINT
     struct sigaction sa = { 0 };
     sa.sa_handler = handler;
 
     int rv = sigaction(SIGTERM, &sa, nullptr);
-    if (rv == -1) {
+    if (rv == -1)
+    {
         perror("sigaction(SIGTERM)");
         return 1;
     }
     rv = sigaction(SIGINT, &sa, nullptr);
-    if (rv == -1) {
+    if (rv == -1)
+    {
         perror("sigaction(SIGINT)");
         return 1;
     }
@@ -157,7 +157,7 @@ int main(int argc, char** argv)
     // --- run main SPS loop
     auto interval = TimeSpec::from_milliseconds(1);
 
-    while (!quit_sigint && !quit_sigterm)/*(!quit)*/ // gracefull termination
+    while (!quit_sigint && !quit_sigterm) // gracefull termination
     {
         // get current events and create event struct
         ev = inputs.get_events();
@@ -180,21 +180,25 @@ int main(int argc, char** argv)
         // suspend for the rest of the interval
         auto suspend = interval - spent;
         rv = nanosleep(&suspend, nullptr);
-        if (rv == -1) {
+        if (rv == -1)
+        {
             if (errno == EINTR)
             {
-                            if (quit_sigint) {
+                if (quit_sigint)
+                {
                     std::cout << "SIGINT received (Ctrl+C). Exiting gracefully..." << std::endl;
                     break;
                 }
 
-                if (quit_sigterm) {
+                if (quit_sigterm) 
+                {
                     std::cout << "SIGTERM received (termination request). Shutting down..." << std::endl;
                     break;
                 }
                 continue;
             }
-            else {
+            else
+            {
                 perror("nanosleep");
                 return 1;
             }
