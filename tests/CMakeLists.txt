@@ -4,7 +4,6 @@ add_executable(
   door-tests.cpp
   timespec-tests.cpp
 
-  pressure_mock_unit.cpp
   event-edge-detector-tests.cpp
 
 #  input-output-switch-gpio-sysfs-tests.cpp
@@ -13,12 +12,13 @@ add_executable(
   outputs-tests.cpp
 
   adc-mock-tests.cpp
+  pressure-mock-tests.cpp
 )
 target_link_libraries(
   door-tests
 
   door
-  gtest_main 
+  gtest_main
 )
 add_test(
   NAME door-tests 
@@ -29,23 +29,9 @@ if (LIBGPIOD_FOUND)
   add_executable(gpio-read-value-loop gpio-read-value-loop.cpp)
   target_link_libraries(gpio-read-value-loop door)
 
-  add_executable(push-button-gpio-test push-button-gpio-test.cpp)
-  target_link_libraries(
-    push-button-gpio-test
-    door
-    gtest_main
-  )
-
   add_executable(motorLED-tests motorLED-tests.cpp)
   target_link_libraries(
     motorLED-tests
-    door
-    gtest_main
-  )
-
-  add_executable(light-barrier-gpio-tests light-barrier-gpio-tests.cpp)
-  target_link_libraries(
-    light-barrier-gpio-tests
     door
     gtest_main
   )

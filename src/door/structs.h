@@ -7,10 +7,10 @@
 
 typedef struct input
 {
-    InputSwitch::State sensor_closed;
-    InputSwitch::State sensor_opened;
     InputSwitch::State button_outside;
     InputSwitch::State button_inside;
+    InputSwitch::State sensor_closed;
+    InputSwitch::State sensor_open;
     PressureSensorEvent pressuresensor;
 
 }input_t;

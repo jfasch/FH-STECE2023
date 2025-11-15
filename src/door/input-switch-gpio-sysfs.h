@@ -12,5 +12,4 @@ class InputSwitchGPIOSysfs : public InputSwitch {
 
     private:
         unsigned int _line_number;
-        State _state;
 };

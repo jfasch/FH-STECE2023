@@ -14,6 +14,9 @@ set(DOOR_FILES
   motorLED.h
   motorLED.cpp
 
+  small_file_handling.h
+  small_file_handling.cpp
+
   input-switch.h
   input-switch-mock.h
   input-switch-mock.cpp
@@ -25,7 +28,7 @@ set(DOOR_FILES
   output-switch-mock.cpp
   output-switch-gpio-sysfs.h
   output-switch-gpio-sysfs.cpp
-  
+
   pressure-sensor.h
   pressure-sensor-mock.h
   pressure-sensor-mock.cpp
@@ -47,6 +50,12 @@ set(DOOR_FILES
   inputs.cpp
   outputs.h
   outputs.cpp 
+
+  analog-sensor.h
+  analog-sensor-mock.h
+  analog-sensor-mock.cpp
+  analog-sensor-event-generator.h
+  analog-sensor-event-generator.cpp
 
 )
 

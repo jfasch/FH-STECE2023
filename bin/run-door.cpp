@@ -51,7 +51,6 @@ int main(int argc, char** argv)
         if (flag == "--test")
         {
             test = 1;
-            std::cout << "Info: Test run, only using mock sensors." << std::endl;
         }
         else
         {
@@ -80,49 +79,53 @@ int main(int argc, char** argv)
     // create door
     Door door;
 
-    InputSwitch*    button1 = nullptr;
-    InputSwitch*    button2 = nullptr;
-    InputSwitch*    light1 = nullptr;
-    InputSwitch*    light2 = nullptr;
+    InputSwitch* button_outside;
+    InputSwitch* button_inside;
+    InputSwitch* lightbarrier_closed;
+    InputSwitch* lightbarrier_open;
+    PressureSensor* pressureSensor;
+    Motor* motor;
 
-    PressureSensor* pressureSensor = nullptr;
     PressureSensorEventGenerator*   pressureSensorEG = nullptr;
-    
-    Motor*  motor = nullptr;
 
     TimeSpec time;
 
-    if(test == 1)
+    if (test)
     {
-        // create sensors
-        button1 = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
-        button2 = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
-        light1  = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
-        light2  = new InputSwitchMock(InputSwitch::State::INPUT_HIGH);
+        // Mock sensors
+        std::cout << "Info: Test run, only using mock sensors." << std::endl;
 
-        // Pressure Sensor
-        pressureSensor = new BMP280("/dev/i2c-1", 0x76);
-        // Pressure Sensor Event Generator
-        pressureSensorEG = new PressureSensorEventGenerator(pressureSensor);
-
+        // Buttons
+        button_outside = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        button_inside = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        // Lightbarriers
+        lightbarrier_closed = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
+        lightbarrier_open = new InputSwitchMock(InputSwitch::State::INPUT_HIGH);
+        // Pressure sensor
+        pressureSensor = new PressureSensorMock(0.0);
+        // Motor
         motor = new MotorMock(Motor::Direction::IDLE);
     }
     else
     {
         // create sensors
-        button1 = new InputSwitchGPIOSysfs(17);
-        button2 = new InputSwitchGPIOSysfs(27);
-        light1  = new InputSwitchGPIOSysfs(22);
-        light2  = new InputSwitchGPIOSysfs(23);
+        button_outside = new InputSwitchGPIOSysfs(17);
+        button_inside = new InputSwitchGPIOSysfs(27);
+        lightbarrier_closed  = new InputSwitchGPIOSysfs(22);
+        lightbarrier_open  = new InputSwitchGPIOSysfs(23);
 
         // Pressure Sensor
-        pressureSensor = new PressureSensorMock;
-        // Pressure Sensor Event Generator
-        pressureSensorEG = new PressureSensorEventGenerator(pressureSensor);
+        pressureSensor = new BMP280("/dev/i2c-1", 0x76); 
 
         motor = new MotorStepper("/dev/gpiochip0", 26, 17, "2000000", "1000000");
     }
-    Inputs inputs(button1, button2, light1, light2, pressureSensorEG, time);
+
+    // Pressure Sensor Event Generator
+    PressureSensorEventGenerator pressureSensorEG(pressureSensor);
+
+    TimeSpec time;
+
+    Inputs inputs(button_outside, button_inside, lightbarrier_closed, lightbarrier_open, pressureSensorEG, time);
     Outputs outputs(motor);
 
     input_t in;
@@ -175,9 +178,15 @@ int main(int argc, char** argv)
     }
 
     // cleanup before exit
-    // TODO: Nothing todo for now
+    delete button_outside;
+    delete button_inside;
+    delete lightbarrier_closed;
+    delete lightbarrier_open;
+    delete pressureSensor;
+    delete motor;
 
     // Bye message
+    std::cout << std::endl;
     std::cout << "Oh, I need to go, someone is calling me..." << std::endl;
     std::cout << "Bye, see you soon :)" << std::endl;
     std::cout << "I'll miss you <3" << std::endl;
