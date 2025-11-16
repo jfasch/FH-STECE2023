@@ -4,8 +4,8 @@
 #include <door/inputs.h>
 #include <door/event-edge-detector.h>
 #include <door/input-switch-mock.h>
-#include <door/pressure-sensor-mock.h>
-#include <door/pressure-sensor-event-generator.h>
+#include <door/analog-sensor-mock.h>
+#include <door/analog-sensor-event-generator.h>
 
 TEST(input_suite, input_init)
 {
@@ -15,8 +15,8 @@ TEST(input_suite, input_init)
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);  // <-- door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // <-- door not in "opened" position
     
-    PressureSensorMock pressureSensor(0.0);
-    PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
+    AnalogSensorMock pressureSensor;
+    AnalogSensorEventGenerator pressureSensorEG(&pressureSensor);
 
     // create Input struct
     TimeSpec time;
@@ -43,9 +43,9 @@ TEST(input_suite, input_switch)
     InputSwitchMock do_open(InputSwitch::State::INPUT_LOW);
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);  // <-- door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // <-- door not in "opened" position
-    
-    PressureSensorMock pressureSensor(0.0);
-    PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
+
+    AnalogSensorMock pressureSensor;
+    AnalogSensorEventGenerator pressureSensorEG(&pressureSensor);
 
     // create Input struct
     TimeSpec time;
@@ -87,9 +87,9 @@ TEST(input_suite, event_init)
     InputSwitchMock do_open(InputSwitch::State::INPUT_LOW);
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);  // <-- door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // <-- door not in "opened" position
-    
-    PressureSensorMock pressureSensor(0.0);
-    PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
+
+    AnalogSensorMock pressureSensor;
+    AnalogSensorEventGenerator pressureSensorEG(&pressureSensor);
 
     // create Input struct
     TimeSpec time;
@@ -116,9 +116,9 @@ TEST(input_suite, event_switch)
     InputSwitchMock do_open(InputSwitch::State::INPUT_LOW);
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);  // <-- door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // <-- door not in "opened" position
-    
-    PressureSensorMock pressureSensor(0.0);
-    PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
+
+    AnalogSensorMock pressureSensor;
+    AnalogSensorEventGenerator pressureSensorEG(&pressureSensor);
 
     // create Input struct
     TimeSpec time;
@@ -162,8 +162,8 @@ TEST(input_suite, Pressure_sensor_init)
     InputSwitchMock do_open(InputSwitch::State::INPUT_LOW);
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);    // door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // door not in "opened" position
-    PressureSensorMock pressureSensor(0.0);
-    PressureSensorEventGenerator pressureSensorEG(&pressureSensor);
+    AnalogSensorMock pressureSensor;
+    AnalogSensorEventGenerator pressureSensorEG(&pressureSensor);
 
     // create Input struct
     TimeSpec time;
@@ -176,19 +176,19 @@ TEST(input_suite, Pressure_sensor_init)
     events = inputs_set.get_events();
 
     // check state and output
-    ASSERT_EQ(inputs.pressuresensor, PressureSensorEvent::NORMAL_PRESSURE);
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::NORMAL_PRESSURE);
+    ASSERT_EQ(inputs.analogsensor, AnalogSensorEvent::NORMAL_VALUE);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::NORMAL_VALUE);
 
 }
 
 TEST(input_suite, Pressure_sensor_test)
 {
 
-    PressureSensorMock pressureSensor(0.0);
+    AnalogSensorMock pressureSensor;
 
-    pressureSensor.set_pressure(25.12);
+    pressureSensor.set_value(25.12);
 
-    ASSERT_NEAR(pressureSensor.get_pressure(),25.12,0.001);
+    ASSERT_NEAR(pressureSensor.get_value(),25.12,0.001);
 
 };
 
@@ -198,10 +198,10 @@ TEST(input_suite, Pressure_sensor_event_generator_test)
     InputSwitchMock do_open(InputSwitch::State::INPUT_LOW);
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);    // door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // door not in "opened" position
-    PressureSensorMock pressureSensor(0.0);
+    AnalogSensorMock pressureSensor;
 
     // set values for over- and under-pressure
-    PressureSensorEventGenerator pressureSensorEG(&pressureSensor, 20.0f, 30.0f);
+    AnalogSensorEventGenerator pressureSensorEG(&pressureSensor, 20.0f, 30.0f);
 
     // create Input struct
     TimeSpec time;
@@ -212,21 +212,21 @@ TEST(input_suite, Pressure_sensor_event_generator_test)
     events = inputs_set.get_events();
 
     //testing with different pressure values
-    pressureSensor.set_pressure(25.12);
+    pressureSensor.set_value(25.12);
     events = inputs_set.get_events();
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::NORMAL_PRESSURE);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::NORMAL_VALUE);
 
-    pressureSensor.set_pressure(15.56f);
+    pressureSensor.set_value(15.56f);
     events = inputs_set.get_events();
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::UNDER_PRESSURE);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::UNDER_VALUE);
 
-    pressureSensor.set_pressure(35.0f);
+    pressureSensor.set_value(35.0f);
     events = inputs_set.get_events();
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::OVER_PRESSURE);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::OVER_VALUE);
 
-    pressureSensor.set_pressure(-5.0f);
+    pressureSensor.set_value(-5.0f);
     events = inputs_set.get_events();
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::PRESSURE_SENSOR_ERROR);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::ANALOG_SENSOR_ERROR);
 }
 
 TEST(input_suite, Pressure_sensor_event_generator_hysteresis_test)
@@ -235,14 +235,14 @@ TEST(input_suite, Pressure_sensor_event_generator_hysteresis_test)
     InputSwitchMock do_open(InputSwitch::State::INPUT_LOW);
     InputSwitchMock closed_position(InputSwitch::State::INPUT_LOW);    // door in "closed" position
     InputSwitchMock opened_position(InputSwitch::State::INPUT_HIGH);   // door not in "opened" position
-    PressureSensorMock pressureSensor(0.0);
+    AnalogSensorMock pressureSensor;
 
     // thresholds
     float under = 1.0f;
     float over = 3.0f;
 
     // enable hysteresis with margin 0.2
-    PressureSensorEventGenerator pressureSensorEG(&pressureSensor, under, over, true, 0.2f);
+    AnalogSensorEventGenerator pressureSensorEG(&pressureSensor, under, over, true, 0.2f);
 
     // create Input struct
     TimeSpec time;
@@ -251,42 +251,42 @@ TEST(input_suite, Pressure_sensor_event_generator_hysteresis_test)
     events_t events;
   
     // start in normal
-    pressureSensor.set_pressure(2.0f);
+    pressureSensor.set_value(2.0f);
     events = inputs_set.get_events();
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::NORMAL_PRESSURE);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::NORMAL_VALUE);
 
     // small rise below hysteresis margin -> stay NORMAL
-    pressureSensor.set_pressure(3.05f); // over + h = 3.2 -> should remain NORMAL
+    pressureSensor.set_value(3.05f); // over + h = 3.2 -> should remain NORMAL
     events = inputs_set.get_events();
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::NORMAL_PRESSURE);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::NORMAL_VALUE);
 
     // exceed hysteresis margin -> become OVER
-    pressureSensor.set_pressure(3.25f);
+    pressureSensor.set_value(3.25f);
     events = inputs_set.get_events();
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::OVER_PRESSURE);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::OVER_VALUE);
 
     // small drop but still above over - h -> remain OVER
-    pressureSensor.set_pressure(3.1f); // over - h = 2.8 -> still OVER
+    pressureSensor.set_value(3.1f); // over - h = 2.8 -> still OVER
     events = inputs_set.get_events();
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::OVER_PRESSURE);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::OVER_VALUE);
 
     // drop below over - h -> back to NORMAL
-    pressureSensor.set_pressure(2.75f);
+    pressureSensor.set_value(2.75f);
     events = inputs_set.get_events();
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::NORMAL_PRESSURE);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::NORMAL_VALUE);
 
     // test under hysteresis
-    pressureSensor.set_pressure(0.95f); // under - h = 0.8 -> 0.95 > 0.8 so should remain NORMAL
+    pressureSensor.set_value(0.95f); // under - h = 0.8 -> 0.95 > 0.8 so should remain NORMAL
     events = inputs_set.get_events();
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::NORMAL_PRESSURE);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::NORMAL_VALUE);
 
     // drop below under - h -> become UNDER
-    pressureSensor.set_pressure(0.75f);
+    pressureSensor.set_value(0.75f);
     events = inputs_set.get_events();
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::UNDER_PRESSURE);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::UNDER_VALUE);
 
     // recover above under + h -> become NORMAL
-    pressureSensor.set_pressure(1.25f); // under + h = 1.2
+    pressureSensor.set_value(1.25f); // under + h = 1.2
     events = inputs_set.get_events();
-    ASSERT_EQ(events.pressure_state, PressureSensorEvent::NORMAL_PRESSURE);
+    ASSERT_EQ(events.analog_state, AnalogSensorEvent::NORMAL_VALUE);
 }
