@@ -107,7 +107,7 @@ BMP280::~BMP280() {
     }
 }
 
-float BMP280::get_pressure() const
+float BMP280::get_value() const
 {
 #ifdef __linux__
     // Read raw temperature and pressure
@@ -159,4 +159,9 @@ float BMP280::get_pressure() const
     // Non-Linux platform: Return dummy pressure value
     return 1013.25; // Standard atmospheric pressure in hPa
 #endif
+}
+void BMP280::set_value(float value) const
+{
+    // BMP280 is a read-only sensor; setting value is not applicable.
+    throw runtime_error("BMP280: set_value() not supported.");
 }

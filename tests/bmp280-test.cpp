@@ -11,7 +11,7 @@ int main()
         BMP280 sensor("/dev/i2c-1", 0x76);
 
         // Lies den Druck aus und gib ihn auf der Konsole aus.
-        float pressure = sensor.get_pressure();
+        float pressure = sensor.get_value();
         std::cout << "Pressure: " << pressure << " hPa" << std::endl;
     }
     catch (const std::runtime_error& e)

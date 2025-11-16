@@ -1,12 +1,12 @@
 #include <door/door.h>
 #include <door/structs.h>
 #include <door/inputs.h>
-#include <door/pressure-sensor.h>
-#include <door/pressure-sensor-event-generator.h>
+#include <door/analog-sensor.h>
+#include <door/analog-sensor-event-generator.h>
 #include <door/outputs.h>
 #include <door/motor-mock.h>
 #include <door/input-switch-mock.h>
-#include <door/pressure-sensor-mock.h>
+#include <door/analog-sensor-mock.h>
 #include <door/timespec.h>
 
 #include <door/input-switch.h>
@@ -99,7 +99,7 @@ int main(int argc, char** argv)
     InputSwitch* button_inside;
     InputSwitch* lightbarrier_closed;
     InputSwitch* lightbarrier_open;
-    PressureSensor* pressureSensor;
+    AnalogSensor* pressureSensor;
     Motor* motor;
 
     if (test)
@@ -114,7 +114,7 @@ int main(int argc, char** argv)
         lightbarrier_closed = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
         lightbarrier_open = new InputSwitchMock(InputSwitch::State::INPUT_HIGH);
         // Pressure sensor
-        pressureSensor = new PressureSensorMock(0.0);
+        pressureSensor = new AnalogSensorMock();
         // Motor
         motor = new MotorMock(Motor::Direction::IDLE);
     }
@@ -134,7 +134,7 @@ int main(int argc, char** argv)
     }
 
     // Pressure Sensor Event Generator
-    PressureSensorEventGenerator pressureSensorEG(pressureSensor);
+    AnalogSensorEventGenerator pressureSensorEG(pressureSensor);
 
     TimeSpec time;
 

@@ -29,13 +29,8 @@ set(DOOR_FILES
   output-switch-gpio-sysfs.h
   output-switch-gpio-sysfs.cpp
 
-  pressure-sensor.h
-  pressure-sensor-mock.h
-  pressure-sensor-mock.cpp
   pressure-sensor-bmp280.h
   pressure-sensor-bmp280.cpp
-  pressure-sensor-event-generator.h
-  pressure-sensor-event-generator.cpp
 
   adc.h
   adc-mock.h
