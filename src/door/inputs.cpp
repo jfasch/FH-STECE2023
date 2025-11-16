@@ -1,15 +1,15 @@
 #include "inputs.h"
 #include "event-edge-detector.h"
-#include "pressure-sensor-event-generator.h"
+#include "analog-sensor-event-generator.h"
 
 
-Inputs::Inputs(InputSwitch* button_outside, InputSwitch* button_inside, InputSwitch* lightbarrier_closed, InputSwitch* lightbarrier_open, PressureSensorEventGenerator* pressuresensor, const TimeSpec& debounce_time)
+Inputs::Inputs(InputSwitch* button_outside, InputSwitch* button_inside, InputSwitch* lightbarrier_closed, InputSwitch* lightbarrier_open, AnalogSensorEventGenerator* analogsensor, const TimeSpec& debounce_time)
 {
     _button_outside = button_outside;
     _button_inside = button_inside;
     _lightbarrier_closed = lightbarrier_closed;
     _lightbarrier_open = lightbarrier_open;
-    _pressuresensor = pressuresensor;
+    _Analogsensor = analogsensor;
 
     _edge_button = new EdgeDetector(button_outside, debounce_time);
     _edge_button2 = new EdgeDetector(button_inside, debounce_time);
@@ -28,7 +28,7 @@ input_t Inputs::get_inputs()
     input.button_inside = _button_inside->get_state();
     input.sensor_closed = _lightbarrier_closed->get_state();
     input.sensor_open = _lightbarrier_open->get_state();
-    input.pressuresensor = _pressuresensor->get_event();
+    input.analogsensor = _Analogsensor->get_event();
     return input;
 
 }
@@ -39,6 +39,6 @@ events_t Inputs::get_events()
     auto now = TimeSpec::now_monotonic();
     events.close_button_pressed = _edge_button->detect_edge(now);
     events.open_button_pressed = _edge_button2->detect_edge(now);
-    events.pressure_state = _pressuresensor->get_event();
+    events.analog_state = _Analogsensor->get_event();
     return events;
 }

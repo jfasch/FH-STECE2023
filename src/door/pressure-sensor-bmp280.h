@@ -3,15 +3,16 @@
 #include <cstdint>
 #include <string>
 
-#include "pressure-sensor.h"
+#include "analog-sensor.h"
 
-class BMP280 : public PressureSensor
+class BMP280 : public AnalogSensor
 {
 public:
     BMP280(const std::string& i2c_device = "/dev/i2c-1", unsigned address = 0x76);
     ~BMP280();
-    
-    float get_pressure() const;
+
+    float get_value() const override;
+    void set_value(float value) const override;
 
 private:
     int _fd;
