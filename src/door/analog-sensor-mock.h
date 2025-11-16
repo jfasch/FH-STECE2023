@@ -4,10 +4,10 @@
 class AnalogSensorMock : public AnalogSensor
 {
 public:
-AnalogSensorMock();
+    AnalogSensorMock();
     float get_value() const override;
     // for tests
-    void set_value(float value);
+    void set_value(float value) const override;
 private:
-    float _value;
+    mutable float _value;
 };
