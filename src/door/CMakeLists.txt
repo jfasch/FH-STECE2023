@@ -60,7 +60,7 @@ add_library(
 target_include_directories(
   door
 
-  PUBLIC
+  INTERFACE
 
   ${CMAKE_CURRENT_SOURCE_DIR}/..                       # <-- users have to e.g. say #include <door/motor.h>
 )
