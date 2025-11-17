@@ -26,7 +26,7 @@ static void handler(int signal)
 int main(int argc, char** argv)
 {
     // test flag
-    [[maybe_unused]] int test = 0;
+    int test = 0;
 
     // too many arguments
     if (argc > 2)
@@ -99,7 +99,7 @@ int main(int argc, char** argv)
     else
     {
         // Real sensors
-        std::cout << "Info: Normal run, using real sensors. [not realy, not implemented yet]" << std::endl;
+        std::cout << "Info: Normal run, using real sensors. [not really, not implemented yet]" << std::endl;
 
         // TODO: change to real sensors!
         // Buttons
@@ -138,7 +138,7 @@ int main(int argc, char** argv)
     // --- run main SPS loop
     auto interval = TimeSpec::from_milliseconds(1);
 
-    while (!quit) // gracefull termination
+    while (!quit) // graceful termination
     {
         // get current events and create event struct
         ev = inputs.get_events();
