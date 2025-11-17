@@ -160,8 +160,3 @@ float BMP280::get_value() const
     return 1013.25; // Standard atmospheric pressure in hPa
 #endif
 }
-void BMP280::set_value(float value) const
-{
-    // BMP280 is a read-only sensor; setting value is not applicable.
-    throw runtime_error("BMP280: set_value() not supported.");
-}
