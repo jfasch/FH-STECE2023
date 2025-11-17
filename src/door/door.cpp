@@ -26,24 +26,51 @@ output_t Door::init(const input_t input)
 
 output_t Door::cyclic(const events_t events)
 {
+    output_t output;
+
     switch(_state)
     {
         case State::INIT:
+
+            output.motor_direction = Motor::Direction::IDLE;
             _state = State::ERROR_SOMETHING_BADLY_WRONG;
             break;
 
         case State::CLOSED:
+
+            output.motor_direction = Motor::Direction::IDLE;
+
             if (events.open_button_pressed == EdgeDetector::RISING)
             {
+                output.motor_direction = Motor::Direction::FORWARD; // could also be BACKWARD, depends on the implemented hardware
                 _state = State::OPENING;
             }
             break;
+
+        case State::OPENING:
+            // overcurrent detection
+
+            if (events.light_barrier_open == EdgeDetector::RISING) // could also be FALLING, depends on the implemented hardware
+            {
+                output.motor_direction = Motor::Direction::IDLE;
+                _state = State::OPENED;
+            }
+            break;
+
+        case State::OPENED:
+
+            if (events.light_barrier_closed == EdgeDetector::RISING)
+            {
+                output.motor_direction = Motor::Direction::BACKWARD; // could also be FORWARD, depends on the implemented hardware
+                _state = State::CLOSING;
+            }
+            
+        break;
 
         default:
             break;
     }
 
-    output_t output;
     output.motor_direction = Motor::Direction::IDLE;
     return output;
 }

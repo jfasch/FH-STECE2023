@@ -19,8 +19,8 @@ typedef struct events
 {
     EdgeDetector::State open_button_pressed;
     EdgeDetector::State close_button_pressed;
-    EdgeDetector::State light_barrier_1_reached;
-    EdgeDetector::State light_barrier_2_reached;
+    EdgeDetector::State light_barrier_closed;
+    EdgeDetector::State light_barrier_open;
     AnalogSensorEvent analog_state;
 
 }events_t;
