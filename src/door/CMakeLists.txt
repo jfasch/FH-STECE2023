@@ -10,6 +10,9 @@ set(DOOR_FILES
   motor-mock.h
   motor-mock.cpp
 
+  small_file_handling.h
+  small_file_handling.cpp
+
   input-switch.h
   input-switch-mock.h
   input-switch-mock.cpp
@@ -21,18 +24,10 @@ set(DOOR_FILES
   output-switch-mock.cpp
   output-switch-gpio-sysfs.h
   output-switch-gpio-sysfs.cpp
-  
-  pressure-sensor.h
-  pressure-sensor-mock.h
-  pressure-sensor-mock.cpp
+
   pressure-sensor-bmp280.h
   pressure-sensor-bmp280.cpp
-  pressure-sensor-event-generator.h
-  pressure-sensor-event-generator.cpp
 
-  adc.h
-  adc-mock.h
-  adc-mock.cpp
   adc-ads1115.h
   adc-ads1115.cpp
 
@@ -44,23 +39,22 @@ set(DOOR_FILES
   outputs.h
   outputs.cpp 
 
-)
+  analog-sensor.h
+  analog-sensor-mock.h
+  analog-sensor-mock.cpp
+  analog-sensor-event-generator.h
+  analog-sensor-event-generator.cpp
 
-if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)
+)
   set(DOOR_FILES 
 
     ${DOOR_FILES}
     motorLED.h 
     motorLED.cpp
-    motor-stepper.h
-    motor-stepper.cpp
-    
-    output-switch-gpio.cpp
-    output-switch-gpio.h
-    input-switch-gpio.cpp
-    input-switch-gpio.h
+    # motor-stepper.h
+    # motor-stepper.cpp
+
     )
-endif()
 
 
 add_library(

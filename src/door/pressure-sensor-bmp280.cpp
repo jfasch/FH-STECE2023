@@ -107,7 +107,7 @@ BMP280::~BMP280() {
     }
 }
 
-float BMP280::get_pressure() const
+float BMP280::get_value() const
 {
 #ifdef __linux__
     // Read raw temperature and pressure

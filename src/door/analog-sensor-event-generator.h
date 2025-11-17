@@ -1,20 +1,20 @@
 #pragma once
-#include "pressure-sensor.h"
+#include "analog-sensor.h"
 
-enum class PressureSensorEvent
+enum class AnalogSensorEvent
 {
-    NORMAL_PRESSURE,
-    UNDER_PRESSURE,
-    OVER_PRESSURE,
-    PRESSURE_SENSOR_ERROR,
+    NORMAL_VALUE,
+    UNDER_VALUE,
+    OVER_VALUE,
+    ANALOG_SENSOR_ERROR,
 };
 
-class PressureSensorEventGenerator
+class AnalogSensorEventGenerator
 {
     public:
-        PressureSensorEventGenerator(PressureSensor* sensor, 
-                                     float under_pressure = 0.0f, 
-                                     float over_pressure = 0.0f,
+        AnalogSensorEventGenerator(AnalogSensor* sensor, 
+                                     float under_value = 0.0f, 
+                                     float over_value = 0.0f,
                                      bool hysteresis_enabled = false,
                                      float hysteresis_value = 0.01f);
 
@@ -23,17 +23,17 @@ class PressureSensorEventGenerator
         void set_hysteresis_value(float value);
 
         // get_event updates internal state when hysteresis is enabled
-        PressureSensorEvent get_event();
+        AnalogSensorEvent get_event();
     private:
-        PressureSensor* _sensor;
-        float _under_pressure;
-        float _over_pressure;
+        AnalogSensor* _sensor;
+        float _under_value;
+        float _over_value;
         
         // hysteresis configuration
         bool _hysteresis_enabled;
         float _hysteresis_value;
 
         // state for hysteresis behavior
-        PressureSensorEvent _last_event;
+        AnalogSensorEvent _last_event;
         bool _initialized;
 };
