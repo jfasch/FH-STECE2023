@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 #include <door/adc-ads1115.h>
-#include <door/adc.h>
 #include <memory>
 #include <stdexcept>
 
