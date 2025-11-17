@@ -24,12 +24,11 @@ add_test(
 )
 
 add_executable(
-  motor-test-programm   # Du kannst es nennen, wie du willst
+  motor-tests   # Du kannst es nennen, wie du willst
   motor_tests.cpp
 )
 target_link_libraries(
-  motor-test-programm
-  PRIVATE
+  motor-tests
   door                  # Es braucht die 'door'-Bibliothek
   # KEIN gtest_main, da es eine eigene main() hat!
 )
