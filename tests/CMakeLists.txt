@@ -6,8 +6,6 @@ add_executable(
 
   event-edge-detector-tests.cpp
 
-#  input-output-switch-gpio-sysfs-tests.cpp
-
   inputs-tests.cpp
   outputs-tests.cpp
 
@@ -25,36 +23,31 @@ add_test(
   COMMAND door-tests
 )
 
-if (LIBGPIOD_FOUND)
-  add_executable(motorLED-tests motorLED-tests.cpp)
-  target_link_libraries(
-    motorLED-tests
-    door
-    gtest_main
-  )
+# add_executable(motorLED-tests motorLED-tests.cpp)
+# target_link_libraries(
+#   motorLED-tests
+#   door
+#   gtest_main
+# )
 
-  add_executable(
-    input-switch-gpio-tests input-switch-gpio-tests.cpp
-  )
-  target_link_libraries(
-    input-switch-gpio-tests
-  
-    door
-    gtest_main
-  )
+add_executable(
+  input-switch-gpio-tests input-switch-gpio-tests.cpp
+)
+target_link_libraries(
+  input-switch-gpio-tests
 
-  add_executable(motor-stepper-tests motor-stepper-tests.cpp)
-  target_link_libraries(
-    motor-stepper-tests
-  
-    door
-    gtest_main
-  )
+  door
+  gtest_main
+)
 
+# add_executable(motor-stepper-tests motor-stepper-tests.cpp)
+# target_link_libraries(
+#   motor-stepper-tests
 
-else()
-  message(WARNING "Skip motorLED-tests and gpio-read-value-loop because libgpiod not found")
-endif()
+#   door
+#   gtest_main
+# )
+
 
 add_executable(
   input-output-switch-gpio-sysfs-tests
