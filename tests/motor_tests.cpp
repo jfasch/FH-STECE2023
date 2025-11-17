@@ -1,58 +1,70 @@
 // TEST either with motorLED or motorStepper (--stepper, --led), defaults to motorLED
+
+#include <iostream>
+#include <string>
+#include <memory>      // Nicht mehr nötig für unique_ptr, aber lassen wir es
+#include <unistd.h>    // Für sleep()
+#include <cstdio>      // Für printf
+
 #include "../src/door/motorLED.h"
-#include "../src/door/output-switch-gpio.h"
-#include "../src/door/motorStepper.h
+#include "../src/door/OutputSwitchGPIOSysfs.h"
+#include "../src/door/motorStepper.h"
 #include "../src/door/motor.h"
 
 int main(int argc, char const *argv[])
 {
+    if(argc < 2)
+    {
+        printf("Usage: %s [--led|--stepper]\n", argv[0]);
+        return 1; // Mit Fehler beenden
+    }
+
+    OutputSwitchGPIOSysfs forwardSwitch(20); 
+    OutputSwitchGPIOSysfs backwardSwitch(21);
     
+    // --- DEMONSTRATION DES MEMORY LEAKS ---
+    // 1. Wir verwenden einen rohen Pointer (rohen Zeiger)
     Motor* motor;
-    if("--led" == std::string(argv[1]))
-    {
-        motor= new MotorLED(
-            *(new OutputSwitchGPIO("/dev/gpiochip0", 20)),
-            *(new OutputSwitchGPIO("/dev/gpiochip0", 21))
-        );
-    }
-    else if("--stepper" == std::string(argv[1]))
-    {
-        //Defaulting MotorLED while refactoring motorStepper
-        //todo implement motorStepper test
-        motor = new MotorLED(
-            *(new OutputSwitchGPIO("/dev/gpiochip0", 20)),
-            *(new OutputSwitchGPIO("/dev/gpiochip0", 21))
-        );
+    std::string motorType = std::string(argv[1]);
 
-    }else
+    if (motorType == "--led")
     {
-        motor = new MotorLED(  
-            *(new OutputSwitchGPIO("/dev/gpiochip0", 20)),
-            *(new OutputSwitchGPIO("/dev/gpiochip0", 21))
-        );
+        std::cout << "[INFO] Erstelle MotorLED..." << std::endl;
+        // 2. Wir reservieren Speicher auf dem Heap mit 'new'
+        motor = new MotorLED(forwardSwitch, backwardSwitch);
+    }
+    else if (motorType == "--stepper")
+    {
+        std::cout << "[WARN] Stepper noch nicht implementiert, verwende MotorLED." << std::endl;
+        motor = new MotorLED(forwardSwitch, backwardSwitch);
+    }
+    else
+    {
+        std::cout << "[WARN] Unbekannter Motor-Typ. Verwende Standard: MotorLED." << std::endl;
+        motor = new MotorLED(forwardSwitch, backwardSwitch);
     }
 
-
-    return 0;
-}
-
-int forward_test(Motor* motor)
-{
+    // Tests ausführen (der -> Operator funktioniert gleich)
+    std::cout << "[TEST] motor->forward()" << std::endl;
     motor->forward();
     sleep(2);
-    return 0;
-}
 
-int backward_test(Motor* motor)
-{
+    std::cout << "[TEST] motor->backward()" << std::endl;
     motor->backward();
     sleep(2);
+
+    std::cout << "[TEST] motor->stop()" << std::endl;
+    motor->stop();
+    
+    std::cout << "[INFO] Test beendet." << std::endl;
+    
+    // 3. DAS SPEICHERLECK:
+    // Der 'motor'-Pointer geht hier "out of scope" (verlässt die main-Funktion).
+    // Da 'delete motor;' NICHT aufgerufen wird, wird der Speicher, 
+    // der von 'new MotorLED(...)' belegt wurde, *niemals* freigegeben.
+    // Das ist das Speicherleck.
+
+    // delete motor; // <-- Diese Zeile fehlt absichtlich!
+    
     return 0;
 }
-
-int stop_test(Motor* motor)
-{   
-    motor->stop();
-    sleep(2);
-    return 0;
-}   
