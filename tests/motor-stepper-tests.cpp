@@ -2,6 +2,8 @@
 #include <gtest/gtest.h>
 #include <unistd.h>
 #include <string>
+#include <door/output-switch.h>
+#include <door/output-switch-gpio-sysfs.h>
 
 class MotorStepperTest : public ::testing::Test {
 protected:
@@ -9,7 +11,10 @@ protected:
     Motor* motor;
 
     void SetUp() override {
-        motorstepper = new MotorStepper("/dev/gpiochip0", 26, 17, "2000000", "1000000");
+
+        OutputSwitchGPIOSysfs* enable = new OutputSwitchGPIOSysfs(26);
+        OutputSwitchGPIOSysfs* direction = new OutputSwitchGPIOSysfs(17);
+        motorstepper = new MotorStepper("/dev/gpiochip0", *enable, *direction, "2000000", "1000000");
         motor = motorstepper;
     }
 
