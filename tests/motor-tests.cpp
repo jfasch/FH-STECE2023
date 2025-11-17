@@ -19,8 +19,8 @@ int main(int argc, char const *argv[])
         return 1; // Mit Fehler beenden
     }
 
-    OutputSwitchGPIOSysfs forwardSwitch(20); 
-    OutputSwitchGPIOSysfs backwardSwitch(21);
+    OutputSwitchGPIOSysfs forwardSwitch(20+512); 
+    OutputSwitchGPIOSysfs backwardSwitch(21+512);
     
     // --- DEMONSTRATION DES MEMORY LEAKS ---
     // 1. Wir verwenden einen rohen Pointer (rohen Zeiger)
