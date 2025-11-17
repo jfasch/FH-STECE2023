@@ -16,11 +16,7 @@ InputSwitchGPIOSysfs::InputSwitchGPIOSysfs(unsigned int line_number){
     const std::string inputPin = "/sys/class/gpio/gpio" + gpio_str;
     const std::string inputDirection = inputPin + "/direction";
 
-    std::ifstream check_dir(inputPin + "/direction");
-    bool already_exported = check_dir.is_open();
-    check_dir.close();
-
-    if (!already_exported) {
+    if (dir_exists(inputPin+"/direction") == false) {
         write_string_to_file("/sys/class/gpio/export", gpio_str);
         usleep(100000);
     }
