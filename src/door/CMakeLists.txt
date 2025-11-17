@@ -28,9 +28,6 @@ set(DOOR_FILES
   pressure-sensor-bmp280.h
   pressure-sensor-bmp280.cpp
 
-  adc.h
-  adc-mock.h
-  adc-mock.cpp
   adc-ads1115.h
   adc-ads1115.cpp
 
