@@ -12,7 +12,6 @@ public:
     ~BMP280();
 
     float get_value() const override;
-    void set_value(float value) const override;
 
 private:
     int _fd;

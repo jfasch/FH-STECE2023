@@ -21,23 +21,21 @@
 #include <signal.h>
 
 // quit flag with atomic type
-static volatile sig_atomic_t quit_sigint = 0;
-static volatile sig_atomic_t quit_sigterm = 0;
+static volatile sig_atomic_t quit = 0;
 
 // hander function to set quit flag
 static void handler(int signal)
 {
-    if (signal == SIGINT)
-        quit_sigint = 1;
-    else if (signal == SIGTERM)
-        quit_sigterm = 1;
+    if (signal == SIGINT || signal == SIGTERM)
+        quit = 1;
 }
 
 int main(int argc, char** argv)
 {
     // test flag
-    [[maybe_unused]] int test = 0;
-    [[maybe_unused]] int real = 0;
+    int test = 0;
+    int real = 0;
+
 
     // too many arguments
     if (argc > 2)
@@ -157,7 +155,8 @@ int main(int argc, char** argv)
     // --- run main SPS loop
     auto interval = TimeSpec::from_milliseconds(1);
 
-    while (!quit_sigint && !quit_sigterm) // gracefull termination
+
+    while (!quit) // graceful termination
     {
         // get current events and create event struct
         ev = inputs.get_events();
@@ -184,15 +183,9 @@ int main(int argc, char** argv)
         {
             if (errno == EINTR)
             {
-                if (quit_sigint)
+                if (quit)
                 {
-                    std::cout << "SIGINT received (Ctrl+C). Exiting gracefully..." << std::endl;
-                    break;
-                }
-
-                if (quit_sigterm) 
-                {
-                    std::cout << "SIGTERM received (termination request). Shutting down..." << std::endl;
+                    std::cout << "Exiting gracefully..." << std::endl;
                     break;
                 }
                 continue;
