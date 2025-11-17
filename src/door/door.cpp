@@ -40,30 +40,46 @@ output_t Door::cyclic(const events_t events)
 
             output.motor_direction = Motor::Direction::IDLE;
 
-            if (events.open_button_pressed == EdgeDetector::RISING)
+            if (events.button_outside_pressed == EdgeDetector::RISING || events.button_inside_pressed == EdgeDetector::RISING)
             {
-                output.motor_direction = Motor::Direction::FORWARD; // could also be BACKWARD, depends on the implemented hardware
                 _state = State::OPENING;
             }
             break;
 
         case State::OPENING:
-            // overcurrent detection
+
+            output.motor_direction = Motor::Direction::FORWARD; // could also be BACKWARD, depends on the implemented hardware
+
+            // overcurrent detection -> ERROR
 
             if (events.light_barrier_open == EdgeDetector::RISING) // could also be FALLING, depends on the implemented hardware
             {
-                output.motor_direction = Motor::Direction::IDLE;
                 _state = State::OPENED;
             }
             break;
 
         case State::OPENED:
 
-            if (events.light_barrier_closed == EdgeDetector::RISING)
+            output.motor_direction = Motor::Direction::IDLE;
+
+            if (events.button_outside_pressed == EdgeDetector::RISING || events.button_inside_pressed == EdgeDetector::RISING)
             {
-                output.motor_direction = Motor::Direction::BACKWARD; // could also be FORWARD, depends on the implemented hardware
                 _state = State::CLOSING;
             }
+
+        case State::CLOSING:
+
+            output.motor_direction = Motor::Direction::BACKWARD; // could also be BACKWARD, depends on the implemented hardware
+
+            // Kindskopf detected with Gumminudel -> ERROR
+
+            if (events.light_barrier_closed == EdgeDetector::RISING) // could also be FALLING, depends on the implemented hardware
+            {
+                _state = State::CLOSED;
+            }
+            
+
+        break;
             
         break;
 
