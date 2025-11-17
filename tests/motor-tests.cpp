@@ -7,8 +7,8 @@
 #include <cstdio>      // Für printf
 
 #include "../src/door/motorLED.h"
-#include "../src/door/OutputSwitchGPIOSysfs.h"
-#include "../src/door/motorStepper.h"
+#include "../src/door/output-switch-gpio-sysfs.h"
+#include "../src/door/motor-stepper.h"
 #include "../src/door/motor.h"
 
 int main(int argc, char const *argv[])

@@ -25,7 +25,7 @@ add_test(
 
 add_executable(
   motor-tests   # Du kannst es nennen, wie du willst
-  motor_tests.cpp
+  motor-tests.cpp
 )
 target_link_libraries(
   motor-tests
