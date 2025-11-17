@@ -3,8 +3,8 @@ set(DOOR_FILES
   door.h
   door.cpp
 
-  timespec.h
-  timespec.cpp
+  utilities/timespec.h
+  utilities/timespec.cpp
 
   motor.h
   motor-mock.h

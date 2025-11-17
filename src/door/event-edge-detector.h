@@ -1,7 +1,7 @@
 #pragma once
 
 #include "input-switch.h"
-#include "timespec.h"
+#include "utilities/timespec.h"
 
 class EdgeDetector
 {
