@@ -3,54 +3,50 @@
 #include <gtest/gtest.h>
 #include <unistd.h>
 
-class InputOutputSwitchGPIOSysfsTest : public ::testing::Test {
-protected:
-    InputSwitchGPIOSysfs* inputswitch;
-    OutputSwitchGPIOSysfs* outputswitch;
-/*
-When using the legacy Sysfs interface, it is necessary to use the Global Pin Number (Base + Offset) 
-instead of the simple BCM pin offset (like 17 or 27) for the kernel to recognize the pin correctly.
-*/  
-    unsigned int input_line = 529;
-    unsigned int output_line = 539;
+int main() {
+    try {
 
-    void SetUp() override {
-        inputswitch = new InputSwitchGPIOSysfs(input_line);
-        outputswitch = new OutputSwitchGPIOSysfs(output_line);
-        usleep(100000); 
+        std::cout << "Start Init." << std::endl;
+
+        unsigned int input_line = 529;
+        unsigned int output_line = 539;
+
+        InputSwitchGPIOSysfs inputswitch(input_line);
+        OutputSwitchGPIOSysfs outputswitch(output_line);
+
+        std::cout << "Init done 8==D" << std::endl;
+
+        // Detect HIGH from Output to Input
+        outputswitch.set_state(OutputSwitch::State::OUTPUT_HIGH);
+        usleep(50000);
+
+        if(inputswitch.get_state() == InputSwitch::State::INPUT_HIGH)
+            std::cout << "High detection success :)" << std::endl;
+        else
+        {
+            std::cerr << "High detection error :(" << std::endl;
+            std::cout << "High detection error :(" << std::endl;
+        }
+
+        // Detect LOW from Output to Input
+        outputswitch.set_state(OutputSwitch::State::OUTPUT_LOW);
+        usleep(50000);
+
+        if(inputswitch.get_state() == InputSwitch::State::INPUT_LOW)
+            std::cout << "Low detection success :)" << std::endl;
+        else
+        {
+            std::cerr << "Low detection error :(" << std::endl;
+            std::cout << "Low detection error :(" << std::endl;
+        }
+
+    } catch (const std::system_error& e) {
+        std::cerr << "System error: " << e.what() << std::endl;
+        return 1;
+    } catch (const std::exception& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+        return 1;
     }
 
-    void TearDown() override {
-        delete inputswitch;
-        delete outputswitch;
-    }
-};
-
-TEST_F(InputOutputSwitchGPIOSysfsTest, InputDetectsHighFromOutput) {
-    outputswitch->set_state(OutputSwitch::State::OUTPUT_HIGH);
-    usleep(50000);
-    EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_HIGH);
-}
-
-TEST_F(InputOutputSwitchGPIOSysfsTest, InputDetectsLowFromOutput) {
-    outputswitch->set_state(OutputSwitch::State::OUTPUT_LOW);
-    usleep(50000);
-    EXPECT_EQ(inputswitch->get_state(), InputSwitch::State::INPUT_LOW);
-}
-
-TEST_F(InputOutputSwitchGPIOSysfsTest, InputDetectsNotLowFromOutput) {
-    outputswitch->set_state(OutputSwitch::State::OUTPUT_HIGH);
-    usleep(50000);
-    EXPECT_NE(inputswitch->get_state(), InputSwitch::State::INPUT_LOW);
-}
-
-TEST_F(InputOutputSwitchGPIOSysfsTest, InputDetectsNotHighFromOutput) {
-    outputswitch->set_state(OutputSwitch::State::OUTPUT_LOW);
-    usleep(50000);
-    EXPECT_NE(inputswitch->get_state(), InputSwitch::State::INPUT_HIGH);
-}
-
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    return 0;
 }

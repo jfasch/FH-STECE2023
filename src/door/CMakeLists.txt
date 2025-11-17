@@ -46,22 +46,15 @@ set(DOOR_FILES
   analog-sensor-event-generator.cpp
 
 )
-
-if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)
   set(DOOR_FILES 
 
     ${DOOR_FILES}
     motorLED.h 
     motorLED.cpp
-    motor-stepper.h
-    motor-stepper.cpp
-    
-    output-switch-gpio.cpp
-    output-switch-gpio.h
-    input-switch-gpio.cpp
-    input-switch-gpio.h
+    # motor-stepper.h
+    # motor-stepper.cpp
+
     )
-endif()
 
 
 add_library(
