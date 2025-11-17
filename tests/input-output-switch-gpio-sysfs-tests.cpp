@@ -5,13 +5,16 @@
 
 int main() {
     try {
+
+        std::cout << "Start Init." << std::endl;
+
         unsigned int input_line = 529;
         unsigned int output_line = 539;
 
         InputSwitchGPIOSysfs inputswitch(input_line);
         OutputSwitchGPIOSysfs outputswitch(output_line);
 
-        std::cout << "Reading GPIO line " << input_line << " on " << std::endl;
+        std::cout << "Init done 8==D" << std::endl;
 
         // Detect HIGH from Output to Input
         outputswitch.set_state(OutputSwitch::State::OUTPUT_HIGH);
