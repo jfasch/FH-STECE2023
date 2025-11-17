@@ -3,9 +3,6 @@ set(DOOR_FILES
   door.h
   door.cpp
 
-  utilities/timespec.h
-  utilities/timespec.cpp
-
   motor.h
   motor-mock.h
   motor-mock.cpp
@@ -45,23 +42,19 @@ set(DOOR_FILES
   analog-sensor-event-generator.h
   analog-sensor-event-generator.cpp
 
+  motorLED.h 
+  motorLED.cpp
+
 )
-  set(DOOR_FILES 
 
-    ${DOOR_FILES}
-    motorLED.h 
-    motorLED.cpp
-    # motor-stepper.h
-    # motor-stepper.cpp
-
-    )
-
+add_subdirectory(utilities)
 
 add_library(
   door
 
   ${DOOR_FILES}
 )
+
 
 # build information (include path) for our users
 target_include_directories(

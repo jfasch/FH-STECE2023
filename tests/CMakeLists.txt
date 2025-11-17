@@ -16,6 +16,7 @@ target_link_libraries(
   door-tests
 
   door
+  utilities
   gtest_main
 )
 add_test(
