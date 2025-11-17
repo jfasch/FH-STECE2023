@@ -3,7 +3,6 @@ add_executable(
 
   door-tests.cpp
   timespec-tests.cpp
-  motor-tests.cpp
   
   event-edge-detector-tests.cpp
 
@@ -34,9 +33,6 @@ target_link_libraries(
   door                  # Es braucht die 'door'-Bibliothek
   # KEIN gtest_main, da es eine eigene main() hat!
 )
-
-add_executable(
-  moto)
 
 # add_executable(motorLED-tests motorLED-tests.cpp)
 # target_link_libraries(
