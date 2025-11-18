@@ -4,6 +4,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+
+// TODO: Replace in test "door_cyclic_opened_to_closing" button to timer
+
 TEST(door_suite, door_init)
 {
     // create Door object
@@ -435,7 +438,7 @@ TEST(door_suite, door_cyclic_closing_error)
 
 // --- CLOSING TO CLOSED TEST ---
 
-TEST(door_suite, door_cyclic_opened_to_closing)
+TEST(door_suite, door_cyclic_closing_to_closed)
 {
     // create Door object
     Door door;
