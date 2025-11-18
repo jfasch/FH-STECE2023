@@ -7,7 +7,7 @@
 #include <door/motor-mock.h>
 #include <door/input-switch-mock.h>
 #include <door/analog-sensor-mock.h>
-#include <door/timespec.h>
+#include <door/utilities/timespec.h>
 
 #include <door/input-switch.h>
 #include <door/output-switch.h>

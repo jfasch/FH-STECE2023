@@ -3,9 +3,6 @@ set(DOOR_FILES
   door.h
   door.cpp
 
-  timespec.h
-  timespec.cpp
-
   motor.h
   motor-mock.h
   motor-mock.cpp
@@ -49,17 +46,12 @@ set(DOOR_FILES
   analog-sensor-event-generator.h
   analog-sensor-event-generator.cpp
 
+  motorLED.h 
+  motorLED.cpp
+
 )
-  set(DOOR_FILES 
 
-    ${DOOR_FILES}
-    motorLED.h 
-    motorLED.cpp
-    # motor-stepper.h
-    # motor-stepper.cpp
-
-    )
-
+add_subdirectory(utilities)
 
 add_library(
   door
@@ -67,11 +59,12 @@ add_library(
   ${DOOR_FILES}
 )
 
+
 # build information (include path) for our users
 target_include_directories(
   door
 
-  PUBLIC
+  INTERFACE
 
   ${CMAKE_CURRENT_SOURCE_DIR}/..                       # <-- users have to e.g. say #include <door/motor.h>
 )
