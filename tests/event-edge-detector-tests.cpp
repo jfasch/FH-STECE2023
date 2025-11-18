@@ -1,10 +1,9 @@
-#include <door/timespec.h>
+#include <door/utilities/timespec.h>
 #include <iostream>
 #include <gtest/gtest.h>
 #include <time.h>
 #include <door/input-switch-mock.h>
 #include <door/event-edge-detector.h>
-#include <door/timespec.h>
 
 TEST(eventedge_suite, rising_edge)
 {
