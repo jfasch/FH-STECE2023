@@ -94,3 +94,19 @@ std::string read_string_from_file(const std::string &source_filepath)
 
     return return_string;
 }
+
+bool dir_exists(const std::string &dirpath)
+{
+    if(access(dirpath.c_str(), W_OK) < 0)
+      return false;
+    else
+      return true;
+}
+
+bool file_exists(const std::string &filepath)
+{
+    if(access(filepath.c_str(), W_OK) < 0)
+      return false;
+    else
+      return true;
+}

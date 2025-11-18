@@ -12,12 +12,7 @@ OutputSwitchGPIOSysfs::OutputSwitchGPIOSysfs(unsigned int line_number)
     const std::string gpio_str = std::to_string(_line_number);
     const std::string gpio_path = "/sys/class/gpio/gpio" + gpio_str;
 
-    // Check if GPIO is already exported by trying to open the direction file.
-    std::ifstream check_dir(gpio_path + "/direction");
-    bool already_exported = check_dir.is_open();
-    check_dir.close();
-
-    if (!already_exported) {
+    if (dir_exists(gpio_path+"/direction") == false) {
         // Export the GPIO line if not already done.
         write_string_to_file("/sys/class/gpio/export", gpio_str);
 

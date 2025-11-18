@@ -11,4 +11,8 @@ int read_number_from_file(const std::string &source_filepath);
  
 std::string read_string_from_file(const std::string &source_filepath);
 
+bool dir_exists(const std::string &dirpath);
+
+bool file_exists(const std::string &filepath);
+
 #endif
