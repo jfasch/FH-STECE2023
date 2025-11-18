@@ -1,10 +1,10 @@
 #pragma once
 
-#include "adc.h"
+#include "analog-sensor.h"
 #include <string>
 #include <cstdint>
 
-class Ads1115 : public Adc
+class Ads1115 : public AnalogSensor
 {
 public:
     Ads1115(const std::string& device_path, uint8_t i2c_address);

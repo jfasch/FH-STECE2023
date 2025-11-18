@@ -3,10 +3,8 @@ add_executable(
 
   door-tests.cpp
   timespec-tests.cpp
-
+  
   event-edge-detector-tests.cpp
-
-#  input-output-switch-gpio-sysfs-tests.cpp
 
   inputs-tests.cpp
   outputs-tests.cpp
@@ -18,6 +16,7 @@ target_link_libraries(
   door-tests
 
   door
+  utilities
   gtest_main
 )
 add_test(
@@ -25,36 +24,41 @@ add_test(
   COMMAND door-tests
 )
 
-if (LIBGPIOD_FOUND)
-  add_executable(motorLED-tests motorLED-tests.cpp)
-  target_link_libraries(
-    motorLED-tests
-    door
-    gtest_main
-  )
+add_executable(
+  motor-tests   # Du kannst es nennen, wie du willst
+  motor-tests.cpp
+)
+target_link_libraries(
+  motor-tests
+  door                  # Es braucht die 'door'-Bibliothek
+  # KEIN gtest_main, da es eine eigene main() hat!
+)
 
-  add_executable(
-    input-switch-gpio-tests input-switch-gpio-tests.cpp
-  )
-  target_link_libraries(
-    input-switch-gpio-tests
-  
-    door
-    gtest_main
-  )
+# add_executable(motorLED-tests motorLED-tests.cpp)
+# target_link_libraries(
+#   motorLED-tests
+#   door
+#   gtest_main
+# )
 
-  add_executable(motor-stepper-tests motor-stepper-tests.cpp)
-  target_link_libraries(
-    motor-stepper-tests
-  
-    door
-    gtest_main
-  )
+add_executable(
+  input-switch-gpio-tests input-switch-gpio-tests.cpp
+)
+target_link_libraries(
+  input-switch-gpio-tests
 
+  door
+  gtest_main
+)
 
-else()
-  message(WARNING "Skip motorLED-tests and gpio-read-value-loop because libgpiod not found")
-endif()
+# add_executable(motor-stepper-tests motor-stepper-tests.cpp)
+# target_link_libraries(
+#   motor-stepper-tests
+
+#   door
+#   gtest_main
+# )
+
 
 add_executable(
   input-output-switch-gpio-sysfs-tests

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "structs.h"
-#include "timespec.h"
+#include "utilities/timespec.h"
 #include "analog-sensor-event-generator.h"
 
 
