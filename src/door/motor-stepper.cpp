@@ -6,48 +6,14 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <door/output-switch.h>
+
 
 
 //Konstruktor
-MotorStepper::MotorStepper(const std::string& gpiodevice, unsigned int line_enable, unsigned int line_dir, std::string period_nanosec, std::string duty_nanosec){
-
-    //Variablendekleration
-    _direction = Direction::IDLE;
-    _period_nanosec = period_nanosec;
-    _duty_nanosec = duty_nanosec;
-
-    _line_array[0] = line_enable;
-    _line_array[1] = line_dir;
-
-    _values_forward[0] = GPIOD_LINE_VALUE_INACTIVE;
-    _values_forward[1] = GPIOD_LINE_VALUE_INACTIVE;
-
-    _values_backward[0] = GPIOD_LINE_VALUE_INACTIVE;
-    _values_backward[1] = GPIOD_LINE_VALUE_ACTIVE;
-
-    _values_stop[0] = GPIOD_LINE_VALUE_ACTIVE;
-    _values_stop[1] = GPIOD_LINE_VALUE_INACTIVE;
-
-
-    //Chip-/ Lineconfig
-    _chip = gpiod_chip_open(gpiodevice.c_str());
-    if (!_chip)
-        throw std::runtime_error("Failed to open GPIO chip");
-
-    settings = gpiod_line_settings_new();
-    assert(settings);
+MotorStepper::MotorStepper(const std::string& gpiodevice, OutputSwitch& line_enable, OutputSwitch& line_direction, std::string period_nanosec, std::string duty_nanosec)
+    : _line_enable(line_enable), _line_direction(line_direction), _direction(Direction::IDLE), _period_nanosec(period_nanosec), _duty_nanosec(duty_nanosec){
     
-	gpiod_line_settings_set_direction(settings, GPIOD_LINE_DIRECTION_OUTPUT);
-
-	line_cfg = gpiod_line_config_new();
-    assert(line_cfg);
-
-    int error = gpiod_line_config_add_line_settings(line_cfg, _line_array, 2, settings);
-    assert(!error);
-
-    request = gpiod_chip_request_lines(_chip, nullptr, line_cfg);
-    assert(request != nullptr);
-
     //MotorStepper::ensureExported();
     MotorStepper::stop();
 }
@@ -56,17 +22,13 @@ MotorStepper::MotorStepper(const std::string& gpiodevice, unsigned int line_enab
 //Dekonstruktor
 MotorStepper::~MotorStepper(){
 
-    gpiod_chip_close(_chip);
-    gpiod_line_settings_free(settings);
-    gpiod_line_config_free(line_cfg);
-    gpiod_line_request_release(request);
 }
 
 //Funktionsdefinitionen
 void MotorStepper::forward(){
     
-    int error = gpiod_line_request_set_values(request, _values_forward);
-    assert(error == 0);
+    _line_enable.set_state(OutputSwitch::State::OUTPUT_LOW);
+    _line_direction.set_state(OutputSwitch::State::OUTPUT_LOW);
 
     _direction = Direction::FORWARD;
 
@@ -77,8 +39,8 @@ void MotorStepper::forward(){
 
 void MotorStepper::backward(){
 
-    int error = gpiod_line_request_set_values(request, _values_backward);
-    assert(error == 0);
+    _line_enable.set_state(OutputSwitch::State::OUTPUT_LOW);
+    _line_direction.set_state(OutputSwitch::State::OUTPUT_HIGH);
 
     _direction = Direction::BACKWARD;
 
@@ -89,8 +51,8 @@ void MotorStepper::backward(){
 
 void MotorStepper::stop(){
 
-    int error = gpiod_line_request_set_values(request, _values_stop);
-    assert(error == 0);
+    _line_enable.set_state(OutputSwitch::State::OUTPUT_HIGH);
+    _line_direction.set_state(OutputSwitch::State::OUTPUT_LOW);
 
     _direction = Direction::IDLE;
 
