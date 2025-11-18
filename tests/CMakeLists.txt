@@ -3,7 +3,7 @@ add_executable(
 
   door-tests.cpp
   timespec-tests.cpp
-
+  
   event-edge-detector-tests.cpp
 
   inputs-tests.cpp
@@ -16,11 +16,22 @@ target_link_libraries(
   door-tests
 
   door
+  utilities
   gtest_main
 )
 add_test(
   NAME door-tests 
   COMMAND door-tests
+)
+
+add_executable(
+  motor-tests   # Du kannst es nennen, wie du willst
+  motor-tests.cpp
+)
+target_link_libraries(
+  motor-tests
+  door                  # Es braucht die 'door'-Bibliothek
+  # KEIN gtest_main, da es eine eigene main() hat!
 )
 
 # add_executable(motorLED-tests motorLED-tests.cpp)
