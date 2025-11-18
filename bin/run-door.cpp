@@ -9,6 +9,13 @@
 #include <door/analog-sensor-mock.h>
 #include <door/utilities/timespec.h>
 
+#include <door/input-switch.h>
+#include <door/output-switch.h>
+
+#include <door/input-switch-gpio-sysfs.h>
+#include <door/pressure-sensor-bmp280.h>
+//#include <door/motor-stepper.h>
+
 #include <string>
 #include <iostream>
 #include <signal.h>
@@ -19,7 +26,7 @@ static volatile sig_atomic_t quit = 0;
 // hander function to set quit flag
 static void handler(int signal)
 {
-    if (signal == SIGTERM || signal == SIGINT)
+    if (signal == SIGINT || signal == SIGTERM)
         quit = 1;
 }
 
@@ -27,6 +34,8 @@ int main(int argc, char** argv)
 {
     // test flag
     int test = 0;
+    int real = 0;
+
 
     // too many arguments
     if (argc > 2)
@@ -45,6 +54,10 @@ int main(int argc, char** argv)
         {
             test = 1;
         }
+        else if(flag == "--real")
+        {
+            real = 1;
+        }
         else
         {
             std::cout << "Error: Invalide argument!" << std::endl;
@@ -53,18 +66,26 @@ int main(int argc, char** argv)
             return 1;
         }
     }
+    else 
+    {
+        std::cout << "Error: Missing argument!" << std::endl;
+        std::cout << "Usage: ./run-door [--test]" << std::endl;
+        return 1;
+    }
 
     // event handler for SIGTERM and SIGINT
     struct sigaction sa = { 0 };
     sa.sa_handler = handler;
 
     int rv = sigaction(SIGTERM, &sa, nullptr);
-    if (rv == -1) {
+    if (rv == -1)
+    {
         perror("sigaction(SIGTERM)");
         return 1;
     }
     rv = sigaction(SIGINT, &sa, nullptr);
-    if (rv == -1) {
+    if (rv == -1)
+    {
         perror("sigaction(SIGINT)");
         return 1;
     }
@@ -72,7 +93,6 @@ int main(int argc, char** argv)
     // create door
     Door door;
 
-    // create sensors
     InputSwitch* button_outside;
     InputSwitch* button_inside;
     InputSwitch* lightbarrier_closed;
@@ -96,22 +116,19 @@ int main(int argc, char** argv)
         // Motor
         motor = new MotorMock(Motor::Direction::IDLE);
     }
-    else
+    else if (real)
     {
-        // Real sensors
-        std::cout << "Info: Normal run, using real sensors. [not really, not implemented yet]" << std::endl;
+        std::cout << "Info: Real run, using real sensors." << std::endl;
+        // create sensors
+        button_outside = new InputSwitchGPIOSysfs(17);
+        button_inside = new InputSwitchGPIOSysfs(27);
+        lightbarrier_closed  = new InputSwitchGPIOSysfs(22);
+        lightbarrier_open  = new InputSwitchGPIOSysfs(23);
 
-        // TODO: change to real sensors!
-        // Buttons
-        button_outside = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
-        button_inside = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
-        // Lightbarriers
-        lightbarrier_closed = new InputSwitchMock(InputSwitch::State::INPUT_LOW);
-        lightbarrier_open = new InputSwitchMock(InputSwitch::State::INPUT_HIGH);
-        // Pressure sensor
-        pressureSensor = new AnalogSensorMock();
-        // Motor
-        motor = new MotorMock(Motor::Direction::IDLE);
+        // Pressure Sensor
+        pressureSensor = new BMP280("/dev/i2c-1", 0x76); 
+
+        //motor = new MotorStepper("/dev/gpiochip0", 26, 17, "2000000", "1000000");
     }
 
     // Pressure Sensor Event Generator
@@ -138,6 +155,7 @@ int main(int argc, char** argv)
     // --- run main SPS loop
     auto interval = TimeSpec::from_milliseconds(1);
 
+
     while (!quit) // graceful termination
     {
         // get current events and create event struct
@@ -161,14 +179,24 @@ int main(int argc, char** argv)
         // suspend for the rest of the interval
         auto suspend = interval - spent;
         rv = nanosleep(&suspend, nullptr);
-        if (rv == -1) {
+        if (rv == -1)
+        {
             if (errno == EINTR)
+            {
+                if (quit)
+                {
+                    std::cout << "Exiting gracefully..." << std::endl;
+                    break;
+                }
                 continue;
-            else {
+            }
+            else
+            {
                 perror("nanosleep");
                 return 1;
             }
         }
+
     }
 
     // cleanup before exit
