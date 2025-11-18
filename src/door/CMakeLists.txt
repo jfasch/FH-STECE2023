@@ -6,6 +6,10 @@ set(DOOR_FILES
   motor.h
   motor-mock.h
   motor-mock.cpp
+  #motor-stepper.h
+  #motor-stepper.cpp
+  #motorLED.h
+  #motorLED.cpp
 
   small_file_handling.h
   small_file_handling.cpp
@@ -64,15 +68,3 @@ target_include_directories(
 
   ${CMAKE_CURRENT_SOURCE_DIR}/..                       # <-- users have to e.g. say #include <door/motor.h>
 )
-
-if (LIBGPIOD_FOUND)                                    # <-- set toplevel by find_package(LIBGPIOD)
-  target_link_libraries(door LIBGPIOD::LIBGPIOD)
-else()
-  message(WARNING "door will not use libgpiod (which has not been found). note that this might lead to errors in the build process")
-endif()
-
-if (LIBGPIODCXX_FOUND)                                 # <-- set toplevel by find_package(LIBGPIODCXX)
-  target_link_libraries(door LIBGPIODCXX::LIBGPIODCXX)
-else()
-  message(WARNING "door will not use libgpiod (which has not been found). note that this might lead to errors in the build process")
-endif()
