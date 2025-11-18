@@ -1,4 +1,4 @@
-Developer Documentation
+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Developer Documentation
 =======================
 
 .. contents::
@@ -16,7 +16,7 @@ Optional: Install ``libgpiod``
 ``libgpiod`` is used to control GPIO pins. It can be left uninstalled
 for development purposes - if you develop code that can mock-away
 GPIOs then you can omit this step. If you choose to not install it,
-then you will have to live with a number of warnings in our project
+then you will have to live with a number of warnings in our project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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
 though.
 
 ``libgpiod`` installation has to be done manually, from
@@ -228,22 +228,20 @@ Key design decisions:
 
    src/door/
    ├── CMakeLists.txt
-   ├── core/
+   ├── statemachine/
    │   ├── door.h
    │   └── door.cpp
-   ├── common/
+   ├── utilities/
    │   ├── structs.h
    │   └── timespec.cpp
    ├── motor/
    │   ├── motor.h
    │   ├── motor-mock.cpp
    │   └── motorLED.cpp
-   ├── input_switch/
+   ├── input_output_switches/
    │   ├── input-switch.h
    │   └── input-switch-mock.cpp
-   ├── output_switch/
-   │   └── ...
-   └── pressure_sensor/
+   └── analog_sensors/
        └── ...
 
 3. Include Conventions
@@ -264,61 +262,123 @@ Key design decisions:
 
 This avoids "../"-includes and keeps include paths stable if files are moved or libraries are separated.
 
-4. CMake: Option B (Multi-Library) — Complete Example
+4. CMake:(Submodules + Dependencies) — Complete Example
 ------------------------------------------------------
 
 .. code-block:: cmake
 
-   # --- Project-specific files for door_core, door_mocks, door_hw ---
-   # door_core: core logic + interfaces (no hardware)
+   # --- Top-level CMakeLists.txt ---
+   # Located in: src/door/CMakeLists.txt
+
+   cmake_minimum_required(VERSION 3.16)
+   project(door_project LANGUAGES CXX)
+
+   set(CMAKE_CXX_STANDARD 17)
+   set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+   # --- Add submodules ---
+   add_subdirectory(core)
+   add_subdirectory(motor)
+   add_subdirectory(input_switch)
+   add_subdirectory(output_switch)
+   add_subdirectory(pressure_sensor)
+
+   # ---------------------------------------------------------
+   # Submodules: Each component has its own CMakeLists.txt
+   # ---------------------------------------------------------
+
+   # --- core/CMakeLists.txt ---
    set(DOOR_CORE_FILES
-     core/door.h
-     core/door.cpp
-     core/inputs.h
-     core/inputs.cpp
-     core/outputs.h
-     core/outputs.cpp
-     common/structs.h
-     common/timespec.h
-     common/timespec.cpp
-     common/event-edge-detector.h
-     common.h
-     motor/motor.h
-     input_switch/input-switch.h
-     output_switch/output-switch.h
-     pressure_sensor/pressure-sensor.h
+     door.cpp
+     inputs.cpp
+     outputs.cpp
+     ../common/timespec.cpp
    )
 
    add_library(door_core ${DOOR_CORE_FILES})
    target_include_directories(door_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
 
-   # door_mocks: mocks implement interfaces from door_core
-   set(DOOR_MOCK_FILES
-     motor/motor-mock.cpp
-     input_switch/input-switch-mock.cpp
-     output_switch/output-switch-mock.cpp
-     pressure_sensor/pressure-sensor-mock.cpp
+   target_sources(door_core
+     PUBLIC
+       ${CMAKE_CURRENT_SOURCE_DIR}/door.h
+       ${CMAKE_CURRENT_SOURCE_DIR}/inputs.h
+       ${CMAKE_CURRENT_SOURCE_DIR}/outputs.h
+       ${CMAKE_CURRENT_SOURCE_DIR}/../common/structs.h
+       ${CMAKE_CURRENT_SOURCE_DIR}/../common/timespec.h
+       ${CMAKE_CURRENT_SOURCE_DIR}/../common/event-edge-detector.h
    )
 
-   add_library(door_mocks ${DOOR_MOCK_FILES})
-   target_include_directories(door_mocks PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
-   target_link_libraries(door_mocks PUBLIC door_core)
+   # --- motor/CMakeLists.txt ---
+   set(MOTOR_MOCK_FILES
+     motor-mock.cpp
+   )
 
-   # door_hw: hardware implementations - only if libs present
+   add_library(motor_mocks ${MOTOR_MOCK_FILES})
+   target_include_directories(motor_mocks PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+   target_link_libraries(motor_mocks PUBLIC door_core)
+
    find_package(PkgConfig QUIET)
    find_package(Libgpiod QUIET)
 
    if (LIBGPIOD_FOUND)
-     set(DOOR_HW_FILES
-       motor/motorLED.cpp
-       input_switch/input-switch-gpio.cpp
-       output_switch/output-switch-gpio.cpp
-       pressure_sensor/pressure-sensor-bmp280.cpp
-     )
-     add_library(door_hw ${DOOR_HW_FILES})
-     target_include_directories(door_hw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
-     target_link_libraries(door_hw PUBLIC door_core LIBGPIOD::LIBGPIOD)
+     add_library(motor_hw motorLED.cpp)
+     target_include_directories(motor_hw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+     target_link_libraries(motor_hw PUBLIC door_core LIBGPIOD::LIBGPIOD)
+   else()
+     message(STATUS "LIBGPIOD not found, skipping motor_hw build")
    endif()
+
+   # --- input_switch/CMakeLists.txt ---
+   set(INPUT_MOCK_FILES
+     input-switch-mock.cpp
+   )
+
+   add_library(input_switch_mocks ${INPUT_MOCK_FILES})
+   target_include_directories(input_switch_mocks PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+   target_link_libraries(input_switch_mocks PUBLIC door_core)
+
+   find_package(Libgpiod QUIET)
+
+   if (LIBGPIOD_FOUND)
+     add_library(input_switch_hw input-switch-gpio.cpp)
+     target_include_directories(input_switch_hw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+     target_link_libraries(input_switch_hw PUBLIC door_core LIBGPIOD::LIBGPIOD)
+   endif()
+
+   # --- output_switch/CMakeLists.txt ---
+   set(OUTPUT_MOCK_FILES
+     output-switch-mock.cpp
+   )
+
+   add_library(output_switch_mocks ${OUTPUT_MOCK_FILES})
+   target_include_directories(output_switch_mocks PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+   target_link_libraries(output_switch_mocks PUBLIC door_core)
+
+   find_package(Libgpiod QUIET)
+
+   if (LIBGPIOD_FOUND)
+     add_library(output_switch_hw output-switch-gpio.cpp)
+     target_include_directories(output_switch_hw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+     target_link_libraries(output_switch_hw PUBLIC door_core LIBGPIOD::LIBGPIOD)
+   endif()
+
+   # --- pressure_sensor/CMakeLists.txt ---
+   set(PRESSURE_MOCK_FILES
+     pressure-sensor-mock.cpp
+   )
+
+   add_library(pressure_sensor_mocks ${PRESSURE_MOCK_FILES})
+   target_include_directories(pressure_sensor_mocks PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+   target_link_libraries(pressure_sensor_mocks PUBLIC door_core)
+
+   find_package(Libgpiod QUIET)
+
+   if (LIBGPIOD_FOUND)
+     add_library(pressure_sensor_hw pressure-sensor-bmp280.cpp)
+     target_include_directories(pressure_sensor_hw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+     target_link_libraries(pressure_sensor_hw PUBLIC door_core LIBGPIOD::LIBGPIOD)
+   endif()
+
 
 5. Step-by-Step Migration Guide
 -------------------------------
