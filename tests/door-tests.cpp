@@ -2,6 +2,7 @@
 #include <door/input-switch.h>
 #include <gtest/gtest.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 TEST(door_suite, door_init)
 {
@@ -70,7 +71,8 @@ TEST(door_suite, door_cyclic_open_button_pressed)
 
     // create events struct
     events_t events;
-    events.open_button_pressed = EdgeDetector::RISING;
+    events.button_inside_pressed = EdgeDetector::RISING;
+    events.button_outside_pressed = EdgeDetector::RISING;
 
     // create output struct
     output_t output;
@@ -101,6 +103,164 @@ TEST(door_suite, door_cyclic_error)
     // check state and output
     ASSERT_EQ(door.get_state(), Door::State::ERROR_SOMETHING_BADLY_WRONG);
     ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
+}
+
+// --- OPENING TESTS ---
+// check outputs
+TEST(door_suite, door_cyclic_opening)
+{
+    // create Door object
+    Door door;
+    door.set_state(Door::State::OPENING);
+
+    // create events struct
+    events_t events;
+
+    // create output struct
+    output_t output;
+
+    // run door.cyclic
+    output = door.cyclic(events);
+
+    // check state and output
+    ASSERT_EQ(door.get_state(), Door::State::OPENING);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::FORWARD);
+}
+
+TEST(door_suite, door_cyclic_opening_error)
+{
+    // create Door object
+    Door door;
+    door.set_state(Door::State::OPENING);
+
+    // create events struct
+    events_t events;
+
+    // create output struct
+    output_t output;
+
+    // set motor in wrong mode
+    output.motor_direction = Motor::Direction::IDLE;
+
+    // run door.cyclic
+    output = door.cyclic(events);
+
+    // check state and output
+    ASSERT_EQ(door.get_state(), Door::State::ERROR_SOMETHING_BADLY_WRONG);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
+
+    // set motor in wrong direction
+    output.motor_direction = Motor::Direction::BACKWARD;
+
+    door.set_state(Door::State::OPENING);
+
+    // run door.cyclic
+    output = door.cyclic(events);
+
+    // check state and output
+    ASSERT_EQ(door.get_state(), Door::State::ERROR_SOMETHING_BADLY_WRONG);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
+}
+
+// --- OPENING TO OPEN TEST ---
+
+TEST(door_suite, door_cyclic_opening_to_open)
+{
+    // create Door object
+    Door door;
+    door.set_state(Door::State::OPENING);
+
+    // create events struct
+    events_t events;
+
+    // create output struct
+    output_t output;
+
+    // run door.cyclic
+    output = door.cyclic(events);
+
+    // generates a random error
+    //int state = rand();
+
+    // check state and output
+    ASSERT_EQ(door.get_state(), Door::State::OPENING);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::FORWARD);
+
+    events.light_barrier_open = EdgeDetector::RISING;
+
+    // run door.cyclic
+    output = door.cyclic(events);
+
+    // check state and output
+    ASSERT_EQ(door.get_state(), Door::State::OPENED);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
+}
+
+// --- OPENED TESTS ---
+
+TEST(door_suite, door_cyclic_opened)
+{
+    // create Door object
+    Door door;
+    door.set_state(Door::State::OPENED);
+
+    // create events and input struct
+    events_t events;
+    input_t inputs;
+
+    // create output struct
+    output_t output;
+
+    // run door.cyclic
+    output = door.cyclic(events);
+
+    // generates a random error
+    //int state = rand();
+
+    // check state and output
+    ASSERT_EQ(door.get_state(), Door::State::OPENED);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
+    ASSERT_EQ(inputs.sensor_closed, InputSwitch::State::INPUT_HIGH);
+    ASSERT_EQ(inputs.sensor_open, InputSwitch::State::INPUT_LOW);
+
+}
+
+// --- OPEN TO CLOSING TEST ---
+
+TEST(door_suite, door_cyclic_open_to_closing)
+{
+    // create Door object
+    Door door;
+    door.set_state(Door::State::OPENED);
+
+    // create events struct
+    events_t events;
+    input_t inputs;
+
+    // create output struct
+    output_t output;
+
+    // run door.cyclic
+    output = door.cyclic(events);
+
+    // check state and output
+    ASSERT_EQ(door.get_state(), Door::State::OPENED);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
+    ASSERT_EQ(inputs.sensor_closed, InputSwitch::State::INPUT_HIGH);
+    ASSERT_EQ(inputs.sensor_open, InputSwitch::State::INPUT_LOW);
+
+    // set events
+    events.button_inside_pressed = EdgeDetector::RISING;
+    events.button_outside_pressed = EdgeDetector::RISING;
+
+    // run door.cyclic
+    output = door.cyclic(events);
+
+    // check state and output
+    ASSERT_EQ(door.get_state(), Door::State::CLOSING);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::BACKWARD);
+    ASSERT_EQ(inputs.sensor_closed, InputSwitch::State::INPUT_HIGH);
+    ASSERT_EQ(inputs.sensor_open, InputSwitch::State::INPUT_HIGH);
 }
 
 /*

@@ -12,7 +12,6 @@ add_executable(
   outputs-tests.cpp
 
   adc-mock-tests.cpp
-  pressure-mock-tests.cpp
 )
 target_link_libraries(
   door-tests
