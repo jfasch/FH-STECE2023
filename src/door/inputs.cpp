@@ -41,8 +41,8 @@ events_t Inputs::get_events()
 {
     events_t events;
     auto now = TimeSpec::now_monotonic();
-    events.close_button_pressed = _edge_button_outside->detect_edge(now);
-    events.open_button_pressed = _edge_button_inside->detect_edge(now);
+    events.button_outside_pressed = _edge_button_outside->detect_edge(now);
+    events.button_inside_pressed = _edge_button_inside->detect_edge(now);
     events.light_barrier_closed = _edge_lightbarrier_closed->detect_edge(now);
     events.light_barrier_open = _edge_lightbarrier_open->detect_edge(now);
     events.analog_state = _Analogsensor->get_event();
