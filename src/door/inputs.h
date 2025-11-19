@@ -23,6 +23,8 @@ private:
     InputSwitch* _lightbarrier_open;
     AnalogSensorEventGenerator* _Analogsensor;
 
-    EdgeDetector *_edge_button;
-    EdgeDetector *_edge_button2;
+    EdgeDetector *_edge_button_outside;
+    EdgeDetector *_edge_button_inside;
+    EdgeDetector *_edge_lightbarrier_closed;
+    EdgeDetector *_edge_lightbarrier_open;
 };
