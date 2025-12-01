@@ -1,7 +1,7 @@
 #include "eventloop.h"
 
 #include <vector>
-#include <format>
+#include <stdexcept>
 #include <cassert>
 
 #include <string.h>
@@ -26,10 +26,8 @@ void Eventloop::run()
                 });
 
         int nready = poll(&watches[0], watches.size(), -1);
-        if (nready == -1) {
-            std::string msg = std::format("poll error ({}, {})", errno, strerror(errno));
-            throw std::runtime_error(msg);
-        }
+        if (nready == -1)
+            throw std::runtime_error("nix gut, das ist eine schlechte Fehlermeldung, blame jfasch");
         if (nready == 0)
             throw std::runtime_error("poll returns 0 though no timeout requested");
 
