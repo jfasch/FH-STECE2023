@@ -1,5 +1,4 @@
 #include "door.h"
-
 #include <assert.h>
 
 Door::Door()

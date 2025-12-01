@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-TEST(door_suite, door_init)
+TEST(door_init_suite, door_init)
 {
     // create Door object
     Door door;
@@ -26,7 +26,7 @@ TEST(door_suite, door_init)
     ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
 }
 
-TEST(door_suite, door_init_error)
+TEST(door_init_suite, door_init_error)
 {
     // create Door object
     Door door;
