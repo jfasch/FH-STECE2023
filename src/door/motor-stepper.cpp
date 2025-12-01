@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <door/output-switch.h>
+#include "output-switch.h"
 
 
 

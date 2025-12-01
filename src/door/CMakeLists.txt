@@ -6,10 +6,8 @@ set(DOOR_FILES
   motor.h
   motor-mock.h
   motor-mock.cpp
-  #motor-stepper.h
-  #motor-stepper.cpp
-  #motorLED.h
-  #motorLED.cpp
+  motor-stepper.h
+  motor-stepper.cpp
 
   small_file_handling.h
   small_file_handling.cpp

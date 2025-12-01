@@ -32,7 +32,7 @@ InputSwitch::State InputSwitchGPIOSysfs::get_state()
 {
 
     const std::string path = "/sys/class/gpio/gpio" + std::to_string(_line_number) + "/value";
-
+    
     std::string value = read_string_from_file(path); 
 
     if (value.at(0) == '1')

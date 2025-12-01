@@ -6,10 +6,10 @@
 #include <unistd.h>    // Für sleep()
 #include <cstdio>      // Für printf
 
-#include "../src/door/motorLED.h"
-#include "../src/door/output-switch-gpio-sysfs.h"
-#include "../src/door/motor-stepper.h"
-#include "../src/door/motor.h"
+#include <door/motorLED.h>
+#include <door/output-switch-gpio-sysfs.h>
+#include <door/motor-stepper.h>
+#include <door/motor.h>
 
 int main(int argc, char const *argv[])
 {
