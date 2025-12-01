@@ -14,7 +14,9 @@ TEST(door_suite, door_init)
 
     // create Input struct
     input_t input;
+    // Assumption -> limit switches are active low
     input.sensor_closed = InputSwitch::State::INPUT_LOW;
+    input.sensor_open = InputSwitch::State::INPUT_HIGH;
 
     // create Output struct
     output_t output;
@@ -34,6 +36,9 @@ TEST(door_suite, door_init_error)
 
     // create Input struct
     input_t input;
+    // Assumption -> limit switches are active low
+    input.sensor_closed = InputSwitch::State::INPUT_HIGH;
+    input.sensor_open = InputSwitch::State::INPUT_HIGH;
 
     // create Output struct
     output_t output;
@@ -46,7 +51,7 @@ TEST(door_suite, door_init_error)
     ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
 }
 
-TEST(door_suite, door_cyclic)
+TEST(door_suite, door_button_outside_pressed)
 {
     // create Door object
     Door door;
@@ -54,28 +59,11 @@ TEST(door_suite, door_cyclic)
 
     // create events struct
     events_t events;
-
-    // create output struct
-    output_t output;
-
-    // run door.cyclic
-    output = door.cyclic(events);
-
-    // check state and output
-    ASSERT_EQ(door.get_state(), Door::State::CLOSED);
-    ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
-}
-
-TEST(door_suite, door_cyclic_open_button_pressed)
-{
-    // create Door object
-    Door door;
-    door.set_state(Door::State::CLOSED);
-
-    // create events struct
-    events_t events;
-    events.button_inside_pressed = EdgeDetector::RISING;
     events.button_outside_pressed = EdgeDetector::RISING;
+    events.button_inside_pressed = EdgeDetector::NONE;
+    events.light_barrier_closed = EdgeDetector::NONE;
+    events.light_barrier_open = EdgeDetector::NONE;
+    events.analog_state = AnalogSensorEvent::NORMAL_VALUE;
 
     // create output struct
     output_t output;
@@ -86,6 +74,16 @@ TEST(door_suite, door_cyclic_open_button_pressed)
     // check state and output
     ASSERT_EQ(door.get_state(), Door::State::OPENING);
     ASSERT_EQ(output.motor_direction, Motor::Direction::IDLE);
+
+    // button change is none
+    events.button_outside_pressed = EdgeDetector::NONE;
+
+    // call again
+    output = door.cyclic(events);
+
+    // checks
+    ASSERT_EQ(door.get_state(), Door::State::OPENING);
+    ASSERT_EQ(output.motor_direction, Motor::Direction::FORWARD);
 }
 
 TEST(door_suite, door_cyclic_error)
