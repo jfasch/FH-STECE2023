@@ -11,14 +11,18 @@ Inputs::Inputs(InputSwitch* button_outside, InputSwitch* button_inside, InputSwi
     _lightbarrier_open = lightbarrier_open;
     _Analogsensor = analogsensor;
 
-    _edge_button = new EdgeDetector(button_outside, debounce_time);
-    _edge_button2 = new EdgeDetector(button_inside, debounce_time);
+    _edge_button_outside = new EdgeDetector(button_outside, debounce_time);
+    _edge_button_inside = new EdgeDetector(button_inside, debounce_time);
+    _edge_lightbarrier_closed = new EdgeDetector(lightbarrier_closed, debounce_time);
+    _edge_lightbarrier_open = new EdgeDetector(lightbarrier_open, debounce_time);
 }
 
 Inputs::~Inputs()
 {
-    delete _edge_button;
-    delete _edge_button2;
+    delete _edge_button_outside;
+    delete _edge_button_inside;
+    delete _edge_lightbarrier_closed;
+    delete _edge_lightbarrier_open;
 }
 
 input_t Inputs::get_inputs()
@@ -37,8 +41,10 @@ events_t Inputs::get_events()
 {
     events_t events;
     auto now = TimeSpec::now_monotonic();
-    events.close_button_pressed = _edge_button->detect_edge(now);
-    events.open_button_pressed = _edge_button2->detect_edge(now);
+    events.button_outside_pressed = _edge_button_outside->detect_edge(now);
+    events.button_inside_pressed = _edge_button_inside->detect_edge(now);
+    events.light_barrier_closed = _edge_lightbarrier_closed->detect_edge(now);
+    events.light_barrier_open = _edge_lightbarrier_open->detect_edge(now);
     events.analog_state = _Analogsensor->get_event();
     return events;
 }

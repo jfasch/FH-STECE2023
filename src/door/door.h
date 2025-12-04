@@ -9,6 +9,7 @@ public:
     enum State
     {
         INIT,
+        CLOSING,
         CLOSED,
         OPENING,
         OPENED,
